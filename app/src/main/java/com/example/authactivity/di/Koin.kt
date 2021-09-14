@@ -2,7 +2,7 @@ package com.example.authactivity.di
 
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.network.*
-import com.example.authactivity.ui.auth.MainViewModel
+import com.example.authactivity.ui.main.MainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
