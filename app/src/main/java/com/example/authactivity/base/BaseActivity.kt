@@ -6,7 +6,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
 
 abstract class BaseActivity<VM : BaseViewModel<BaseEvent>, VB : androidx.viewbinding.ViewBinding>(
-        private val clazz: KClass<VM>
+    private val clazz: KClass<VM>
 ) : AppCompatActivity() {
 
     lateinit var binding: VB

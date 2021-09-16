@@ -1,6 +1,7 @@
 package com.example.authactivity
 
 import android.app.Application
+import com.example.authactivity.di.fragmentModule
 import com.example.authactivity.di.networkRepository
 import com.example.authactivity.di.repositoryModule
 import com.example.authactivity.di.viewModelModule
@@ -24,6 +25,7 @@ class App : Application() {
     private val loadKoinModules by lazy {
         loadKoinModules(
             listOf(
+                fragmentModule,
                 viewModelModule,
                 networkRepository,
                 repositoryModule
