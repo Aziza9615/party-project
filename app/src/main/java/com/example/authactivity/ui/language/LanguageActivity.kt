@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityLanguageBinding
+import com.example.authactivity.ui.main.MainActivity
 import com.example.authactivity.ui.main.MainViewModel
 
 class LanguageActivity : BaseActivity<MainViewModel, ActivityLanguageBinding>(MainViewModel::class) {
@@ -11,10 +12,17 @@ class LanguageActivity : BaseActivity<MainViewModel, ActivityLanguageBinding>(Ma
     override fun getViewBinding() = ActivityLanguageBinding.inflate(layoutInflater)
 
     override fun setupViews() {
+        setupListener()
     }
 
-    override fun subscribeToLiveData() {
+    private fun setupListener() {
+        binding.btnNextLanguage.setOnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
+
+    override fun subscribeToLiveData() {}
 
     companion object {
         fun intent(activity: Activity) {
