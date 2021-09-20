@@ -6,31 +6,13 @@
     <group android:checkableBehavior="single">
         <item android:id="@+id/topic"
             android:icon="@drawable/ic_loader"
-            android:title="Тема"/>
-    </group>
-
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/list"
-            android:icon="@drawable/ic_user"
-            android:title="Список"/>
-    </group>
-
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/statics"
-            android:icon="@drawable/ic_bar_chart_2"
-            android:title="Статистика"/>
-    </group>
-
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/language"
-            android:icon="@drawable/ic_vector"
-            android:title="Язык"/>
+            android:title="@string/topic"/>
     </group>
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/calendar"
             android:icon="@drawable/ic_calendar"
-            android:title="Календарь"/>
+            android:title="@string/calendar"/>
     </group>
 
 </menu>

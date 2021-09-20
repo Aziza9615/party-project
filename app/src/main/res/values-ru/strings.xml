@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AuthActivity</string>
+    <string name="Home">home</string>
+    <string name="kowum4a">koWum4a</string>
+    <string name="welcome">Добро Пожаловать!</string>
+    <string name="hi">Кто сколько дал, Кому сколько дали, об этом Вы никогда не забудете</string>
+    <string name="next1">Следующий</string>
+    <string name="chooselang">Выбрать язык</string>
+    <string name="topic">Тема</string>
+    <string name="calendar">Календарь</string>
+</resources>

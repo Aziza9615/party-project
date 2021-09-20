@@ -19,7 +19,7 @@
         android:fontFamily="@font/zhimangxing_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="koWum4a"
+        android:text="@string/kowum4a"
         android:textSize="48sp"
         android:textColor="@color/teal_700"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +32,9 @@
         android:fontFamily="@font/oldstandardtt_italic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Кош Келдиниз!"
+        android:text="@string/welcome"
         android:textSize="24sp"
+        android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,13 +44,12 @@
     <TextView
         android:id="@+id/splash_subtitle2"
         android:fontFamily="@font/oldstandardtt_italic"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Ким канча бергенин
-                                Кимге канча бергенинизди,
-                   эч качан унутпайсыз"
+        android:text="@string/hi"
         android:textSize="24sp"
         android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/splash_subtitle1"
@@ -66,16 +66,17 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="98dp"
         android:layout_marginStart="98dp"
-        android:text="Баштоо"
+        android:text="@string/next1"
         android:background="@drawable/next"/>
 
-    <TextView
+    <Button
         android:id="@+id/language"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:padding="14dp"
-        android:text="Тил тандоо?"
+        android:textStyle="bold"
+        android:text="@string/chooselang"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_next"

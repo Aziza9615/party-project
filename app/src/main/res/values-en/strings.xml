@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AuthActivity</string>
+    <string name="Home">home</string>
+    <string name="kowum4a">koWum4a</string>
+    <string name="welcome">Welcome!</string>
+    <string name="hi">You will never forget who gave you, to whom you gave and how much</string>
+    <string name="next1">Next</string>
+    <string name="chooselang">Choosing a language?</string>
+    <string name="topic">Topic</string>
+    <string name="calendar">Calendar</string>
+</resources>
