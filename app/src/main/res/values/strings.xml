@@ -10,4 +10,21 @@
     <string name="chooselang" translatable="false">Тилди тандоо?</string>
     <string name="topic" translatable="false">Тема</string>
     <string name="calendar" translatable="false">Календарь</string>
+    <string name="choosecurrecy">Валюта Тандоо</string>
+    <string name="done">Баштоо</string>
+    <string name="add">Кошуу</string>
+
+    <string-array name="currencies">
+        <item>EUR</item>
+        <item>USD</item>
+        <item>СОМ</item>
+        <item>РУБЛЬ</item>
+    </string-array>
+
+    <string-array name="currencies1">
+        <item>EUR</item>
+        <item>USD</item>
+        <item>СОМ</item>
+        <item>РУБЛЬ</item>
+    </string-array>
 </resources>

@@ -1,17 +1,19 @@
 package com.example.authactivity.base
 
+import com.example.authactivity.model.AmountModel
+import com.example.authactivity.model.User
+
 sealed class BaseEvent {
     class Error(message: String) : BaseEvent()
     class Success<T>(result: T) : BaseEvent()
     class Loading(state: Boolean) : BaseEvent()
 }
 
-sealed class AuthEvent: BaseEvent() {
-    object SuccessSignUp : AuthEvent()
-    object ErrorSignUp : AuthEvent()
+sealed class UserEvent : BaseEvent() {
+    class UserFetched(val array: User): UserEvent()
 }
 
-sealed class RegistrationEvent : BaseEvent() {
-    object SuccessSignUp : RegistrationEvent()
-    object ErrorSignUp : RegistrationEvent()
+sealed class AmountEvent : BaseEvent() {
+    class AmoutFetched(val item: AmountModel) : AmountEvent()
 }
+

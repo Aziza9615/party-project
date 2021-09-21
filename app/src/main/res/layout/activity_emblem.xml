@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/splash_subtitle1"
-        android:fontFamily="@font/oldstandardtt_italic"
+        android:fontFamily="@font/oldstandardtt_bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welcome"
@@ -43,7 +43,7 @@
 
     <TextView
         android:id="@+id/splash_subtitle2"
-        android:fontFamily="@font/oldstandardtt_italic"
+        android:fontFamily="@font/oldstandardtt_bold"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/hi"
@@ -67,7 +67,8 @@
         android:layout_marginEnd="98dp"
         android:layout_marginStart="98dp"
         android:text="@string/next1"
-        android:background="@drawable/next"/>
+        android:background="@drawable/next"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/language"

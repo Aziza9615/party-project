@@ -9,4 +9,7 @@
     <string name="chooselang">Choosing a language?</string>
     <string name="topic">Topic</string>
     <string name="calendar">Calendar</string>
+    <string name="choosecurrecy">Choose a currency</string>
+    <string name="done">To begin</string>
+    <string name="add">add</string>
 </resources>

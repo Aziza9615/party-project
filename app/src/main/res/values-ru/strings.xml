@@ -9,4 +9,7 @@
     <string name="chooselang">Выбрать язык</string>
     <string name="topic">Тема</string>
     <string name="calendar">Календарь</string>
+    <string name="choosecurrecy">Выбрать Валюту</string>
+    <string name="done">Начать</string>
+    <string name="add">Добавить</string>
 </resources>

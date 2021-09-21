@@ -13,11 +13,10 @@ import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
 import com.example.authactivity.databinding.ActivityMainBinding
+import com.example.authactivity.ui.activity.UserViewModel
 
-class MainViewModel : BaseViewModel<BaseEvent>()
-
-class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>
-    (MainViewModel::class) {
+class MainActivity : BaseActivity<UserViewModel, ActivityMainBinding>
+    (UserViewModel::class) {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var mNavController: NavController

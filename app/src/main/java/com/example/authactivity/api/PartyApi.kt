@@ -7,5 +7,5 @@ import retrofit2.http.GET
 
 interface PartyApi {
     @GET(GET_PARTY)
-    fun fetchUserProfile(): Observable<User>
+    fun fetchUser(): Observable<User>
 }

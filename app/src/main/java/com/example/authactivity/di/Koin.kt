@@ -2,8 +2,10 @@ package com.example.authactivity.di
 
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.network.*
+import com.example.authactivity.repository.UserRepository
+import com.example.authactivity.repository.UserRepositoryImpl
+import com.example.authactivity.ui.activity.UserViewModel
 import com.example.authactivity.ui.list.ListFragment
-import com.example.authactivity.ui.main.MainViewModel
 import com.example.authactivity.ui.statistics.StatisticsFragment
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.dsl.fragment
@@ -16,11 +18,11 @@ val fragmentModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { MainViewModel() }
+    viewModel { UserViewModel(get()) }
 }
 
 val repositoryModule = module {
-    //factory<AuthRepository> { AuthRepositoryImpl(get(), get()) }
+    factory<UserRepository> { UserRepositoryImpl(get()) }
 }
 
 val networkRepository = module {

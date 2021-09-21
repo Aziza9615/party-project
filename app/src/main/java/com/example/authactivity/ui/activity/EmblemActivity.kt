@@ -1,4 +1,4 @@
-package com.example.authactivity.ui.emblem
+package com.example.authactivity.ui.activity
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -10,18 +10,17 @@ import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityEmblemBinding
 import com.example.authactivity.ui.main.MainActivity
-import com.example.authactivity.ui.main.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
 
-class EmblemActivity : BaseActivity<MainViewModel, ActivityEmblemBinding>(MainViewModel::class) {
+class EmblemActivity : BaseActivity<UserViewModel, ActivityEmblemBinding>(UserViewModel::class) {
 
     lateinit var mBtn : Button
 
     override fun getViewBinding() = ActivityEmblemBinding.inflate(layoutInflater)
 
     override fun setupViews() {
-        viewModel = getViewModel(clazz = MainViewModel::class)
+        viewModel = getViewModel(clazz = UserViewModel::class)
         setupListener()
         loadLocate()
 
@@ -33,13 +32,13 @@ class EmblemActivity : BaseActivity<MainViewModel, ActivityEmblemBinding>(MainVi
 
     private fun setupListener() {
         binding.btnNext.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, AmountActivity::class.java)
             startActivity(intent)
         }
     }
 
     private fun showChangeLang() {
-        val listItems = arrayOf("English", "Кыргызский", "Русский")
+        val listItems = arrayOf("English", "Кыргызча", "Русский")
 
         val mBuilder = AlertDialog.Builder(this@EmblemActivity)
         mBuilder.setTitle("Choose Language")
@@ -55,7 +54,7 @@ class EmblemActivity : BaseActivity<MainViewModel, ActivityEmblemBinding>(MainVi
             } else if (which == 2) {
                 setLocate("ru")
                 recreate()
-            }
+        }
 
             dialog.dismiss()
         }
@@ -83,5 +82,12 @@ class EmblemActivity : BaseActivity<MainViewModel, ActivityEmblemBinding>(MainVi
     }
 
     override fun subscribeToLiveData() {
+    }
+
+    companion object {
+        fun intent(activity: Activity) {
+            val intent = Intent(activity, EmblemActivity::class.java)
+            activity.startActivity(intent)
+        }
     }
 }

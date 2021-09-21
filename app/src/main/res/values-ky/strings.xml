@@ -5,8 +5,11 @@
     <string name="kowum4a">koWum4a</string>
     <string name="welcome">Кош Келдиниз!</string>
     <string name="hi">Ким канча бергенин Кимге канча бергенинизди, эч качан унутпайсыз</string>
-    <string name="next1">Баштоо</string>
+    <string name="next1">Кийинки</string>
     <string name="chooselang">Тилди тандоо?</string>
     <string name="topic">Тема</string>
     <string name="calendar">Календарь</string>
+    <string name="choosecurrecy">Валюта Тандоо</string>
+    <string name="done">Баштоо</string>
+    <string name="add">Кошуу</string>
 </resources>
