@@ -9,7 +9,7 @@ import android.widget.Button
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityEmblemBinding
-import com.example.authactivity.ui.main.MainActivity
+import com.example.authactivity.ui.activity.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
 

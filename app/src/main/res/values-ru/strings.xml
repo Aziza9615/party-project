@@ -7,9 +7,12 @@
     <string name="hi">Кто сколько дал, Кому сколько дали, об этом Вы никогда не забудете</string>
     <string name="next1">Следующий</string>
     <string name="chooselang">Выбрать язык</string>
-    <string name="topic">Тема</string>
-    <string name="calendar">Календарь</string>
     <string name="choosecurrecy">Выбрать Валюту</string>
     <string name="done">Начать</string>
     <string name="add">Добавить</string>
+    <string name="invoices">Счета</string>
+    <string name="amount">Валюта</string>
+    <string name="share">Поделиться</string>
+    <string name="estimate">Оценить приложение</string>
+    <string name="connection">Связь с разработчиком</string>
 </resources>

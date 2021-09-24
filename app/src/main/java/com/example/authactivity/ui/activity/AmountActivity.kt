@@ -4,8 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityAmountBinding
+import com.example.authactivity.ui.activity.viewmodel.AmountViewModel
 import com.example.authactivity.ui.main.MainActivity
-import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class AmountActivity : BaseActivity<AmountViewModel, ActivityAmountBinding>(AmountViewModel::class) {
 
@@ -13,7 +13,7 @@ class AmountActivity : BaseActivity<AmountViewModel, ActivityAmountBinding>(Amou
 
     override fun setupViews() {
         setupListener()
-        CreateAdd()
+        //CreateAdd()
     }
 
     private fun setupListener() {
@@ -27,17 +27,17 @@ class AmountActivity : BaseActivity<AmountViewModel, ActivityAmountBinding>(Amou
         }
     }
 
-    private fun CreateAdd() {
-        binding.addBtn.setOnClickListener {
-            val amount = binding.amountEv.text.toString()
-            val price = binding.currency.text.toString()
-            if (amount.isNotEmpty() && price.isNotEmpty()) {
-                viewModel.CreateAdd(
-                        amount = amount, price = price.toDouble()
-                )
-                }
-            }
-        }
+//    private fun CreateAdd() {
+//        binding.addBtn.setOnClickListener {
+//            val amount = binding.amountEv.text.toString()
+//            val price = binding.currency.text.toString()
+//            if (amount.isNotEmpty() && price.isNotEmpty()) {
+//                viewModel.CreateAdd(
+//                        amount = amount, price = price.toDouble()
+//                )
+//                }
+//            }
+//        }
 
     override fun subscribeToLiveData() {
 

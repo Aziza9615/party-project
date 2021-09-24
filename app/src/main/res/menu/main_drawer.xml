@@ -4,15 +4,33 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/topic"
-            android:icon="@drawable/ic_loader"
-            android:title="@string/topic"/>
+        <item android:id="@+id/invoicesFragment"
+            android:icon="@drawable/ic_book"
+            android:title="@string/invoices"/>
     </group>
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/calendar"
-            android:icon="@drawable/ic_calendar"
-            android:title="@string/calendar"/>
+        <item android:id="@+id/currencyFragment"
+            android:icon="@drawable/ic_dollar_sign"
+            android:title="@string/amount"/>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/shareFragment"
+            android:icon="@drawable/ic_vector23"
+            android:title="@string/share"/>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/estimationFragment"
+            android:icon="@drawable/ic_star"
+            android:title="@string/estimate"/>
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/connectionFragment"
+            android:icon="@drawable/ic_circle_question_mark"
+            android:title="@string/connection"/>
     </group>
 
 </menu>

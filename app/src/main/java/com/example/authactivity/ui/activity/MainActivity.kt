@@ -10,10 +10,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
-import com.example.authactivity.base.BaseEvent
-import com.example.authactivity.base.BaseViewModel
 import com.example.authactivity.databinding.ActivityMainBinding
-import com.example.authactivity.ui.activity.UserViewModel
+import com.example.authactivity.ui.activity.viewmodel.UserViewModel
 
 class MainActivity : BaseActivity<UserViewModel, ActivityMainBinding>
     (UserViewModel::class) {
@@ -35,7 +33,7 @@ class MainActivity : BaseActivity<UserViewModel, ActivityMainBinding>
          mNavController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.listFragment, R.id.statisticsFragment
+                R.id.invoicesFragment, R.id.currencyFragment, R.id.shareFragment, R.id.estimationFragment, R.id.connectionFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(mNavController, appBarConfiguration)

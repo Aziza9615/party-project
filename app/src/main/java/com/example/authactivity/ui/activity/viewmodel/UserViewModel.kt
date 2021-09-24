@@ -1,4 +1,4 @@
-package com.example.authactivity.ui.activity
+package com.example.authactivity.ui.activity.viewmodel
 
 import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel

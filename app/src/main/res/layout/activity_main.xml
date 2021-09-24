@@ -17,15 +17,16 @@
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
-            android:layout_width="250dp"
+            android:layout_width="300dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             app:itemTextColor="@color/black"
-            app:itemIconSize="25sp"
-            android:background="@color/teal_200"
+            app:itemIconSize="28sp"
+            android:background="@color/toolbar_green"
             app:itemIconTint="@color/black"
             app:headerLayout="@layout/nav_header"
             android:fitsSystemWindows="true"
-            app:menu="@menu/main_drawer"/>
+            app:menu="@menu/main_drawer"
+            android:theme="@style/NavigationDrawerStyle"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
