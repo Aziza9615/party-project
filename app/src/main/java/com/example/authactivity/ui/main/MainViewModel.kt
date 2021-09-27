@@ -1,11 +1,11 @@
-package com.example.authactivity.ui.activity.viewmodel
+package com.example.authactivity.ui.main
 
 import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
 import com.example.authactivity.base.UserEvent
-import com.example.authactivity.repository.UserRepository
+import com.example.authactivity.repository.MainRepository
 
-class UserViewModel(private val repository: UserRepository) : BaseViewModel<BaseEvent>() {
+class MainViewModel(private val repository: MainRepository) : BaseViewModel<BaseEvent>() {
 
     init {
         fetchUser()

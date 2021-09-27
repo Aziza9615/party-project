@@ -11,10 +11,13 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityMainBinding
-import com.example.authactivity.ui.activity.viewmodel.UserViewModel
+import com.example.authactivity.ui.bottom.HomeFragment
+import com.example.authactivity.ui.bottom.ListFragment
+import com.example.authactivity.ui.bottom.StatisticFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : BaseActivity<UserViewModel, ActivityMainBinding>
-    (UserViewModel::class) {
+class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>
+    (MainViewModel::class) {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var mNavController: NavController
@@ -29,6 +32,7 @@ class MainActivity : BaseActivity<UserViewModel, ActivityMainBinding>
     private fun setupNavDrawer() {
         val navDrawer = binding.navView
         val drawerLayout = binding.drawView
+        val navBottomView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentHost) as NavHostFragment
          mNavController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(

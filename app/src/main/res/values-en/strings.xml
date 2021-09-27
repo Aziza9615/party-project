@@ -15,5 +15,9 @@
     <string name="share">To share</string>
     <string name="estimate">Rate the app</string>
     <string name="connection">communication with developers</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Home</string>
+    <string name="list">List</string>
+    <string name="statistic">Statistic</string>
 
 </resources>

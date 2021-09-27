@@ -4,8 +4,6 @@ import com.example.authactivity.base.AmountEvent
 import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
 import com.example.authactivity.repository.AmountRepository
-import com.example.authactivity.repository.UserRepository
-import java.io.File
 
 class AmountViewModel(private val repository: AmountRepository): BaseViewModel<BaseEvent>() {
 

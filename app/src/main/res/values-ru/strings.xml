@@ -15,4 +15,8 @@
     <string name="share">Поделиться</string>
     <string name="estimate">Оценить приложение</string>
     <string name="connection">Связь с разработчиком</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home">Главная</string>
+    <string name="list">Список</string>
+    <string name="statistic">Статистика</string>
 </resources>

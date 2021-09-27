@@ -12,11 +12,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-interface UserRepository {
+interface MainRepository {
     fun fetchUser(): Observable<User>
 }
 
-class UserRepositoryImpl(private val api: PartyApi) : UserRepository {
+class MainRepositoryImpl(private val api: PartyApi) : MainRepository {
     override fun fetchUser(): Observable<User> {
         return api.fetchUser()
                 .subscribeOn(Schedulers.io())

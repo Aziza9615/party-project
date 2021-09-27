@@ -7,6 +7,6 @@
         android:id="@+id/money_view"
         android:layout_width="300dp"
         android:layout_height="250dp"
-        android:background="@mipmap/image1"/>
+        android:background="@mipmap/kowumcha"/>
 
 </LinearLayout>

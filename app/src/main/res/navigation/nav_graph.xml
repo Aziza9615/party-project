@@ -8,7 +8,6 @@
     <fragment
         android:id="@+id/invoicesFragment"
         android:name="com.example.authactivity.ui.draw.InvoicesFragment"
-        android:label="fragment_invoices"
         tools:layout="@layout/fragment_invoices" />
     <fragment
         android:id="@+id/currencyFragment"

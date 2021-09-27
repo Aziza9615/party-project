@@ -7,13 +7,18 @@
     android:fitsSystemWindows="true"
     android:id="@+id/draw_view"
     tools:openDrawer="start"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.main.MainActivity"
+    android:background="@color/gray">
 
         <include
             android:id="@+id/include"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             layout="@layout/activity_app_bar"/>
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="match_parent"/>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
@@ -30,3 +35,4 @@
             android:theme="@style/NavigationDrawerStyle"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
+

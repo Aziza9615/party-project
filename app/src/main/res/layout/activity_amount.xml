@@ -42,7 +42,7 @@
             app:layout_constraintStart_toEndOf="@+id/back_btn"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="23dp"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
 
