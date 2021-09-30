@@ -1,13 +1,15 @@
 package com.example.authactivity.ui.main
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.*
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityMainBinding
@@ -15,6 +17,7 @@ import com.example.authactivity.ui.bottom.HomeFragment
 import com.example.authactivity.ui.bottom.ListFragment
 import com.example.authactivity.ui.bottom.StatisticFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>
     (MainViewModel::class) {
@@ -24,9 +27,24 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>
 
     override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return item.onNavDestinationSelected(mNavController) || super.onOptionsItemSelected(item)
+    }
+
     override fun setupViews() {
+        viewModel = getViewModel(clazz = MainViewModel::class)
         setSupportActionBar(binding.include.toolbar)
         setupNavDrawer()
+        alert()
+    }
+
+    private fun alert() {
+        binding
     }
 
     private fun setupNavDrawer() {

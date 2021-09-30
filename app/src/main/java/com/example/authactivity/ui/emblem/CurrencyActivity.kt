@@ -1,17 +1,19 @@
-package com.example.authactivity.ui.activity
+package com.example.authactivity.ui.emblem
 
 import android.app.Activity
 import android.content.Intent
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityAmountBinding
-import com.example.authactivity.ui.activity.viewmodel.AmountViewModel
+import com.example.authactivity.ui.emblem.viewmodel.CurrencyViewModel
 import com.example.authactivity.ui.main.MainActivity
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class AmountActivity : BaseActivity<AmountViewModel, ActivityAmountBinding>(AmountViewModel::class) {
+class CurrencyActivity : BaseActivity<CurrencyViewModel, ActivityAmountBinding>(CurrencyViewModel::class) {
 
     override fun getViewBinding() = ActivityAmountBinding.inflate(layoutInflater)
 
     override fun setupViews() {
+        viewModel = getViewModel(clazz = CurrencyViewModel::class)
         setupListener()
         //CreateAdd()
     }
@@ -45,7 +47,7 @@ class AmountActivity : BaseActivity<AmountViewModel, ActivityAmountBinding>(Amou
 
     companion object {
         fun intent(activity: Activity) {
-            val intent = Intent(activity, AmountActivity::class.java)
+            val intent = Intent(activity, CurrencyActivity::class.java)
             activity.startActivity(intent)
         }
     }

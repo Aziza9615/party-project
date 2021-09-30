@@ -29,4 +29,12 @@
         android:name="com.example.authactivity.ui.draw.ConnectionFragment"
         android:label="fragment_connection"
         tools:layout="@layout/fragment_connection" />
+    <fragment
+        android:id="@+id/langFragment"
+        android:name="com.example.authactivity.ui.settings.LangFragment"
+        android:label="LangFragment" />
+    <fragment
+        android:id="@+id/deleteFragment"
+        android:name="com.example.authactivity.ui.settings.DeleteFragment"
+        android:label="DeleteFragment"/>
 </navigation>

@@ -6,7 +6,7 @@
     <string name="welcome">Кош келиниздер!</string>
     <string name="hi">Ким канча бергенин, кимге канча бергенинизди, эч качан унутпайсыз</string>
     <string name="next1">Кийинки</string>
-    <string name="chooselang">Тилди тандоо?</string>
+    <string name="chooselang">Тилди тандоо</string>
     <string name="choosecurrecy">Валюта Тандоо</string>
     <string name="done">Баштоо</string>
     <string name="add">Кошуу</string>
@@ -19,4 +19,6 @@
     <string name="home">Башкы бет</string>
     <string name="list">Тизме</string>
     <string name="statistic">Статистика</string>
+    <string name="theme">Теманы тандоо</string>
+    <string name="delete">Бардык дайындарды жок кылуу</string>
 </resources>

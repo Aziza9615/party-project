@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTheme">
         <activity android:name=".ui.main.MainActivity"/>
-        <activity android:name=".ui.activity.AmountActivity"/>
-        <activity android:name=".ui.activity.EmblemActivity">
+        <activity android:name=".ui.emblem.CurrencyActivity"/>
+        <activity android:name=".ui.emblem.EmblemActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

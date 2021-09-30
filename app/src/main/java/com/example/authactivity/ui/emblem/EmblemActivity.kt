@@ -1,4 +1,4 @@
-package com.example.authactivity.ui.activity
+package com.example.authactivity.ui.emblem
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -32,7 +32,7 @@ class EmblemActivity : BaseActivity<MainViewModel, ActivityEmblemBinding>(MainVi
 
     private fun setupListener() {
         binding.btnNext.setOnClickListener {
-            val intent = Intent(this, AmountActivity::class.java)
+            val intent = Intent(this, CurrencyActivity::class.java)
             startActivity(intent)
         }
     }

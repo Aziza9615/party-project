@@ -1,8 +1,10 @@
 package com.example.authactivity.network
 
 import com.example.authactivity.AppContacts.BASE_URL
-import com.example.authactivity.api.AmountApi
+import com.example.authactivity.api.CurrencyApi
 import com.example.authactivity.api.PartyApi
+import com.example.authactivity.api.SettingsApi
+import com.example.authactivity.api.ThemeApi
 import com.example.authactivity.local.PrefsHelper
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
@@ -33,7 +35,9 @@ fun provideHttpLoginingInterceptor(): HttpLoggingInterceptor {
 }
 
 fun providePartyApi(retrofit: Retrofit) = retrofit.create(PartyApi::class.java)
-fun provideAmountApi(retrofit: Retrofit) = retrofit.create(AmountApi::class.java)
+fun provideCurrencyApi(retrofit: Retrofit) = retrofit.create(CurrencyApi::class.java)
+fun provideThemeApi(retrofit: Retrofit) = retrofit.create(ThemeApi::class.java)
+fun provideSettingsApi(retrofit: Retrofit) = retrofit.create(SettingsApi::class.java)
 
 fun provideHeadersInterceptor(preferences: PrefsHelper)
         = HeadersInterceptor(preferences)

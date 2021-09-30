@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:icon="@drawable/ic_settings"
+        app:showAsAction="ifRoom"
+        android:title="">
+
+        <menu>
+            <item
+                android:id="@+id/theme"
+                android:icon="@drawable/ic_material_design"
+                android:title="@string/theme"
+                />
+
+            <item
+                android:id="@+id/langFragment"
+                android:icon="@drawable/ic_vector"
+                android:title="@string/chooselang" />
+
+            <item
+                android:id="@+id/deleteFragment"
+                android:icon="@drawable/ic_trash_2"
+                android:title="@string/delete"/>
+        </menu>
+    </item>
+</menu>

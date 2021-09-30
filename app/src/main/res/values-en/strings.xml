@@ -6,7 +6,7 @@
     <string name="welcome">Welcome!</string>
     <string name="hi">You will never forget who gave you, to whom you gave and how much</string>
     <string name="next1">Next</string>
-    <string name="chooselang">Choosing a language?</string>
+    <string name="chooselang">Choosing a language</string>
     <string name="choosecurrecy">Choose a currency</string>
     <string name="done">To begin</string>
     <string name="add">add</string>
@@ -19,5 +19,7 @@
     <string name="home">Home</string>
     <string name="list">List</string>
     <string name="statistic">Statistic</string>
+    <string name="theme">Choose a topic</string>
+    <string name="delete">Delete all data</string>
 
 </resources>

@@ -35,4 +35,6 @@
     <string name="home">Home</string>
     <string name="list">List</string>
     <string name="statistic">Statistic</string>
+    <string name="theme">Theme</string>
+    <string name="delete">Delete</string>
 </resources>

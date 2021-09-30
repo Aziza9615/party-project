@@ -10,8 +10,6 @@ import com.example.authactivity.ui.bottom.viewmodel.ListViewModel
 class HomeFragment : BaseFragment<ListViewModel, FragmentHomeBinding>(
     ListViewModel::class) {
 
-    // private var publicationArray: MutableList<PsychologistId> = mutableListOf()
-
     override fun attachBinding(
         list: MutableList<FragmentHomeBinding>,
         layoutInflater: LayoutInflater,
@@ -22,7 +20,7 @@ class HomeFragment : BaseFragment<ListViewModel, FragmentHomeBinding>(
     }
 
     override fun setupViews() {
-        TODO("Not yet implemented")
+       // viewModel = getViewModel(clazz = SubcategoryViewModel::class)
     }
 
     override fun subscribeToLiveData() {
