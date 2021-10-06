@@ -21,4 +21,8 @@
     <string name="statistic">Статистика</string>
     <string name="theme">Теманы тандоо</string>
     <string name="delete">Бардык дайындарды жок кылуу</string>
+    <string name="english">English</string>
+    <string name="kyrgyz">Кыргызча</string>
+    <string name="russian">Русский</string>
+    <string name="choose">Сиздин тилди тандоо</string>
 </resources>

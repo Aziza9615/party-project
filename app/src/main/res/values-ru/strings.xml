@@ -21,4 +21,8 @@
     <string name="statistic">Статистика</string>
     <string name="theme">Выбрать тему</string>
     <string name="delete">Удалить все данные</string>
+    <string name="english">English</string>
+    <string name="kyrgyz">Кыргызча</string>
+    <string name="russian">Русский</string>
+    <string name="choose">Выберите язык</string>
 </resources>

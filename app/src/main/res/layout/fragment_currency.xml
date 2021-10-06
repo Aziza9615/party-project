@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="horizontal"
-    android:background="@color/gray">
+    android:background="@color/gray"
+    android:id="@+id/currencyfra">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

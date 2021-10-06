@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/bottom_home"
+    <item android:id="@+id/homeFragment"
         android:title="@string/home"
         android:icon="@drawable/ic_home"/>
 
-    <item android:id="@+id/bottom_info"
+    <item android:id="@+id/listFragment"
         android:checked="true"
         android:title="@string/list"
         android:icon="@drawable/ic_users"/>
 
-    <item android:id="@+id/bottom_statistic"
+    <item android:id="@+id/statisticFragment"
         android:checked="true"
         android:title="@string/statistic"
         android:icon="@drawable/ic_bar_chart_2"/>

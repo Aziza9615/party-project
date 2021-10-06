@@ -9,4 +9,5 @@ object AppContacts {
     const val GET_THEME = "/user/signup/"
     const val SETT = "/user/signup/"
     const val DELETE = "/user/signup/"
+    const val GET_BOTTOM = "/user/signup/"
 }

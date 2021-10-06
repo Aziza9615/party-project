@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentHomeBinding
-import com.example.authactivity.databinding.FragmentListBinding
-import com.example.authactivity.ui.bottom.viewmodel.ListViewModel
+import com.example.authactivity.ui.bottom.list.ListViewModel
 
 class HomeFragment : BaseFragment<ListViewModel, FragmentHomeBinding>(
     ListViewModel::class) {
@@ -20,10 +19,14 @@ class HomeFragment : BaseFragment<ListViewModel, FragmentHomeBinding>(
     }
 
     override fun setupViews() {
-       // viewModel = getViewModel(clazz = SubcategoryViewModel::class)
+        // viewModel = getViewModel(clazz = SubcategoryViewModel::class)
     }
 
     override fun subscribeToLiveData() {
-        TODO("Not yet implemented")
+
+    }
+
+    companion object {
+        fun newInstance() = HomeFragment()
     }
 }

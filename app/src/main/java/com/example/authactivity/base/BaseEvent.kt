@@ -1,9 +1,6 @@
 package com.example.authactivity.base
 
-import com.example.authactivity.model.CurrencyModel
-import com.example.authactivity.model.SettingsModel
-import com.example.authactivity.model.ThemeModel
-import com.example.authactivity.model.User
+import com.example.authactivity.model.*
 
 sealed class BaseEvent {
     class Error(message: String) : BaseEvent()
@@ -29,5 +26,9 @@ sealed class SettingsEvent : BaseEvent() {
 
 sealed class DeleteEvent : BaseEvent() {
     class DeleteFetched(val item: SettingsModel) : DeleteEvent()
+}
+
+sealed class ListEvent : BaseEvent() {
+    class ListFetched(val item: BottomModel) : ListEvent()
 }
 

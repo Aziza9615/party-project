@@ -4,31 +4,31 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/invoicesFragment"
+        <item android:id="@+id/invoicesFragment2"
             android:icon="@drawable/ic_book"
             android:title="@string/invoices"/>
     </group>
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/currencyFragment"
+        <item android:id="@+id/currencyFragment2"
             android:icon="@drawable/ic_dollar_sign"
             android:title="@string/amount"/>
     </group>
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/shareFragment"
+        <item android:id="@+id/shareFragment2"
             android:icon="@drawable/ic_vector23"
             android:title="@string/share"/>
     </group>
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/estimationFragment"
+        <item android:id="@+id/estimationFragment2"
             android:icon="@drawable/ic_star"
             android:title="@string/estimate"/>
     </group>
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/connectionFragment"
+        <item android:id="@+id/connectionFragment2"
             android:icon="@drawable/ic_circle_question_mark"
             android:title="@string/connection"/>
     </group>

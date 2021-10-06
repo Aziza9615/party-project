@@ -5,12 +5,14 @@ import com.example.authactivity.network.*
 import com.example.authactivity.repository.*
 import com.example.authactivity.ui.emblem.viewmodel.CurrencyViewModel
 import com.example.authactivity.ui.bottom.HomeFragment
-import com.example.authactivity.ui.bottom.ListFragment
+import com.example.authactivity.ui.bottom.list.ListFragment
 import com.example.authactivity.ui.bottom.StatisticFragment
+import com.example.authactivity.ui.bottom.list.ListViewModel
 import com.example.authactivity.ui.main.MainViewModel
 import com.example.authactivity.ui.draw.*
+import com.example.authactivity.ui.emblem.AmountFragment
+import com.example.authactivity.ui.emblem.EmblemFragment
 import com.example.authactivity.ui.settings.DeleteFragment
-import com.example.authactivity.ui.settings.LangFragment
 import com.example.authactivity.ui.settings.ThemeViewModel
 import com.example.authactivity.ui.settings.viewmodel.SettingsViewModel
 import org.koin.android.ext.koin.androidContext
@@ -27,8 +29,9 @@ val fragmentModule = module {
     fragment { HomeFragment() }
     fragment { ListFragment() }
     fragment { StatisticFragment() }
-    fragment { LangFragment() }
     fragment { DeleteFragment() }
+    fragment { AmountFragment() }
+    fragment { EmblemFragment() }
 }
 
 val viewModelModule = module {
@@ -36,6 +39,7 @@ val viewModelModule = module {
     viewModel { CurrencyViewModel(get()) }
     viewModel { ThemeViewModel(get()) }
     viewModel { SettingsViewModel(get()) }
+    viewModel { ListViewModel(get()) }
 }
 
 val repositoryModule = module {
@@ -43,6 +47,7 @@ val repositoryModule = module {
     factory<CurrencyRepository> { CurrencyRepositoryImpl(get()) }
     factory<ThemeRepository> { ThemeRepositoryImpl(get()) }
     factory<SettingsRepository> { SettingsRepositoryImpl(get()) }
+    factory<BottomRepository> { BottomRepositoryImpl(get()) }
 }
 
 val networkRepository = module {
@@ -55,4 +60,5 @@ val networkRepository = module {
     single { provideCurrencyApi(get()) }
     single { provideThemeApi(get()) }
     single { provideSettingsApi(get()) }
+    single { provideBottomApi(get()) }
 }

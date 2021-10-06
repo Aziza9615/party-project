@@ -4,19 +4,19 @@
             <!-- Customize your theme here. -->
             <item name="colorAccent">@color/green</item>
             <item name="backgroundColor">#FFFFFF</item>
-            <item name="cardBackground">#FFFFFF</item>
-            <item name="textColor">#4E4C4C</item>
-            <item name="tintColor">#000000</item>
-            <item name="buttonColor">#C1C1B4</item>
+<!--            <item name="cardBackground">#FFFFFF</item>-->
+<!--            <item name="textColor">#4E4C4C</item>-->
+<!--            <item name="tintColor">#000000</item>-->
+<!--            <item name="buttonColor">#C1C1B4</item>-->
         </style>
 
     <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorAccent">@color/green</item>
         <item name="backgroundColor">#303030</item>
-        <item name="cardBackground">#424242</item>
-        <item name="textColor">#ffffff</item>
-        <item name="tintColor">#ffffff</item>
-        <item name="buttonColor">#303030</item>
+<!--        <item name="cardBackground">#424242</item>-->
+<!--        <item name="textColor">#ffffff</item>-->
+<!--        <item name="tintColor">#ffffff</item>-->
+<!--        <item name="buttonColor">#303030</item>-->
     </style>
 </resources>

@@ -37,4 +37,6 @@
     <string name="statistic">Statistic</string>
     <string name="theme">Theme</string>
     <string name="delete">Delete</string>
+    <string name="english">English</string>
+    <string name="kyrgyz">Кыргызча</string>
 </resources>

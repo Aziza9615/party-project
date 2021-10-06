@@ -3,9 +3,8 @@ package com.example.authactivity.ui.bottom
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.authactivity.base.BaseFragment
-import com.example.authactivity.databinding.FragmentListBinding
 import com.example.authactivity.databinding.FragmentStatisticBinding
-import com.example.authactivity.ui.bottom.viewmodel.ListViewModel
+import com.example.authactivity.ui.bottom.list.ListViewModel
 
 class StatisticFragment : BaseFragment<ListViewModel, FragmentStatisticBinding>(
     ListViewModel::class) {
@@ -22,10 +21,8 @@ class StatisticFragment : BaseFragment<ListViewModel, FragmentStatisticBinding>(
     }
 
     override fun setupViews() {
-        TODO("Not yet implemented")
     }
 
     override fun subscribeToLiveData() {
-        TODO("Not yet implemented")
     }
 }

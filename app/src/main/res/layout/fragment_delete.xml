@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="30dp"
         android:text="Вы уверены что хотите удалить ?"
         android:textSize="20dp"
         android:textStyle="bold"
