@@ -9,11 +9,19 @@ sealed class BaseEvent {
 }
 
 sealed class UserEvent : BaseEvent() {
-    class UserFetched(val array: User): UserEvent()
+    class UserFetched(val array: Main): UserEvent()
+}
+
+sealed class EmblemEvent : BaseEvent() {
+    class EmblemFetched(val item: CurrencyModel) : EmblemEvent()
 }
 
 sealed class AmountEvent : BaseEvent() {
     class AmoutFetched(val item: CurrencyModel) : AmountEvent()
+}
+
+sealed class DrawEvent : BaseEvent() {
+    class DrawFetched(val item: CurrencyModel) : DrawEvent()
 }
 
 sealed class ThemeEvent : BaseEvent() {
@@ -29,6 +37,6 @@ sealed class DeleteEvent : BaseEvent() {
 }
 
 sealed class ListEvent : BaseEvent() {
-    class ListFetched(val item: BottomModel) : ListEvent()
+    class ListFetched(val item: ListData) : ListEvent()
 }
 

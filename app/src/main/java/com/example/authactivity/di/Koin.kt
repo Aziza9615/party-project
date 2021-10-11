@@ -5,12 +5,11 @@ import com.example.authactivity.network.*
 import com.example.authactivity.repository.*
 import com.example.authactivity.ui.emblem.viewmodel.CurrencyViewModel
 import com.example.authactivity.ui.bottom.HomeFragment
-import com.example.authactivity.ui.bottom.list.ListFragment
 import com.example.authactivity.ui.bottom.StatisticFragment
 import com.example.authactivity.ui.bottom.list.ListViewModel
 import com.example.authactivity.ui.main.MainViewModel
 import com.example.authactivity.ui.draw.*
-import com.example.authactivity.ui.emblem.AmountFragment
+import com.example.authactivity.ui.emblem.amount.AmountFragment
 import com.example.authactivity.ui.emblem.EmblemFragment
 import com.example.authactivity.ui.settings.DeleteFragment
 import com.example.authactivity.ui.settings.ThemeViewModel
@@ -27,7 +26,6 @@ val fragmentModule = module {
     fragment { ConnectionFragment() }
     fragment { CurrencyFragment() }
     fragment { HomeFragment() }
-    fragment { ListFragment() }
     fragment { StatisticFragment() }
     fragment { DeleteFragment() }
     fragment { AmountFragment() }

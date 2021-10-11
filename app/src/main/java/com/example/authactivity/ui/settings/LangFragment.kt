@@ -2,12 +2,10 @@ package com.example.authactivity.ui.settings
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.core.app.ActivityCompat.recreate
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseFragment

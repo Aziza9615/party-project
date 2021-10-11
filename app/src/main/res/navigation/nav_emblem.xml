@@ -9,7 +9,7 @@
         android:label="EmblemFragment" />
     <fragment
         android:id="@+id/amountFragment"
-        android:name="com.example.authactivity.ui.emblem.AmountFragment"
+        android:name="com.example.authactivity.ui.emblem.amount.AmountFragment"
         android:label="AmountFragment" />
     <action
         android:id="@+id/your_main_fragment_id_to_your_next_fragment_id"

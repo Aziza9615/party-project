@@ -22,7 +22,7 @@
         android:layout_margin="15dp">
 
         <TextView
-            android:id="@+id/mTittle"
+            android:id="@+id/mTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -32,10 +32,10 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/subTittle"
+            android:id="@+id/mSubTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/brown"
+            android:textColor="@color/dark_yellow"
             android:textSize="15sp"
             android:layout_margin="6dp"
             android:layout_marginTop="16dp"
@@ -46,19 +46,20 @@
             android:id="@+id/amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/brown"
+            android:textColor="@color/dark_green"
             android:textSize="15sp"
             android:layout_margin="6dp"
             android:text="100$"
             android:textStyle="bold"/>
 
     </LinearLayout>
-
         <ImageView
-            android:layout_width="60dp"
-            android:layout_height="40dp"
+            android:id="@+id/mMenus"
             android:src="@drawable/ic_more"
             android:layout_gravity="center"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

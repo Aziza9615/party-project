@@ -1,4 +1,4 @@
-package com.example.authactivity.ui.emblem
+package com.example.authactivity.ui.emblem.amount
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,26 +9,28 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.example.authactivity.R
-import com.example.authactivity.databinding.FragmentAmountBinding
+import com.example.authactivity.model.CurrencyModel
+import com.example.authactivity.ui.emblem.AmountAdapter
+import com.example.authactivity.ui.emblem.AmountClickListener
+import com.example.authactivity.ui.emblem.EmblemFragment
 import com.example.authactivity.ui.emblem.viewmodel.CurrencyViewModel
 import com.example.authactivity.ui.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_amount.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class AmountFragment : Fragment() {
+class AmountFragment : Fragment(), AmountClickListener {
 
     lateinit var viewModel: ViewModel
-    lateinit var binding: FragmentAmountBinding
+    lateinit var adapter: AmountAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.fragment_amount, container, false)
-        val btnAmount = view.findViewById<View>(R.id.back_btn) as Button
-
-        btnAmount.setOnClickListener {
-            val fragment = AmountFragment()
+        val back_btn = view.findViewById<View>(R.id.back_btn) as Button
+        back_btn.setOnClickListener {
+            val fragment = EmblemFragment()
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
             fragmentTransaction?.replace(R.id.fragment_container, fragment)
@@ -47,6 +49,12 @@ class AmountFragment : Fragment() {
     private fun setupViews() {
         viewModel = getViewModel(clazz = CurrencyViewModel::class)
         setupListener()
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+        adapter = AmountAdapter(this)
+        amount_list.adapter = adapter
     }
 
     private fun setupListener() {
@@ -60,4 +68,7 @@ class AmountFragment : Fragment() {
     companion object {
         const val NEXT_ITEM = " NEXT_ITEM"
     }
+
+    override fun onAmountClick(item: CurrencyModel) {}
+
 }

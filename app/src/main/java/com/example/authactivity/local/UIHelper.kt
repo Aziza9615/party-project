@@ -5,17 +5,24 @@ import android.content.Context
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.example.authactivity.R
 import com.google.android.material.snackbar.Snackbar
 
 fun showToast(context: Context, message: String) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
-fun showSnackbar(
-    view: View,
-    message: String
-){
-    Snackbar.make(view, message, Snackbar.LENGTH_SHORT).show()
+fun showActionSnackbar(
+        view: View,
+        message: String,
+        actionTitle: String,
+        action: () -> Unit,
+        context: Context
+) {
+    Snackbar.make(view, message, Snackbar.LENGTH_LONG).setAction(actionTitle) {
+        action()
+    }.setActionTextColor(ContextCompat.getColor(context, R.color.design_default_color_on_primary)).show()
 }
 
 fun intentToNext(context: Context, clazz: Class<*>) {

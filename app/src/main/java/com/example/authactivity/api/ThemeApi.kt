@@ -2,7 +2,6 @@ package com.example.authactivity.api
 
 import com.example.authactivity.AppContacts
 import com.example.authactivity.model.ThemeModel
-import com.example.authactivity.model.User
 import io.reactivex.Observable
 import retrofit2.http.GET
 

@@ -9,12 +9,20 @@ import io.reactivex.schedulers.Schedulers
 
 interface CurrencyRepository {
     fun amount(): Observable<CurrencyModel>
+    fun emblem(): Observable<CurrencyModel>
 }
 
 class CurrencyRepositoryImpl(private val api: CurrencyApi) : CurrencyRepository {
     override fun amount(): Observable<CurrencyModel> {
         return api.amount()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    override fun emblem(): Observable<CurrencyModel> {
+        return api.emblem()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+
     }
 }

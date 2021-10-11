@@ -39,4 +39,7 @@
     <string name="delete">Delete</string>
     <string name="english">English</string>
     <string name="kyrgyz">Кыргызча</string>
+    <string name="add_category">add_category</string>
+    <string name="add_name">add name</string>
+    <string name="add_amount">add_amount</string>
 </resources>

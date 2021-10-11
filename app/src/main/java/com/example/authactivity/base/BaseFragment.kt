@@ -9,23 +9,21 @@ import androidx.viewbinding.ViewBinding
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import kotlin.reflect.KClass
 
+
 abstract class BaseFragment<ViewModel : BaseViewModel<BaseEvent>, VB_CHILD : ViewBinding>(
         private val clazz: KClass<ViewModel>
 ) : Fragment() {
-    lateinit var viewModel: ViewModel
+
+    protected lateinit var viewModel: ViewModel
     private var _binding: VB_CHILD? = null
     lateinit var binding: VB_CHILD
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        getViewModel(clazz = clazz)
-    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ) = getInflatedView(inflater, container, false)
+
 
     private fun getInflatedView(
             inflater: LayoutInflater,
@@ -41,6 +39,7 @@ abstract class BaseFragment<ViewModel : BaseViewModel<BaseEvent>, VB_CHILD : Vie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
         setupViews()
         subscribeToLiveData()
     }
