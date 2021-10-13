@@ -8,19 +8,17 @@
 
         <menu>
             <item
+                android:id="@+id/lang"
+                android:icon="@drawable/ic_vector"
+                android:title="@string/chooselang" />
+            <item
+                android:id="@+id/delete"
+                android:icon="@drawable/ic_delete"
+                android:title="@string/delete"/>
+            <item
                 android:id="@+id/theme"
                 android:icon="@drawable/ic_material_design"
                 android:title="@string/theme" />
-
-            <item
-                android:id="@+id/langFragment"
-                android:icon="@drawable/ic_vector"
-                android:title="@string/chooselang" />
-
-            <item
-                android:id="@+id/deleteFragment"
-                android:icon="@drawable/ic_trash_2"
-                android:title="@string/delete"/>
         </menu>
     </item>
 </menu>

@@ -7,7 +7,7 @@
     tools:context=".ui.bottom.list.ListActivity">
 
     <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_field"
+        android:id="@+id/search_view"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_marginTop="40dp"
@@ -25,7 +25,7 @@
         tools:listitem="@layout/item_list"
         android:layout_marginTop="34dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_field" />
+        app:layout_constraintTop_toBottomOf="@id/search_view" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addingBtn"

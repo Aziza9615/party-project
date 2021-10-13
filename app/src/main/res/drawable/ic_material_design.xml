@@ -11,7 +11,7 @@
       android:fillType="evenOdd"/>
   <path
       android:pathData="M12,21C17.5228,21 22,16.5228 22,11C22,5.4771 17.5228,1 12,1C6.4771,1 2,5.4771 2,11C2,16.5228 6.4771,21 12,21Z"
-      android:fillColor="#ffffff"
+      android:fillColor="#009688"
       android:fillType="evenOdd"/>
   <path
       android:pathData="M21.75,11C21.75,16.3848 17.3848,20.75 12,20.75C6.6152,20.75 2.25,16.3848 2.25,11C2.25,5.6152 6.6152,1.25 12,1.25C17.3848,1.25 21.75,5.6152 21.75,11Z"
@@ -41,8 +41,8 @@
           android:endY="21"
           android:endX="2"
           android:type="linear">
-        <item android:offset="0" android:color="#1EFFFFFF"/>
-        <item android:offset="0.2" android:color="#0FFFFFFF"/>
+        <item android:offset="0" android:color="#00BCD4"/>
+        <item android:offset="0.2" android:color="#FFC107"/>
         <item android:offset="1" android:color="#02FFFFFF"/>
       </gradient>
     </aapt:attr>

@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.SearchView
+import android.widget.SearchView.OnQueryTextListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
@@ -17,7 +18,6 @@ import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.base.ListEvent
 import com.example.authactivity.databinding.ActivityListBinding
 import com.example.authactivity.model.ListData
-import com.example.authactivity.ui.main.MainActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -69,10 +69,11 @@ class ListActivity : BaseActivity<ListViewModel, ActivityListBinding>(ListViewMo
         addDialog.show()
     }
 
+
     private fun setupSearchView() {
-        binding.searchField.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object  : OnQueryTextListener, androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
+                binding.searchView.clearFocus()
                 return false
             }
 
@@ -84,7 +85,7 @@ class ListActivity : BaseActivity<ListViewModel, ActivityListBinding>(ListViewMo
 
                         val searchText = newText.toLowerCase()
                         val filtered = mutableListOf<ListData>()
-                        viewModel.list.forEach { if (it.userName.toLowerCase().contains(searchText)!!) filtered.add(it) }
+                        viewModel.list.forEach { if (it.userName.toLowerCase().contains(searchText)) filtered.add(it) }
                         userAdapter.addItems(filtered)
                     }
                 }, 800)
@@ -99,14 +100,7 @@ class ListActivity : BaseActivity<ListViewModel, ActivityListBinding>(ListViewMo
             activity.startActivity(intent)
         }
     }
+
     override fun subscribeToLiveData() {
-//        viewModel.event.observe(this, Observer {
-//            when (it) {
-//                is ListEvent.ListFetched -> it.item.let { it ->
-//                    Glide.with(binding.addingBtn)
-//                        .load(it)
-//                }
-//            }
-//        })
     }
 }

@@ -79,7 +79,6 @@ class UserAdapter(val c:Context,val userList:ArrayList<ListData>):RecyclerView.A
                     }
                     else -> true
                 }
-
             }
             popupMenus.show()
             val popup = PopupMenu::class.java.getDeclaredField("mPopup")

@@ -22,7 +22,6 @@ import org.koin.dsl.module
 val fragmentModule = module {
     fragment { ShareFragment() }
     fragment { EstimationFragment() }
-    fragment { InvoicesFragment() }
     fragment { ConnectionFragment() }
     fragment { CurrencyFragment() }
     fragment { HomeFragment() }

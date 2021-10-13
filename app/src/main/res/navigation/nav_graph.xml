@@ -16,10 +16,6 @@
         android:name="com.example.authactivity.ui.draw.EstimationFragment"
         android:label="EstimationFragment" />
     <fragment
-        android:id="@+id/invoicesFragment2"
-        android:name="com.example.authactivity.ui.draw.InvoicesFragment"
-        android:label="InvoicesFragment" />
-    <fragment
         android:id="@+id/shareFragment2"
         android:name="com.example.authactivity.ui.draw.ShareFragment"
         android:label="ShareFragment" />

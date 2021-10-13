@@ -51,7 +51,6 @@
             android:layout_margin="6dp"
             android:text="100$"
             android:textStyle="bold"/>
-
     </LinearLayout>
         <ImageView
             android:id="@+id/mMenus"

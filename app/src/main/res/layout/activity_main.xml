@@ -9,15 +9,9 @@
     tools:openDrawer="start"
     tools:context=".ui.main.MainActivity">
 
-    <include
-        android:id="@+id/include"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        layout="@layout/activity_list2"/>
-
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:itemTextColor="@color/black"
@@ -28,5 +22,27 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/main_drawer"
         android:theme="@style/NavigationDrawerStyle"/>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/item1"
+                layout="@layout/activity_app_bar_" />
+            <include
+                android:id="@+id/item2"
+                layout="@layout/activity_list2" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

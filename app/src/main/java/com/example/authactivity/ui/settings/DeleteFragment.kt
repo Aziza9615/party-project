@@ -1,7 +1,9 @@
 package com.example.authactivity.ui.settings
 
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.ViewGroup
+import androidx.navigation.ui.R
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentDeleteBinding
 import com.example.authactivity.ui.settings.viewmodel.SettingsViewModel
@@ -13,7 +15,8 @@ class DeleteFragment : BaseFragment<SettingsViewModel, FragmentDeleteBinding>(
             list: MutableList<FragmentDeleteBinding>,
             layoutInflater: LayoutInflater,
             container: ViewGroup?,
-            attachToRoot: Boolean) {
+            attachToRoot: Boolean
+    ) {
         list.add(FragmentDeleteBinding.inflate(layoutInflater, container, attachToRoot))
     }
 
