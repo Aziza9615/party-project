@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/alert_delete_all">
+
+    <TextView
+        android:id="@+id/title_dialog"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textSize="24dp"
+        android:textColor="@color/black"
+        android:text="Вы действительно хотите удалить все данные?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/positive_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/yes"
+        android:text="ДА"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/negative_button"
+        app:layout_constraintTop_toBottomOf="@id/title_dialog" />
+
+    <Button
+        android:id="@+id/negative_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="НЕТ"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_backround"
+        app:layout_constraintEnd_toStartOf="@id/positive_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_dialog" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/positive_button"
+        android:background="@color/gray"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

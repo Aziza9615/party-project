@@ -7,7 +7,6 @@
     <string name="welcome" translatable="false">Кош Келдиниз!</string>
     <string name="hi" translatable="false">Ким канча бергенин Кимге канча бергенинизди, эч качан унутпайсыз</string>
     <string name="next1" translatable="false">Баштоо</string>
-    <string name="chooselang" translatable="false">Тилди тандоо?</string>
     <string name="choosecurrecy">Валюта Тандоо</string>
     <string name="done">Баштоо</string>
     <string name="add">Кошуу</string>
@@ -16,6 +15,13 @@
     <string name="share">share</string>
     <string name="estimate">estimate</string>
     <string name="connection">connection</string>
+
+    <string-array name="language">
+        <item>English</item>
+        <item>Русский</item>
+        <item>Кыргызский</item>
+        <item>German</item>
+    </string-array>
 
     <string-array name="currencies">
         <item>EUR</item>
@@ -35,11 +41,19 @@
     <string name="home">Home</string>
     <string name="list">List</string>
     <string name="statistic">Statistic</string>
-    <string name="theme">Theme</string>
     <string name="delete">Delete</string>
     <string name="english">English</string>
     <string name="kyrgyz">Кыргызча</string>
     <string name="add_category">add_category</string>
     <string name="add_name">add name</string>
     <string name="add_amount">add_amount</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="Chooselanguage">Выбрать Язык</string>
+    <string name="Delete">Удалить все данные?</string>
+    <string name="Theme">Выбрать тему</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>

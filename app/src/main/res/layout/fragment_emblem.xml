@@ -20,7 +20,7 @@
         android:fontFamily="@font/yesteryear_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/kowum4a"
+        android:text="Kowum4a"
         android:textSize="48sp"
         android:layout_marginTop="12dp"
         android:textColor="@color/dark"
@@ -72,18 +72,22 @@
         android:background="@drawable/next"
         android:textStyle="bold"/>
 
-    <Button
-        android:id="@+id/language"
-        android:layout_width="110dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="9dp"
-        android:textSize="12dp"
-        android:textStyle="normal"
-        android:text="@string/chooselang"
-        android:background="@color/yellow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_next"
-        android:textColor="@color/black" />
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/text_input"-->
+<!--        android:layout_width="0dp"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Language"-->
+<!--        android:layout_margin="16dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btn_next">-->
 
+<!--        <AutoCompleteTextView-->
+<!--            android:inputType="none"-->
+<!--            android:id="@+id/autoCompleteTextView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

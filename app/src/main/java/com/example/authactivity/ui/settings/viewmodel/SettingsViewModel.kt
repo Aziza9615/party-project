@@ -1,9 +1,6 @@
 package com.example.authactivity.ui.settings.viewmodel
 
-import com.example.authactivity.base.BaseEvent
-import com.example.authactivity.base.BaseViewModel
-import com.example.authactivity.base.DeleteEvent
-import com.example.authactivity.base.SettingsEvent
+import com.example.authactivity.base.*
 import com.example.authactivity.repository.SettingsRepository
 
 class SettingsViewModel(private val repository: SettingsRepository) : BaseViewModel<BaseEvent>() {

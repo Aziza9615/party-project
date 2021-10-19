@@ -40,3 +40,7 @@ sealed class ListEvent : BaseEvent() {
     class ListFetched(val item: ListData) : ListEvent()
 }
 
+sealed class DeleteAlertEvent : BaseEvent() {
+    class DeleteAlertFetched(val list: ListData): DeleteAlertEvent()
+}
+

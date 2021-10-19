@@ -11,4 +11,5 @@ object AppContacts {
     const val SETT = "/user/signup/"
     const val DELETE = "project_id"
     const val GET_BOTTOM = "project_id"
+    const val GET_DELETE_LIST = "project_id"
 }

@@ -13,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTheme">
-        <activity android:name=".ui.bottom.list.ListActivity"></activity>
+        <activity
+            android:name=".ui.settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".ui.main.MainActivity"/>
+        <activity android:name=".ui.bottom.list.ListActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.emblem.EmblemActivity">
             <intent-filter>

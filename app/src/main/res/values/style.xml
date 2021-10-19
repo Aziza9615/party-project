@@ -10,6 +10,8 @@
 <!--            <item name="buttonColor">#C1C1B4</item>-->
         </style>
 
+    <style name="ProductDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    </style>
     <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorAccent">@color/green</item>
