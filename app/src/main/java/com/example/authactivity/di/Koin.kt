@@ -4,8 +4,6 @@ import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.network.*
 import com.example.authactivity.repository.*
 import com.example.authactivity.ui.emblem.viewmodel.CurrencyViewModel
-import com.example.authactivity.ui.bottom.HomeFragment
-import com.example.authactivity.ui.bottom.StatisticFragment
 import com.example.authactivity.ui.bottom.list.ListViewModel
 import com.example.authactivity.ui.main.MainViewModel
 import com.example.authactivity.ui.draw.*
@@ -23,8 +21,6 @@ val fragmentModule = module {
     fragment { EstimationFragment() }
     fragment { ConnectionFragment() }
     fragment { CurrencyFragment() }
-    fragment { HomeFragment() }
-    fragment { StatisticFragment() }
     fragment { AmountFragment() }
     fragment { EmblemFragment() }
 }

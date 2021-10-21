@@ -100,6 +100,7 @@ class UserAdapter(val c:Context,val userList:ArrayList<ListData>):RecyclerView.A
         holder.name.text = newList.userName
         holder.category.text = newList.userSub
         holder.mbNum.text = newList.userAm
+        val item = listArray[position]
     }
 
     override fun getItemCount(): Int {
@@ -110,4 +111,8 @@ class UserAdapter(val c:Context,val userList:ArrayList<ListData>):RecyclerView.A
         listArray = items
         notifyDataSetChanged()
     }
+}
+
+interface ClickListener {
+    fun onItemClick(item: ListData)
 }

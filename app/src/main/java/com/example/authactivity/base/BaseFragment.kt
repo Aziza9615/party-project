@@ -24,7 +24,6 @@ abstract class BaseFragment<ViewModel : BaseViewModel<BaseEvent>, VB_CHILD : Vie
             savedInstanceState: Bundle?
     ) = getInflatedView(inflater, container, false)
 
-
     private fun getInflatedView(
             inflater: LayoutInflater,
             container: ViewGroup?,

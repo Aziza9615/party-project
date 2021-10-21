@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import androidx.lifecycle.ViewModel
 import com.example.authactivity.R
-import com.example.authactivity.databinding.FragmentEmblemBinding
 import com.example.authactivity.ui.emblem.amount.AmountFragment
 import com.example.authactivity.ui.emblem.viewmodel.CurrencyViewModel
 import org.koin.android.ext.android.bind

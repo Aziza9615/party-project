@@ -56,4 +56,5 @@
     <string name="Delete">Удалить все данные?</string>
     <string name="Theme">Выбрать тему</string>
     <string name="dark_mode">Dark Mode</string>
+    <string name="chooselang">language</string>
 </resources>

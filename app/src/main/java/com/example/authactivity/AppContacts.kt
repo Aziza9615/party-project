@@ -12,4 +12,6 @@ object AppContacts {
     const val DELETE = "project_id"
     const val GET_BOTTOM = "project_id"
     const val GET_DELETE_LIST = "project_id"
+    const val GET_EDIT = "project_id"
+    const val GET_DETAIL = "project_id"
 }

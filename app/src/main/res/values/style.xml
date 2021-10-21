@@ -15,10 +15,10 @@
     <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorAccent">@color/green</item>
-        <item name="backgroundColor">#303030</item>
-<!--        <item name="cardBackground">#424242</item>-->
-<!--        <item name="textColor">#ffffff</item>-->
-<!--        <item name="tintColor">#ffffff</item>-->
-<!--        <item name="buttonColor">#303030</item>-->
+        <item name="backgroundColor">#FFC107</item>
+        <item name="cardBackground">#00BCD4</item>
+        <item name="textColor">#FFEB3B</item>
+        <item name="tintColor">#ffffff</item>
+        <item name="buttonColor">#00BCD4</item>
     </style>
 </resources>

@@ -5,19 +5,16 @@ import android.content.Intent
 import android.os.Handler
 import android.view.LayoutInflater
 import android.widget.EditText
-import android.widget.SearchView
 import android.widget.SearchView.OnQueryTextListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
-import com.example.authactivity.base.ListEvent
 import com.example.authactivity.databinding.ActivityListBinding
 import com.example.authactivity.model.ListData
+import com.example.authactivity.ui.bottom.detail_edit.DetailActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -40,6 +37,7 @@ class ListActivity : BaseActivity<ListViewModel, ActivityListBinding>(ListViewMo
         recv.adapter = userAdapter
         addsBtn.setOnClickListener { addInfo() }
         setupSearchView()
+        setupListener()
     }
 
     private fun addInfo() {
@@ -58,7 +56,6 @@ class ListActivity : BaseActivity<ListViewModel, ActivityListBinding>(ListViewMo
             val number = userNo.text.toString()
             userList.add(ListData("Name: $names", "Category. : $category", "Sum. : $number"))
             userAdapter.notifyDataSetChanged()
-            Toast.makeText(this, "Adding User Information Success", Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
         addDialog.setNegativeButton("Cancel") { dialog, _ ->
@@ -69,9 +66,9 @@ class ListActivity : BaseActivity<ListViewModel, ActivityListBinding>(ListViewMo
         addDialog.show()
     }
 
-
     private fun setupSearchView() {
-        binding.searchView.setOnQueryTextListener(object  : OnQueryTextListener, androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 binding.searchView.clearFocus()
                 return false
@@ -85,7 +82,9 @@ class ListActivity : BaseActivity<ListViewModel, ActivityListBinding>(ListViewMo
 
                         val searchText = newText.toLowerCase()
                         val filtered = mutableListOf<ListData>()
-                        viewModel.list.forEach { if (it.userName.toLowerCase().contains(searchText)) filtered.add(it) }
+                        viewModel.list.forEach {
+                            if (it.userName.toLowerCase().contains(searchText)) filtered.add(it)
+                        }
                         userAdapter.addItems(filtered)
                     }
                 }, 800)
@@ -94,13 +93,21 @@ class ListActivity : BaseActivity<ListViewModel, ActivityListBinding>(ListViewMo
         })
     }
 
+    private fun setupListener() {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("LIST_DETAIL",list_detail)
+        startActivity(intent)
+    }
+
+    override fun subscribeToLiveData() {
+    }
+
     companion object {
+        val list_detail = "LIST_DETAIL"
+
         fun intent(activity: Activity) {
             val intent = Intent(activity, ListActivity::class.java)
             activity.startActivity(intent)
         }
-    }
-
-    override fun subscribeToLiveData() {
     }
 }
