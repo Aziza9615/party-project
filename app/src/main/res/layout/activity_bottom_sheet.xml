@@ -1,6 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/ratingHeaderTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Выберите языка"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="26sp"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/ratingHeaderTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    <RadioButton
+        android:id="@+id/english_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:text="English"
+        android:textSize="23sp"
+        android:textColor="@color/black"/>
+
+    <RadioButton
+        android:id="@+id/russian_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/english_radio"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:text="Русский"
+        android:textSize="23sp"
+        android:textColor="@color/black"/>
+
+    <RadioButton
+        android:id="@+id/kyrgyz_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/russian_radio"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:text="Кыргызча"
+        android:textSize="23sp"
+        android:textColor="@color/black"/>
+
+    <RadioButton
+        android:id="@+id/german_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/kyrgyz_radio"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:text="Germany"
+        android:textSize="23sp"
+        android:textColor="@color/black"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/no_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/stroke"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Отмена"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/no"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Продолжить"
+        android:textSize="11dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

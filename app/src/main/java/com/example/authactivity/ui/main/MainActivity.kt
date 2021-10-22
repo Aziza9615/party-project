@@ -15,6 +15,7 @@ import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityMainBinding
 import com.example.authactivity.ui.bottom.list.ListActivity
 import com.example.authactivity.ui.emblem.EmblemFragment
+import com.example.authactivity.ui.settings.bottomSheet.CustomDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main_sett.*
 import kotlinx.android.synthetic.main.alert_delete.*
@@ -44,7 +45,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>(MainViewMo
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.langFragment-> {
-                supportFragmentManager.beginTransaction().replace(R.id.fragment_container, EmblemFragment()).commit()
+                var dialog = CustomDialogFragment()
+                dialog.show(supportFragmentManager,"customDialog")
                 true
             }
             R.id.delete-> {
