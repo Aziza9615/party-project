@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 
 class PrefsHelper(private val context: Context) {
 
-    private val PREFS_NAME = "SalesApp"
+    private val PREFS_NAME = "KowumchaApp"
     private val TOKEN = "TOKEN"
     private var prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
