@@ -2,7 +2,7 @@
 <resources>
         <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
             <!-- Customize your theme here. -->
-            <item name="colorAccent">@color/green</item>
+            <item name="colorAccent">@color/brand</item>
             <item name="backgroundColor">#FFFFFF</item>
 <!--            <item name="cardBackground">#FFFFFF</item>-->
 <!--            <item name="textColor">#4E4C4C</item>-->
@@ -10,15 +10,15 @@
 <!--            <item name="buttonColor">#C1C1B4</item>-->
         </style>
 
-    <style name="ProductDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-    </style>
-    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorAccent">@color/green</item>
-        <item name="backgroundColor">#FFC107</item>
-        <item name="cardBackground">#00BCD4</item>
-        <item name="textColor">#FFEB3B</item>
-        <item name="tintColor">#ffffff</item>
-        <item name="buttonColor">#00BCD4</item>
-    </style>
+<!--    <style name="ProductDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">-->
+<!--    </style>-->
+<!--    <style name="DarkTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorAccent">@color/green</item>-->
+<!--        <item name="backgroundColor">#FFC107</item>-->
+<!--        <item name="cardBackground">#00BCD4</item>-->
+<!--        <item name="textColor">#FFEB3B</item>-->
+<!--        <item name="tintColor">#ffffff</item>-->
+<!--        <item name="buttonColor">#00BCD4</item>-->
+<!--    </style>-->
 </resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/brand">
+
+    <ImageView
+        android:id="@+id/emblem"
+        android:layout_width="330dp"
+        android:layout_height="280dp"
+        android:layout_marginStart="58.45dp"
+        android:layout_marginTop="72.28dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/dollar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/welcome_tv"
+        android:layout_width="319dp"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emblem"
+        android:layout_marginTop="39.42dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="0dp"
+        android:text="Добро пожаловать в приложение Koshumcha"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:textStyle="normal"
+        android:textColor="@color/white"
+        android:fontFamily="@font/robotomedium"/>
+
+    <Button
+        android:id="@+id/btn_russian"
+        android:layout_width="320dp"
+        android:layout_height="56dp"
+        android:background="@drawable/button"
+        app:layout_constraintTop_toBottomOf="@+id/welcome_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="20dp"
+        android:text="Русский"
+        android:textSize="14dp"
+        android:textColor="@color/brand"
+        android:fontFamily="@font/robotomedium"/>
+
+    <Button
+        android:id="@+id/btn_kyrgyz"
+        android:layout_width="320dp"
+        android:layout_height="56dp"
+        android:background="@drawable/button"
+        app:layout_constraintTop_toBottomOf="@+id/btn_russian"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="20dp"
+        android:text="Кыргызча"
+        android:textSize="14dp"
+        android:textColor="@color/brand"
+        android:fontFamily="@font/robotomedium"/>
+
+    <Button
+        android:id="@+id/btn_english"
+        android:layout_width="320dp"
+        android:layout_height="56dp"
+        android:background="@drawable/button"
+        app:layout_constraintTop_toBottomOf="@+id/btn_kyrgyz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginStart="20dp"
+        android:text="English"
+        android:textSize="14dp"
+        android:textColor="@color/brand"
+        android:fontFamily="@font/robotomedium"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
