@@ -8,4 +8,8 @@ sealed class BaseEvent {
     class Loading(state: Boolean) : BaseEvent()
 }
 
+sealed class LangEvent : BaseEvent() {
+    class LangFetched() : LangEvent()
+}
+
 

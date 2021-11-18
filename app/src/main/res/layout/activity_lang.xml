@@ -32,7 +32,7 @@
         android:gravity="center"
         android:textStyle="normal"
         android:textColor="@color/white"
-        android:fontFamily="@font/robotomedium"/>
+        android:fontFamily="@font/bold"/>
 
     <Button
         android:id="@+id/btn_russian"
@@ -48,7 +48,7 @@
         android:text="Русский"
         android:textSize="14dp"
         android:textColor="@color/brand"
-        android:fontFamily="@font/robotomedium"/>
+        android:fontFamily="@font/roboo"/>
 
     <Button
         android:id="@+id/btn_kyrgyz"
@@ -64,7 +64,7 @@
         android:text="Кыргызча"
         android:textSize="14dp"
         android:textColor="@color/brand"
-        android:fontFamily="@font/robotomedium"/>
+        android:fontFamily="@font/roboo"/>
 
     <Button
         android:id="@+id/btn_english"
@@ -80,6 +80,6 @@
         android:text="English"
         android:textSize="14dp"
         android:textColor="@color/brand"
-        android:fontFamily="@font/robotomedium"/>
+        android:fontFamily="@font/roboo"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,11 +7,14 @@ import android.content.res.Configuration
 import android.widget.Button
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
+import com.example.authactivity.base.BaseEvent
+import com.example.authactivity.base.BaseViewModel
 import com.example.authactivity.databinding.ActivityLangBinding
 import com.example.authactivity.ui.onBoard.OnBoardActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
 
+class LangViewModel : BaseViewModel<BaseEvent>()
 class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewModel::class) {
 
     lateinit var russian : Button
@@ -32,11 +35,13 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
         english = findViewById(R.id.btn_english)
         russian.setOnClickListener {
                 setLocate("ru")
+            startActivity(Intent(this@LangActivity,OnBoardActivity::class.java))
                 recreate()
             }
 
         kyrgyz.setOnClickListener {
                 setLocate("ky")
+            startActivity(Intent(this@LangActivity,OnBoardActivity::class.java))
                 recreate()
             }
         english.setOnClickListener {
