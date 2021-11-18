@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTheme">
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity"/>
+        <activity android:name=".ui.lang.LangActivity">
+        <activity android:name=".ui.onBoard.OnBoardActivity"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

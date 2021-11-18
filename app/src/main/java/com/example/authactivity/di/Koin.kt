@@ -1,6 +1,7 @@
 package com.example.authactivity.di
 
 import com.example.authactivity.local.PrefsHelper
+import com.example.authactivity.ui.lang.LangViewModel
 import com.example.authactivity.ui.main.MainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.dsl.fragment
@@ -12,6 +13,7 @@ val fragmentModule = module {
 
 val viewModelModule = module {
     viewModel { MainViewModel() }
+    viewModel { LangViewModel() }
 }
 
 val repositoryModule = module {

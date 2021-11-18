@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AuthActivity</string>
+    <string name="Home">home</string>
+    <string name="Koshumcha">Добро пожаловать в приложение Koshumcha</string>
+    <string name="Русский">Русский</string>
+    <string name="Кыргызча">Кыргызча</string>
+    <string name="English">English</string>
+</resources>
