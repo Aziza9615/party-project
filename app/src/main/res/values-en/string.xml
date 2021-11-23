@@ -6,4 +6,12 @@
     <string name="Русский">Русский</string>
     <string name="Кыргызча">Кыргызча</string>
     <string name="English">English</string>
+
+    <string name="onboarding_slide1_subtitle">Записывайте кому и сколько вы подарили</string>
+    <string name="onboarding_slide1_desc">Мы считаем, что отношения должны основываться на доверии и честности.</string>
+    <string name="onboarding_slide2_subtitle">Дарите столько, сколько подарили вам</string>
+    <string name="onboarding_slide2_desc">В приложении вы легко найдете вашего близкого человека и его сумму подарка</string>
+    <string name="onboarding_slide3_subtitle">Воспользуйтесь удобной аналитикой</string>
+    <string name="onboarding_slide3_desc">Вы сможете посмотреть приход и расход денег по праздникам или за период</string>
+    <string name="next">Далее</string>
 </resources>
