@@ -8,4 +8,7 @@
     <color name="brand">#2FC0AE</color>
     <color name="brand_back">#EAF6F5</color>
     <color name="gray">#B3222121</color>
+    <color name="Label_Primary">#10083F</color>
+    <color name="grey_40">#66000000</color>
+    <color name="grey_10">#1A000000</color>
 </resources>

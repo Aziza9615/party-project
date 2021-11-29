@@ -17,8 +17,8 @@ import java.util.*
 class LangViewModel : BaseViewModel<BaseEvent>()
 class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewModel::class) {
 
-    lateinit var russian : Button
-    lateinit var kyrgyz : Button
+    lateinit var russian: Button
+    lateinit var kyrgyz: Button
     lateinit var english: Button
 
     override fun getViewBinding() = ActivityLangBinding.inflate(layoutInflater)
@@ -34,21 +34,18 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
         kyrgyz = findViewById(R.id.btn_kyrgyz)
         english = findViewById(R.id.btn_english)
         russian.setOnClickListener {
-                setLocate("ru")
-            startActivity(Intent(this@LangActivity,OnBoardActivity::class.java))
-                recreate()
-            }
+            startActivity(Intent(this@LangActivity, OnBoardActivity::class.java))
+            recreate()
+        }
 
         kyrgyz.setOnClickListener {
-                setLocate("ky")
-            startActivity(Intent(this@LangActivity,OnBoardActivity::class.java))
-                recreate()
-            }
+            startActivity(Intent(this@LangActivity, OnBoardActivity::class.java))
+            recreate()
+        }
         english.setOnClickListener {
-                setLocate("en")
-            startActivity(Intent(this@LangActivity,OnBoardActivity::class.java))
-                recreate()
-            }
+            //startActivity(Intent(this@LangActivity,OnBoardActivity::class.java))
+            recreate()
+        }
     }
 
     private fun setLocate(Lang: String?) {
@@ -70,5 +67,12 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
     }
 
     override fun subscribeToLiveData() {
+    }
+
+    companion object {
+        fun start(activity: Activity) {
+            val intent = Intent(activity, LangActivity::class.java)
+            activity.startActivity(intent)
+        }
     }
 }

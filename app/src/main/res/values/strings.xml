@@ -13,6 +13,7 @@
     <string name="onboarding_slide3_subtitle">Воспользуйтесь удобной аналитикой</string>
     <string name="onboarding_slide3_desc">Вы сможете посмотреть приход и расход денег по праздникам или за период</string>
     <string name="next">Далее</string>
+    <string name="next_button">Начать</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>

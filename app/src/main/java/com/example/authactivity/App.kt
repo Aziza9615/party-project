@@ -1,10 +1,7 @@
 package com.example.authactivity
 
 import android.app.Application
-import com.example.authactivity.di.fragmentModule
-import com.example.authactivity.di.networkRepository
-import com.example.authactivity.di.repositoryModule
-import com.example.authactivity.di.viewModelModule
+import com.example.authactivity.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext
@@ -28,7 +25,8 @@ class App : Application() {
                 fragmentModule,
                 viewModelModule,
                 networkRepository,
-                repositoryModule
+                repositoryModule,
+                databaseModule
             )
         )
     }

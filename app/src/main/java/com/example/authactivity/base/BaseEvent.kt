@@ -1,7 +1,5 @@
 package com.example.authactivity.base
 
-import com.example.authactivity.model.*
-
 sealed class BaseEvent {
     class Error(message: String) : BaseEvent()
     class Success<T>(result: T) : BaseEvent()
@@ -10,6 +8,10 @@ sealed class BaseEvent {
 
 sealed class LangEvent : BaseEvent() {
     class LangFetched() : LangEvent()
+}
+
+sealed class CurrencyEvent : BaseEvent() {
+    class CurrencyFetched(it: Any?) : CurrencyEvent()
 }
 
 

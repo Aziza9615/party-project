@@ -1,5 +1,6 @@
 package com.example.authactivity.ui.onBoard
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
@@ -9,6 +10,7 @@ import androidx.viewpager.widget.ViewPager
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
+import com.example.authactivity.ui.currency.CurrencyActivity
 import com.example.authactivity.ui.lang.LangActivity
 import com.example.authactivity.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_onboard.*
@@ -83,7 +85,7 @@ class OnBoardActivity : AppCompatActivity() {
 
     private fun onClick() {
         AppPrefs(this).setFirstTimeLaunch(false)
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, CurrencyActivity::class.java))
         finish()
     }
 
@@ -100,6 +102,13 @@ class OnBoardActivity : AppCompatActivity() {
 
         if (dots!!.isNotEmpty()) {
             dots!![currentPage]?.setTextColor(resources.getColor(R.color.brand))
+        }
+    }
+
+    companion object {
+        fun start(activity: Activity) {
+            val intent = Intent(activity, OnBoardActivity::class.java)
+            activity.startActivity(intent)
         }
     }
 

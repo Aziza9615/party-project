@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <Button
+        android:id="@+id/arrow_btn"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/ic_arrow_left"
+        android:layout_marginTop="44dp"
+        android:layout_marginStart="18dp"/>
+
+    <TextView
+        android:id="@+id/lang_tv"
+        android:layout_width="272dp"
+        android:layout_height="24dp"
+        app:layout_constraintBottom_toBottomOf="@id/arrow_btn"
+        app:layout_constraintStart_toEndOf="@id/arrow_btn"
+        android:text="Выбор валюты"
+        android:textSize="22sp"
+        android:fontFamily="@font/bold"
+        android:textColor="@color/Label_Primary"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="62dp"/>
+
+    <TextView
+        android:id="@+id/lang_sub"
+        android:layout_width="308dp"
+        android:layout_height="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lang_tv"
+        android:text="Выберите основную валюту для приложения, валюту можно поменять в любой момент."
+        android:textSize="14sp"
+        android:fontFamily="@font/roboo"
+        android:textColor="@color/grey_40"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginStart="18dp"/>
+
+    <RadioGroup
+        android:id="@+id/radio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/lang_sub"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="18dp">
+
+        <RadioButton
+            android:id="@+id/button1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Доллар США ($)"
+            android:textColor="@color/Label_Primary"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Кыргызский сом (с)"
+            android:textColor="@color/Label_Primary"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"/>
+
+        <RadioButton
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Рубль (₽)"
+            android:textColor="@color/Label_Primary"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"/>
+
+        <RadioButton
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Евро (€)"
+            android:textColor="@color/Label_Primary"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"/>
+    </RadioGroup>
+
+    <View
+        android:id="@+id/gray_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/grey_10"
+        app:layout_constraintTop_toBottomOf="@id/radio" />
+
+    <TextView
+        android:id="@+id/amount_tv"
+        android:layout_width="292dp"
+        android:layout_height="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radio"
+        android:text="Ваша зарплата ($)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/Label_Primary"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginStart="18dp"/>
+
+    <TextView
+        android:id="@+id/amount_txtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radio"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/gray"
+        android:layout_marginStart="320dp"
+        android:layout_marginEnd="16dp" />
+
+    <View
+        android:id="@+id/gray_line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/grey_10"
+        app:layout_constraintTop_toBottomOf="@id/amount_txtview"/>
+
+    <TextView
+        android:id="@+id/income"
+        android:layout_width="292dp"
+        android:layout_height="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gray_line2"
+        android:text="Другие источники дохода ($)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/Label_Primary"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginStart="18dp"/>
+
+    <TextView
+        android:id="@+id/income_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textColor="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gray_line2"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginEnd="16dp"/>
+
+    <View
+        android:id="@+id/gray_line3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="65dp"
+        android:background="@color/grey_10"
+        app:layout_constraintTop_toBottomOf="@id/gray_line2"/>
+
+    <TextView
+        android:id="@+id/lang_sub2"
+        android:layout_width="296dp"
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gray_line3"
+        android:text="Данные о зарплате и источниках дохода будут использоваться только для рассчета в разделе аналитика"
+        android:textSize="14sp"
+        android:fontFamily="@font/roboo"
+        android:textColor="@color/grey_40"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginStart="18dp"/>
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/button_next"
+        android:text="@string/next_button"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
