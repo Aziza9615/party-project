@@ -54,6 +54,10 @@ class OnBoardActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+//        val textView: TextView = findViewById(R.id.Skip)
+//            val intent = Intent(this, CurrencyActivity::class.java)
+//            startActivity(intent)
+//        }
 
     private fun init() {
         layouts = arrayOf(

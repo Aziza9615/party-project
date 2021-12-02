@@ -27,7 +27,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="0dp"
-        android:text="Добро пожаловать в приложение Koshumcha"
+        android:text="@string/koshumcha"
         android:textSize="22sp"
         android:gravity="center"
         android:textStyle="normal"

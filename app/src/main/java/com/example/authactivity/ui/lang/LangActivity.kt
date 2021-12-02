@@ -1,10 +1,12 @@
 package com.example.authactivity.ui.lang
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.widget.Button
+import androidx.preference.PreferenceManager
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.base.BaseEvent
@@ -26,44 +28,28 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
     override fun setupViews() {
         viewModel = getViewModel(clazz = LangViewModel::class)
         setupListener()
-        loadLocate()
     }
 
+    @SuppressLint("RestrictedApi")
     private fun setupListener() {
         russian = findViewById(R.id.btn_russian)
         kyrgyz = findViewById(R.id.btn_kyrgyz)
         english = findViewById(R.id.btn_english)
         russian.setOnClickListener {
+            PreferenceManager(this).updateLanguage("ru")
             startActivity(Intent(this@LangActivity, OnBoardActivity::class.java))
-            recreate()
+            finish()
         }
-
         kyrgyz.setOnClickListener {
+            PreferenceManager(this).updateLanguage("ky")
             startActivity(Intent(this@LangActivity, OnBoardActivity::class.java))
-            recreate()
+            finish()
         }
         english.setOnClickListener {
-            //startActivity(Intent(this@LangActivity,OnBoardActivity::class.java))
-            recreate()
+            PreferenceManager(this).updateLanguage("en")
+            startActivity(Intent(this@LangActivity, OnBoardActivity::class.java))
+            finish()
         }
-    }
-
-    private fun setLocate(Lang: String?) {
-        val locale = Locale(Lang)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        config.locale = locale
-        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-        title = resources.getString(R.string.app_name)
-        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
-        editor.putString("My_Lang", Lang)
-        editor.apply()
-    }
-
-    private fun loadLocate() {
-        val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
-        val language = sharedPreferences.getString("My_Lang", "")
-        setLocate(language)
     }
 
     override fun subscribeToLiveData() {
@@ -74,5 +60,17 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
             val intent = Intent(activity, LangActivity::class.java)
             activity.startActivity(intent)
         }
+    }
+
+    private fun PreferenceManager.updateLanguage(s: String) {
+        val locale = Locale(s)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+        title = resources.getString(R.string.app_name)
+        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+        editor.putString("My_Lang", s)
+        editor.apply()
     }
 }

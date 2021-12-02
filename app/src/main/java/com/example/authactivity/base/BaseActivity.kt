@@ -1,12 +1,14 @@
 package com.example.authactivity.base
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.ContextWrapper
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
-import androidx.navigation.NavGraph
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.preference.PreferenceManager
+import com.example.authactivity.ui.lang.ContextUtils
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import java.util.*
 import kotlin.reflect.KClass
 
 abstract class BaseActivity<VM : BaseViewModel<BaseEvent>, VB : androidx.viewbinding.ViewBinding>(
@@ -25,6 +27,13 @@ abstract class BaseActivity<VM : BaseViewModel<BaseEvent>, VB : androidx.viewbin
         setupViews()
         subscribeToLiveData()
     }
+
+    @SuppressLint("RestrictedApi")
+//    override fun attachBaseContext(newBase: Context) {
+//        //val localeToSwitchTo = PreferenceManager(newBase).getAppLanguage()
+//        val localeUpdatedContext: ContextWrapper = ContextUtils.updateLocale(newBase, localeToSwitchTo)
+//        super.attachBaseContext(localeUpdatedContext)
+//    }
 
     abstract fun setupViews()
     abstract fun subscribeToLiveData()

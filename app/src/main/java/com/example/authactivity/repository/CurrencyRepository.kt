@@ -14,7 +14,7 @@ interface CurrencyRepository{
 class CurrencyRepositoryImpl(private val database: ListDao): CurrencyRepository {
 
     val data: MutableLiveData<MutableList<LangData>> = MutableLiveData()
-    val message: MutableLiveData<String>? = MutableLiveData()
+    val message: MutableLiveData<String> = MutableLiveData()
 
     override fun getCurrency() {
         data.value = database.getCurrency()

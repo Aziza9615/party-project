@@ -2,16 +2,30 @@
 <resources>
     <string name="app_name">AuthActivity</string>
     <string name="Home">home</string>
-    <string name="Koshumcha">Добро пожаловать в приложение Koshumcha</string>
+    <string name="koshumcha">Добро пожаловать в приложение Koshumcha</string>
     <string name="Русский">Русский</string>
     <string name="Кыргызча">Кыргызча</string>
     <string name="English">English</string>
 
-    <string name="onboarding_slide1_subtitle">Записывайте кому и сколько вы подарили</string>
-    <string name="onboarding_slide1_desc">Мы считаем, что отношения должны основываться на доверии и честности.</string>
-    <string name="onboarding_slide2_subtitle">Дарите столько, сколько подарили вам</string>
-    <string name="onboarding_slide2_desc">В приложении вы легко найдете вашего близкого человека и его сумму подарка</string>
-    <string name="onboarding_slide3_subtitle">Воспользуйтесь удобной аналитикой</string>
-    <string name="onboarding_slide3_desc">Вы сможете посмотреть приход и расход денег по праздникам или за период</string>
+    <string name="title">Записывайте кому и сколько вы подарили</string>
+    <string name="subtitle">Мы считаем, что отношения должны основываться на доверии и честности.</string>
+    <string name="title2">Дарите столько, сколько подарили вам</string>
+    <string name="subtitle2">В приложении вы легко найдете вашего близкого человека и его сумму подарка</string>
+    <string name="title3">Воспользуйтесь удобной аналитикой</string>
+    <string name="subtitle3">Вы сможете посмотреть приход и расход денег по праздникам или за период</string>
     <string name="next">Далее</string>
+    <string name="next_button">Начать</string>
+    <string name="settings">Еще</string>
+    <string name="ststistic">Аналитика</string>
+    <string name="contacts">Мои контакты</string>
+    <string name="add">add</string>
+    <string name="currency">Выбор валюты</string>
+    <string name="title_carency">Выберите основную валюту для приложения, валюту можно поменять в любой момент.</string>
+    <string name="dollar">Доллар США ($)</string>
+    <string name="euro">Евро (€)</string>
+    <string name="som">Кыргызский сом (с)</string>
+    <string name="russ">Рубль (₽)</string>
+    <string name="salary">Ваша зарплата ($)</string>
+    <string name="income">Другие источники дохода ($)</string>
+    <string name="subtitle_currency">Данные о зарплате и источниках дохода будут использоваться только для рассчета в разделе аналитика</string>
 </resources>
