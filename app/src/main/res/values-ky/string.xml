@@ -2,30 +2,31 @@
 <resources>
     <string name="app_name">AuthActivity</string>
     <string name="Home">home</string>
-    <string name="koshumcha">Добро пожаловать в приложение Koshumcha</string>
+    <string name="koshumcha">Кош келиниз тиркеме Koshumcha</string>
     <string name="Русский">Русский</string>
     <string name="Кыргызча">Кыргызча</string>
     <string name="English">English</string>
 
-    <string name="title">Сиз кимге жана канча беришкен жазып</string>
-    <string name="subtitle">Биз мамилелер ишеним жана чынчылдык менен негизделиши керек деп эсептешет.</string>
-    <string name="title2">Сиз берген канча бергиле</string>
-    <string name="subtitle2">Тиркемеде Сиз жакын адамыңыздын жана анын суммасын жеңил таба аласыз</string>
-    <string name="title3">Ыңгайлуу аналитиканы колдонуңуз</string>
-    <string name="subtitle3">Сиз майрам же мезгил ичинде келүү жана акча агымын көрө аласыз</string>
-    <string name="next">Андан ары</string>
+    <string name="title">Жазыңыз, кимге жана канча белекке бергениңизди</string>
+    <string name="subtitle">Биз мамилелердин ишенимге жана чынчылдыкка негизделиши керек деп эсептейбиз</string>
+    <string name="title2">Сизге канча тартууласа ошончо бериңиз</string>
+    <string name="subtitle2">Тиркемеден сиз өзүңүздүн жакын адамыңызды жана анын белегинин суммасын оңой эле табасыз</string>
+    <string name="title3">Ыңгайлуу аналитиканы колдонуңуз,</string>
+    <string name="subtitle3">Сиз майрам сайын же аралыктар сайын акчанын кирешесин жана чыгашасын карай аласыз</string>
+    <string name="next">Мындан ары</string>
     <string name="next_button">Баштоо</string>
     <string name="settings">Дагы</string>
     <string name="ststistic">Аналитика</string>
-    <string name="contacts">Менин байланыштарым</string>
+    <string name="contacts">Менин контакттарым</string>
     <string name="add">Кошуу</string>
-    <string name="currency">Валюта тандоо</string>
-    <string name="title_carency">Колдонмо үчүн негизги валютаны тандаңыз, валютаны каалаган убакта өзгөртүүгө болот.</string>
+    <string name="currency">Валютаны тандоо</string>
+    <string name="title_carency">Тиркеме үчүн негизги валютаны тандаңыз,валютаны бардык учурда алмаштыра аласыз,</string>
     <string name="dollar">АКШ доллары($)</string>
     <string name="euro">Евро (€)</string>
     <string name="som">Кыргыз сому (с)</string>
     <string name="russ">Рубль (₽)</string>
-    <string name="salary">Сиздин эмгек акы ($)</string>
-    <string name="income">Башка киреше булактары ($)</string>
-    <string name="subtitle_currency">Эмгек акы жана киреше булактары боюнча маалыматтар аналитика бөлүмүндөгү эсептөөлөр үчүн гана колдонулат</string>
+    <string name="salary">Сиздин айлыгыңыз ($)</string>
+    <string name="income">Кирешенин башка булактары ($)</string>
+    <string name="subtitle_currency">Айлык жана киреше булактары тууралуу маалымат,аналитика бөлүмүндө эсептөөлөр үчүн гана колдонулат,</string>
+    <string name="Skip">Өткөрүү</string>
 </resources>

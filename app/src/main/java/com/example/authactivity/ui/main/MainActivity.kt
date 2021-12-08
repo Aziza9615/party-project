@@ -2,6 +2,8 @@ package com.example.authactivity.ui.main
 
 import android.app.Activity
 import android.content.Intent
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityMainBinding

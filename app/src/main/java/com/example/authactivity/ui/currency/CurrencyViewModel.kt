@@ -9,7 +9,7 @@ import com.example.authactivity.repository.CurrencyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CurrencyViewModel (private val repository: CurrencyRepository): BaseViewModel<BaseEvent>() {
+class  CurrencyViewModel (private val repository: CurrencyRepository): BaseViewModel<BaseEvent>() {
 
     val data: MutableLiveData<MutableList<String>> = MutableLiveData()
 

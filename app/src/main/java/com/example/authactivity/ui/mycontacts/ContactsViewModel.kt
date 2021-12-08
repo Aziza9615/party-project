@@ -5,26 +5,28 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
+import com.example.authactivity.model.LangData
 import com.example.authactivity.model.ListData
+import com.example.authactivity.repository.ContactsRepository
 import com.example.authactivity.repository.ContactsRepositoryImpl
+import com.example.authactivity.repository.CurrencyRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ContactsViewModel(private val repository: ContactsRepositoryImpl) : BaseViewModel<BaseEvent>() {
+class ContactsViewModel (private val repository: ContactsRepository): BaseViewModel<BaseEvent>() {
 
-    val data: MutableLiveData<MutableList<ListData>> = MutableLiveData()
-   // val message: MutableLiveData<String> = MutableLiveData()
-    var list: MutableList<ListData>? = mutableListOf()
-    var filteredProducts: MutableList<ListData> = mutableListOf()
+    val data: MutableLiveData<MutableList<String>> = MutableLiveData()
 
     init {
-        subscribeToData()
-        subscribeToMessage()
         getList()
     }
 
     fun getList() {
         repository.getList()
+    }
+
+    fun updateList(data: ListData) {
+        repository.updateList(data)
     }
 
     fun insertList(data: ListData?) {
@@ -35,33 +37,9 @@ class ContactsViewModel(private val repository: ContactsRepositoryImpl) : BaseVi
         }
     }
 
-    fun restoreList(data: ListData?) {
-        if (data != null) {
-            repository.restoreList(data)
-        }
-    }
-
-    fun updateList(data: ListData) {
-        repository.updateList(data)
-    }
-
     fun deleteList(data: ListData?) {
         if (data != null) {
             repository.deleteList(data)
-        }
-    }
-
-    private fun subscribeToData() {
-        repository.data.observeForever {
-            data.value = it
-            list = data.value
-            filteredProducts = it
-        }
-    }
-
-    private fun subscribeToMessage() {
-        repository.message?.observeForever {
-            message?.value = it
         }
     }
 }

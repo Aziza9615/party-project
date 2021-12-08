@@ -28,4 +28,5 @@
     <string name="salary">Your salary ($)</string>
     <string name="income">Other sources of income ($)</string>
     <string name="subtitle_currency">Data on salaries and sources of income will be used only for calculations in the analytics section</string>
+    <string name="Skip">Skip</string>
 </resources>

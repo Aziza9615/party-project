@@ -16,7 +16,7 @@
     <string name="subtitle">Мы считаем, что отношения должны основываться на доверии и честности.</string>
     <string name="title2">Дарите столько, сколько подарили вам</string>
     <string name="subtitle2">В приложении вы легко найдете вашего близкого человека и его сумму подарка</string>
-    <string name="title3">Воспользуйтесь удобной аналитикой</string>
+    <string name="title3">Воспользуйтесь удобной аналитекой</string>
     <string name="subtitle3">Вы сможете посмотреть приход и расход денег по праздникам или за период</string>
     <string name="currency">Выбор валюты</string>
     <string name="title_carency">Выберите основную валюту для приложения, валюту можно поменять в любой момент.</string>
@@ -28,6 +28,8 @@
     <string name="som">Кыргызский сом (с)</string>
     <string name="russ">Рубль (₽)</string>
     <string name="Skip">Пропустить</string>
-    <!-- TODO: Remove or change this placeholder text -->
-
+    <string name="new_present">Новый $ подарок</string>
+    <string name="category">Категория</string>
+    <string name="amount">Сумма</string>
+    <string name="save">Создать</string>
 </resources>

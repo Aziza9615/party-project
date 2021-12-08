@@ -24,6 +24,7 @@ val fragmentModule = module {
     fragment { SettingsFragment() }
     fragment { StatisticsFragment() }
     fragment { ContactsFragment() }
+    //fragment { PresentFragment() }
 }
 
 val viewModelModule = module {
