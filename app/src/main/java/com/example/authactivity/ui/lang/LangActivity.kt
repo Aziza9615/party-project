@@ -12,6 +12,7 @@ import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
 import com.example.authactivity.databinding.ActivityLangBinding
+import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.ui.onBoard.OnBoardActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
@@ -27,7 +28,12 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
 
     override fun setupViews() {
         viewModel = getViewModel(clazz = LangViewModel::class)
-        setupListener()
+        PrefsHelper.instance = PrefsHelper(this)
+        if (PrefsHelper.instance.getGuest() == true) {
+            //переход в главное меню
+        } else {
+            setupListener()
+        }
     }
 
     @SuppressLint("RestrictedApi")
@@ -52,16 +58,6 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
         }
     }
 
-    override fun subscribeToLiveData() {
-    }
-
-    companion object {
-        fun start(activity: Activity) {
-            val intent = Intent(activity, LangActivity::class.java)
-            activity.startActivity(intent)
-        }
-    }
-
     private fun PreferenceManager.updateLanguage(s: String) {
         val locale = Locale(s)
         Locale.setDefault(locale)
@@ -72,5 +68,15 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
         val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
         editor.putString("My_Lang", s)
         editor.apply()
+    }
+
+    override fun subscribeToLiveData() {
+    }
+
+    companion object {
+        fun start(activity: Activity) {
+            val intent = Intent(activity, LangActivity::class.java)
+            activity.startActivity(intent)
+        }
     }
 }

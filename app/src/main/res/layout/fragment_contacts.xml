@@ -82,7 +82,7 @@
         android:layout_height="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_subTitle"
+       app:layout_constraintTop_toBottomOf="@+id/txt_subTitle"
         android:background="@drawable/button_next"
         android:text="+ Новый $ подарок"
         android:textColor="@color/white"

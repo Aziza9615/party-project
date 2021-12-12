@@ -5,7 +5,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="brand">#2ACDB9</color>
+    <color name="brand">#2FC0AE</color>
     <color name="brand_back">#EAF6F5</color>
     <color name="gray">#B3222121</color>
     <color name="Label_Primary">#10083F</color>
@@ -14,4 +14,5 @@
     <color name="Subhead">#6D7885</color>
     <color name="gray_spinner">#F8F8F8</color>
     <color name="button">#1A000000</color>
+    <color name="search">#EEEDED</color>
 </resources>

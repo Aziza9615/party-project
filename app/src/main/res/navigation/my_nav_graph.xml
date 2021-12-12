@@ -11,14 +11,5 @@
         android:label="ContactsFragment"
         tools:layout="@layout/fragment_contacts">
 
-        <action
-            android:id="@+id/contactsFragment_to_presentFragment"
-            app:destination="@id/presentFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/presentFragment"
-        android:name="com.example.authactivity.ui.mycontacts.present.PresentFragment"
-        android:label="PresentFragment"
-        tools:layout="@layout/fragment_present">
     </fragment>
 </navigation>

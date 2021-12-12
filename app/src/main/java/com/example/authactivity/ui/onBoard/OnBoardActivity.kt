@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
@@ -19,6 +20,7 @@ class OnBoardViewModel : BaseViewModel<BaseEvent>()
 class OnBoardActivity : AppCompatActivity() {
 
     private lateinit var sliderAdapter: SliderAdapter
+    lateinit var skip: Button
     private var dots: Array<TextView?>? = null
     private lateinit var layouts: Array<Int>
     private val sliderChangeListener = object : ViewPager.OnPageChangeListener {
@@ -49,15 +51,14 @@ class OnBoardActivity : AppCompatActivity() {
     }
 
     private fun setupListener() {
-        arrow_btn.setOnClickListener {
+//        skip = findViewById(R.id.Skip)
+//        startActivity(Intent(this@OnBoardActivity, CurrencyActivity::class.java))
+//        finish()
+        arrow_btn.setOnClickListener{
             val intent = Intent(this, LangActivity::class.java)
             startActivity(intent)
-        }
     }
-//        val textView: TextView = findViewById(R.id.Skip)
-//            val intent = Intent(this, CurrencyActivity::class.java)
-//            startActivity(intent)
-//        }
+}
 
     private fun init() {
         layouts = arrayOf(

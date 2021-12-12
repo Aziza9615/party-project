@@ -55,11 +55,4 @@ class MainActivity : BaseActivity<OnBoardViewModel, ActivityMainBinding>(OnBoard
 
     override fun subscribeToLiveData() {
     }
-
-    companion object {
-        fun start(activity: Activity) {
-            val intent = Intent(activity, MainActivity::class.java)
-            activity.startActivity(intent)
-        }
-    }
 }
