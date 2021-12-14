@@ -41,6 +41,7 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
             startActivity(intent)
         }
     }
+
     companion object {
         const val PRESENT_ITEM = "PRESENT_ITEM"
     }
@@ -50,7 +51,6 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
 }
 
 private fun Intent.putExtra(presentItem: String) {
-
 }
 
 
