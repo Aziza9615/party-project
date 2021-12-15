@@ -14,4 +14,8 @@ sealed class CurrencyEvent : BaseEvent() {
     class CurrencyFetched(it: Any?) : CurrencyEvent()
 }
 
+sealed class CategoryEvent : BaseEvent() {
+    class CategoryFetched(it: Any?) : CategoryEvent()
+}
+
 

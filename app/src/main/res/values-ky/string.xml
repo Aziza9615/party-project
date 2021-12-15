@@ -29,4 +29,8 @@
     <string name="income">Кирешенин башка булактары ($)</string>
     <string name="subtitle_currency">Айлык жана киреше булактары тууралуу маалымат,аналитика бөлүмүндө эсептөөлөр үчүн гана колдонулат,</string>
     <string name="Skip">Өткөрүү</string>
+    <string name="new_present">Новый $ подарок</string>
+    <string name="category">Категория</string>
+    <string name="amount">Сумма</string>
+    <string name="save">Создать</string>
 </resources>

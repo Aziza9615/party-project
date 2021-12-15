@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white">
 
     <Button
@@ -116,16 +115,16 @@
         android:layout_marginStart="18dp"/>
 
     <TextView
-        android:id="@+id/amount_txtview"
+        android:id="@+id/amount_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/radio"
-        android:layout_marginTop="40dp"
         android:textColor="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gray_line"
+        android:layout_marginTop="18dp"
         android:layout_marginStart="320dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_marginEnd="16dp"/>
 
     <View
         android:id="@+id/gray_line2"
@@ -133,7 +132,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
         android:background="@color/grey_10"
-        app:layout_constraintTop_toBottomOf="@id/amount_txtview"/>
+        app:layout_constraintTop_toBottomOf="@id/amount_textView"/>
 
     <TextView
         android:id="@+id/income"

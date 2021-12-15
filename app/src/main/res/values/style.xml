@@ -12,4 +12,7 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="AddDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    </style>
+
 </resources>

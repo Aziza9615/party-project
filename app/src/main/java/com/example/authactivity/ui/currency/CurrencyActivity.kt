@@ -30,7 +30,7 @@ class CurrencyActivity : BaseActivity<OnBoardViewModel, ActivityCurrencyBinding>
         onClick()
         showEditTextDialog()
         showEditTextDialogTwo()
-        binding.amountTxtview.text = PrefsHelper.instance.getSalary().toString()
+        binding.amountTextView.text = PrefsHelper.instance.getSalary().toString()
         binding.incomeTextView.text = PrefsHelper.instance.getIncome().toString()
     }
 
@@ -72,7 +72,7 @@ class CurrencyActivity : BaseActivity<OnBoardViewModel, ActivityCurrencyBinding>
     }
 
     private fun showEditTextDialog() {
-        binding.amountTxtview.setOnClickListener {
+        binding.amountTextView.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val inflater = layoutInflater
             val dialogLayout = inflater.inflate(R.layout.item_currency, null)
@@ -82,7 +82,7 @@ class CurrencyActivity : BaseActivity<OnBoardViewModel, ActivityCurrencyBinding>
                 setTitle("Введите вашу заплату(${PrefsHelper.instance.getCurrency()})")
                 setPositiveButton("Сохранить") { dialog, which ->
                     PrefsHelper.instance.saveSalary(editText.text.toString().toInt())
-                    binding.amountTxtview.text = PrefsHelper.instance.getSalary().toString()
+                    binding.amountTextView.text = PrefsHelper.instance.getSalary().toString()
                 }
                 setNegativeButton("Отмена") { dialog, which ->
                     Log.d("Main", "Negative Button Click")

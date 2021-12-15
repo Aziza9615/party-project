@@ -29,4 +29,8 @@
     <string name="income">Другие источники дохода ($)</string>
     <string name="subtitle_currency">Данные о зарплате и источниках дохода будут использоваться только для рассчета в разделе аналитика</string>
     <string name="Skip">Пропустить</string>
+    <string name="new_present">Новый $ подарок</string>
+    <string name="category">Категория</string>
+    <string name="amount">Сумма</string>
+    <string name="save">Создать</string>
 </resources>

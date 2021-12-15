@@ -10,6 +10,7 @@ class PrefsHelper(private val context: Context) {
     private val SALARY = "SALARY"
     private val INCOME = "INCOME"
     private val GUEST = "GUEST"
+    private val AMOUNT = "AMOUNT"
     private var prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     init {
@@ -47,6 +48,14 @@ class PrefsHelper(private val context: Context) {
    fun saveGuest(guest: Boolean) {
        prefs.edit().putBoolean(GUEST, guest).apply()
    }
+
+    fun getAmount(): String? {
+        return prefs.getString(AMOUNT, "$")
+    }
+
+    fun saveAmount(amount: Int) {
+        prefs.edit().putString(AMOUNT, amount.toString()).apply()
+    }
 
     companion object {
         lateinit var instance: PrefsHelper

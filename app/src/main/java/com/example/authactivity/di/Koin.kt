@@ -4,8 +4,11 @@ import androidx.room.Room
 import com.example.authactivity.database.AppDatabase
 import com.example.authactivity.database.DATABASE_NAME
 import com.example.authactivity.local.PrefsHelper
+import com.example.authactivity.repository.CategoryRepository
+import com.example.authactivity.repository.CategoryRepositoryImpl
 import com.example.authactivity.repository.ContactsRepository
 import com.example.authactivity.repository.ContactsRepositoryImpl
+import com.example.authactivity.ui.category.CategoryViewModel
 import com.example.authactivity.ui.lang.LangViewModel
 import com.example.authactivity.ui.mycontacts.ContactsFragment
 import com.example.authactivity.ui.mycontacts.ContactsViewModel
@@ -27,10 +30,12 @@ val viewModelModule = module {
     viewModel { ContactsViewModel(get()) }
     viewModel { OnBoardViewModel() }
     viewModel { LangViewModel() }
+    viewModel { CategoryViewModel(get()) }
 }
 
 val repositoryModule = module {
     factory<ContactsRepository> { ContactsRepositoryImpl(get()) }
+    factory<CategoryRepository> { CategoryRepositoryImpl(get()) }
 }
 
 val databaseModule = module {

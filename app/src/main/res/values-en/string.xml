@@ -29,4 +29,8 @@
     <string name="income">Other sources of income ($)</string>
     <string name="subtitle_currency">Data on salaries and sources of income will be used only for calculations in the analytics section</string>
     <string name="Skip">Skip</string>
+    <string name="new_present">Новый $ подарок</string>
+    <string name="category">Категория</string>
+    <string name="amount">Сумма</string>
+    <string name="save">Создать</string>
 </resources>
