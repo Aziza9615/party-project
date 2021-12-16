@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/ContactsFragment">
+
+    <fragment
+        android:id="@+id/ContactsFragment"
+        android:name="com.example.authactivity.ui.mycontacts.ContactsFragment"
+        android:label="@string/contacts"
+        tools:layout="@layout/fragment_contacts">
+    </fragment>
+    <fragment
+        android:id="@+id/StatisticFragment"
+        android:name="com.example.authactivity.ui.statistics.StatisticsFragment"
+        android:label="@string/ststistic"
+        tools:layout="@layout/fragment_statistic">
+    </fragment>
+    <fragment
+        android:id="@+id/SettingsFragment"
+        android:name="com.example.authactivity.ui.setting.SettingsFragment"
+        android:label="@string/settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_SettingsFragment_to_langSettingsFragment"
+            app:destination="@id/langSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/langSettingsFragment"
+        android:name="com.example.authactivity.ui.setting.LangSettingsFragment"
+        android:label="LangSettingsFragment"
+        tools:layout="@layout/fragment_lang_settings"/>
+</navigation>

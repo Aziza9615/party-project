@@ -1,13 +1,19 @@
 package com.example.authactivity.ui.setting
 
+import android.app.Fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.fragment.findNavController
+import com.example.authactivity.R
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentSettingsBinding
 import com.example.authactivity.ui.onBoard.OnBoardViewModel
 
 class SettingsFragment : BaseFragment<OnBoardViewModel, FragmentSettingsBinding>(OnBoardViewModel::class) {
+
     override fun setupViews() {
+        setupListener()
     }
 
     override fun subscribeToLiveData() {
@@ -20,5 +26,11 @@ class SettingsFragment : BaseFragment<OnBoardViewModel, FragmentSettingsBinding>
             attachToRoot: Boolean
     ) {
         list.add(FragmentSettingsBinding.inflate(layoutInflater, container, attachToRoot))
+    }
+
+    private fun setupListener() {
+        binding.ivShare.setOnClickListener {
+            findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
+        }
     }
 }

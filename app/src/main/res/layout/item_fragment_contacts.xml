@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/list">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/svs_txt"
@@ -72,73 +71,5 @@
         android:layout_marginTop="18dp"
         android:background="@color/grey_10"
         app:layout_constraintTop_toBottomOf="@id/kyz_txt" />
-
-    <TextView
-        android:id="@+id/birth"
-        android:layout_width="328dp"
-        android:layout_height="24dp"
-        android:text="Рождение ребенка"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@color/Label_Primary"
-        app:layout_constraintTop_toBottomOf="@+id/gray_line0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="52dp"/>
-
-    <ImageButton
-        android:id="@+id/iv_birth"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="328dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/ic_forward"
-        app:layout_constraintTop_toBottomOf="@+id/gray_line0"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <View
-        android:id="@+id/gray_line1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="18dp"
-        android:background="@color/grey_10"
-        app:layout_constraintTop_toBottomOf="@id/birth" />
-
-    <TextView
-        android:id="@+id/Anniversary"
-        android:layout_width="328dp"
-        android:layout_height="24dp"
-        android:text="Юбилей"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@color/Label_Primary"
-        app:layout_constraintTop_toBottomOf="@+id/gray_line1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="52dp"/>
-
-    <ImageButton
-        android:id="@+id/iv_anniversay"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="328dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/ic_forward"
-        app:layout_constraintTop_toBottomOf="@+id/gray_line1"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <View
-        android:id="@+id/gray_line2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="18dp"
-        android:background="@color/grey_10"
-        app:layout_constraintTop_toBottomOf="@id/Anniversary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

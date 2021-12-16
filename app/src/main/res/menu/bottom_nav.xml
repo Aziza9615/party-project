@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/bottom_contacts"
+    <item android:id="@+id/ContactsFragment"
         android:title="@string/contacts"
         android:icon="@drawable/ic_profile"/>
 
-    <item android:id="@+id/bottom_statistic"
+    <item android:id="@+id/StatisticFragment"
         android:checked="true"
         android:title="@string/ststistic"
         android:icon="@drawable/ic_statistics"/>
 
-    <item android:id="@+id/bottom_settings"
+    <item android:id="@+id/SettingsFragment"
         android:checked="true"
         android:title="@string/settings"
         android:icon="@drawable/ic_settings"/>

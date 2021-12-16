@@ -1,11 +1,7 @@
 package com.example.authactivity.ui.category
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseViewHolder
@@ -39,18 +35,23 @@ class AdapterCategory(private val listener: CategoryClickListener): com.example.
         items = item
         notifyDataSetChanged()
     }
-}
 
-interface CategoryClickListener {
-    fun onCategoryClick(item: CategoryData)
-}
+    fun addItem(item: CategoryData) {
+        items.add(item)
+        notifyDataSetChanged()
+    }
 
-class CategoryViewHolder(var binding: ItemBottomSheetBinding) : BaseViewHolder(binding.root) {
-    fun bind(item: CategoryData) {
-        Glide.with(binding.ivSvs.context)
-            .load(item.arrowImage)
-            .placeholder(R.color.black)
-            .into(binding.ivSvs)
-        binding.svsTxt.text = item.name
+    interface CategoryClickListener {
+        fun onCategoryClick(item: CategoryData)
+    }
+
+    class CategoryViewHolder(var binding: ItemBottomSheetBinding) : BaseViewHolder(binding.root) {
+        fun bind(item: CategoryData) {
+            Glide.with(binding.ivSvs.context)
+                    .load(item.arrowImage)
+                    .placeholder(R.color.black)
+                    .into(binding.ivSvs)
+            binding.svsTxt.text = item.name
+        }
     }
 }
