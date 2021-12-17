@@ -1,5 +1,7 @@
 package com.example.authactivity.base
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,15 +21,15 @@ abstract class BaseFragment<ViewModel : BaseViewModel<BaseEvent>, VB_CHILD : Vie
     lateinit var binding: VB_CHILD
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ) = getInflatedView(inflater, container, false)
 
     private fun getInflatedView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            attachToRoot: Boolean
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): View {
         val tempList = mutableListOf<VB_CHILD>()
         attachBinding(tempList, inflater, container, attachToRoot)
@@ -56,9 +58,9 @@ abstract class BaseFragment<ViewModel : BaseViewModel<BaseEvent>, VB_CHILD : Vie
     }
 
     abstract fun attachBinding(
-            list: MutableList<VB_CHILD>,
-            layoutInflater: LayoutInflater,
-            container: ViewGroup?,
-            attachToRoot: Boolean
+        list: MutableList<VB_CHILD>,
+        layoutInflater: LayoutInflater,
+        container: ViewGroup?,
+        attachToRoot: Boolean
     )
 }

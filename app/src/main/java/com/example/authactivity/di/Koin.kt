@@ -13,6 +13,7 @@ import com.example.authactivity.ui.lang.LangViewModel
 import com.example.authactivity.ui.mycontacts.ContactsFragment
 import com.example.authactivity.ui.mycontacts.ContactsViewModel
 import com.example.authactivity.ui.onBoard.OnBoardViewModel
+import com.example.authactivity.ui.setting.LangSettingsFragment
 import com.example.authactivity.ui.setting.SettingsFragment
 import com.example.authactivity.ui.statistics.StatisticsFragment
 import org.koin.android.ext.koin.androidContext
@@ -22,6 +23,7 @@ import org.koin.dsl.module
 
 val fragmentModule = module {
     fragment { SettingsFragment() }
+    fragment { LangSettingsFragment() }
     fragment { StatisticsFragment() }
     fragment { ContactsFragment() }
 }

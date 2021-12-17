@@ -15,10 +15,12 @@ import com.example.authactivity.ui.currency.CurrencyActivity
 import com.example.authactivity.ui.lang.LangActivity
 import com.example.authactivity.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_onboard.*
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class OnBoardViewModel : BaseViewModel<BaseEvent>()
 class OnBoardActivity : AppCompatActivity() {
 
+    private lateinit var viewModel: OnBoardViewModel
     private lateinit var sliderAdapter: SliderAdapter
     lateinit var skip: Button
     private var dots: Array<TextView?>? = null
@@ -44,6 +46,7 @@ class OnBoardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_onboard)
+        viewModel = getViewModel(clazz = OnBoardViewModel::class)
         init()
         dataSet()
         interactions()

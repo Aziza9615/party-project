@@ -1,4 +1,4 @@
-package com.example.authactivity.ui.currency
+package com.example.authactivity.ui.setting
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -10,17 +10,15 @@ import android.widget.RadioButton
 import android.widget.Toast
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
-import com.example.authactivity.base.CurrencyEvent
 import com.example.authactivity.databinding.ActivityCurrencyBinding
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.ui.lang.LangViewModel
 import com.example.authactivity.ui.main.MainActivity
 import com.example.authactivity.ui.onBoard.OnBoardActivity
-import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import kotlinx.android.synthetic.main.activity_currency.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class CurrencyActivity : BaseActivity<LangViewModel, ActivityCurrencyBinding>(LangViewModel::class) {
+class CurrencySettingsActivity : BaseActivity<LangViewModel, ActivityCurrencyBinding>(LangViewModel::class) {
 
     override fun getViewBinding() = ActivityCurrencyBinding.inflate(layoutInflater)
 
@@ -40,14 +38,14 @@ class CurrencyActivity : BaseActivity<LangViewModel, ActivityCurrencyBinding>(La
             var rb = findViewById<RadioButton>(checkedId)
             PrefsHelper.instance.saveCurrency(getCurrencyFromRadioButton(rb.id.toString()))
             Toast.makeText(
-                    applicationContext, "You have chosen a currency : ${PrefsHelper.instance.getCurrency()}",
-                    Toast.LENGTH_SHORT
+                applicationContext, "You have chosen a currency : ${PrefsHelper.instance.getCurrency()}",
+                Toast.LENGTH_SHORT
             ).show()
         }
         fun radio_button_click(view: View) {
             val radio: RadioButton = findViewById(radio.checkedRadioButtonId)
             Toast.makeText(applicationContext, "On click : ${radio.text}",
-                    Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -63,8 +61,7 @@ class CurrencyActivity : BaseActivity<LangViewModel, ActivityCurrencyBinding>(La
 
     private fun onClick() {
         binding.arrowBtn.setOnClickListener {
-            val intent = Intent(this, OnBoardActivity::class.java)
-            startActivity(intent)
+            onBackPressed()
         }
         binding.nextBtn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -112,13 +109,6 @@ class CurrencyActivity : BaseActivity<LangViewModel, ActivityCurrencyBinding>(La
                 setView(dialogLayout)
                 show()
             }
-        }
-    }
-
-    companion object {
-        fun start(activity: Activity) {
-            val intent = Intent(activity, CurrencyActivity::class.java)
-            activity.startActivity(intent)
         }
     }
 

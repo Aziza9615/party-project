@@ -29,6 +29,7 @@ class MainActivity : BaseActivity<OnBoardViewModel, ActivityMainBinding>(
     override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
     override fun setupViews() {
+        viewModel = getViewModel(clazz = OnBoardViewModel::class)
         setupBottomView()
     }
 

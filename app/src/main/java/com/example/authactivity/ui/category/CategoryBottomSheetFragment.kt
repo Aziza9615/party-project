@@ -90,7 +90,6 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
 
     private fun setupListener() {
         binding.back.setOnClickListener { this.onDestroyView() }
-
     }
 
     override fun subscribeToLiveData() {

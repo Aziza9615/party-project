@@ -7,7 +7,7 @@
 
     <Button
         android:id="@+id/arrow_btn"
-        android:layout_width="16dp"
+        android:layout_width="20dp"
         android:layout_height="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

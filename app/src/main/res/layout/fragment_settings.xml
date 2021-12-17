@@ -16,9 +16,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Ещё"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/Label_Primary"/>
 
    <ImageButton
         android:id="@+id/settings"
@@ -47,8 +47,8 @@
 
     <ImageButton
         android:id="@+id/iv_svs"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="38dp"
         android:layout_marginStart="328dp"
         android:layout_marginEnd="20dp"
@@ -91,8 +91,8 @@
 
     <ImageButton
         android:id="@+id/iv_share"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="38dp"
         android:layout_marginStart="328dp"
         android:layout_marginEnd="20dp"
@@ -136,8 +136,8 @@
 
     <ImageButton
         android:id="@+id/iv_dev"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="38dp"
         android:layout_marginStart="328dp"
         android:layout_marginEnd="20dp"

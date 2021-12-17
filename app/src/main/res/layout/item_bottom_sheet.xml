@@ -22,8 +22,8 @@
 
     <ImageButton
         android:id="@+id/iv_svs"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginStart="328dp"
         android:layout_marginEnd="20dp"
@@ -56,8 +56,8 @@
 
     <ImageButton
         android:id="@+id/iv_kyz"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginStart="328dp"
         android:layout_marginEnd="20dp"
@@ -90,8 +90,8 @@
 
     <ImageButton
         android:id="@+id/iv_birth"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginStart="328dp"
         android:layout_marginEnd="20dp"
@@ -124,8 +124,8 @@
 
     <ImageButton
         android:id="@+id/iv_anniversay"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginStart="328dp"
         android:layout_marginEnd="20dp"

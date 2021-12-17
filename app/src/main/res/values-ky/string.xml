@@ -29,8 +29,16 @@
     <string name="income">Кирешенин башка булактары ($)</string>
     <string name="subtitle_currency">Айлык жана киреше булактары тууралуу маалымат,аналитика бөлүмүндө эсептөөлөр үчүн гана колдонулат,</string>
     <string name="Skip">Өткөрүү</string>
-    <string name="new_present">Новый $ подарок</string>
+    <string name="new_present">Жаңы белеги</string>
     <string name="category">Категория</string>
     <string name="amount">Сумма</string>
     <string name="save">Создать</string>
+    <string name="choose">Выберите язык приложения</string>
+    <string name="ok">Сохранить</string>
+    <string name="no">Айынуу</string>
+    <string name="setting">Кыргыз</string>
+    <string name="curren">Валюта/Эмгек Акы</string>
+    <string name="lang">Өлчөмү</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

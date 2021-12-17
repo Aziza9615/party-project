@@ -33,4 +33,9 @@
     <string name="category">Категория</string>
     <string name="amount">Сумма</string>
     <string name="save">Создать</string>
+    <string name="choose">Выберите язык приложения</string>
+    <string name="ok">Сохранить</string>
+    <string name="no">Отмена</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
