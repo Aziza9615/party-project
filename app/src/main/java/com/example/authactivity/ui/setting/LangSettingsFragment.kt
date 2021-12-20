@@ -1,21 +1,16 @@
 package com.example.authactivity.ui.setting
 
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.core.app.ActivityCompat.recreate
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentLangSettingsBinding
 import com.example.authactivity.ui.lang.LangViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import androidx.navigation.findNavController
 import java.util.*
 
 class LangSettingsFragment : BaseFragment<LangViewModel, FragmentLangSettingsBinding>(LangViewModel::class) {
@@ -63,7 +58,6 @@ class LangSettingsFragment : BaseFragment<LangViewModel, FragmentLangSettingsBin
             val editor = getDefaultSharedPreferences(requireContext()).edit()
             editor.putString("My_Lang", Lang)
             editor.apply()
-
         }
 
         private fun loadLocate() {
