@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "list")
-data class ListData (
+data class ListData(
         @PrimaryKey(autoGenerate = true)
-        var id : Int,
-        var name : String
+        var id: Int,
+        var name: String
 ) : Serializable

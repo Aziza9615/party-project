@@ -1,25 +1,24 @@
-package com.example.authactivity.ui.mycontacts
+package com.example.authactivity.ui.mycontacts.bottomSheet
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.authactivity.R
-import com.example.authactivity.base.BaseViewHolder
-import com.example.authactivity.databinding.ItemContactsBinding
 import com.example.authactivity.model.ListData
+import com.example.authactivity.ui.mycontacts.ClickListener
 import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
 
-class ContactAdapter(private val listener: ClickListener): RecyclerView.Adapter<BaseListViewHolder>() {
+class AdapterBottomSheet(private val listener: ClickListener): RecyclerView.Adapter<BaseListViewHolder>() {
 
     private var items = mutableListOf<ListData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseListViewHolder {
         return if (viewType == VIEW_TYPE_DATA) ListViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_fragment_contacts, parent, false)
+                LayoutInflater.from(parent.context).inflate(R.layout.item_contacts_bottom_sheet, parent, false)
         ) else EmptyListViewHolder(
                 LayoutInflater.from(parent.context)
-                        .inflate(R.layout.item_contacts, parent, false)
+                        .inflate(R.layout.item_adapter_bottom_sheet, parent, false)
         )
     }
 

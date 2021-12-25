@@ -39,6 +39,7 @@
     <string name="setting">Настройки</string>
     <string name="curren">Валюта/Зарплата</string>
     <string name="lang">Язык</string>
+    <string name="add_name">add Name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

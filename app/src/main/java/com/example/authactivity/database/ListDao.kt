@@ -6,7 +6,6 @@ import com.example.authactivity.model.ListData
 
 @Dao
 interface ListDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertList(data: ListData)
 
@@ -14,7 +13,10 @@ interface ListDao {
     fun restoreList(data: ListData)
 
     @Update
-    fun updateList(data: ListData)
+    fun updateItem(data: ListData)
+
+    @Query("SELECT * FROM list")
+    fun getList(): MutableList<ListData>
 
     @Delete
     fun deleteList(data: ListData)

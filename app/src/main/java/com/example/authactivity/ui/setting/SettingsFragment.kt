@@ -48,7 +48,13 @@ class SettingsFragment : BaseFragment<LangViewModel, FragmentSettingsBinding>(La
             startActivity(shareIntent)
         }
         binding.ivShare.setOnClickListener {
-            findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
+            val shareBody = "Download nextQuiz on Play Store : http://play.google.com/store/apps/details?id=com.jadebu.nextquiz&hl=en"
+            val shareSub = "nextQuiz: make brain powerfull"
+            val shareIntent = Intent (Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, shareSub)
+            shareIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+            startActivity(shareIntent)
         }
         binding.txtDev.setOnClickListener {
             findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
@@ -57,8 +63,4 @@ class SettingsFragment : BaseFragment<LangViewModel, FragmentSettingsBinding>(La
             findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
         }
     }
-}
-
-private fun Intent.putExtra(extraText: String) {
-
 }

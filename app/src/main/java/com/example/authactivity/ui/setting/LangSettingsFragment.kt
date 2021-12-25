@@ -6,7 +6,9 @@ import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
+import com.example.authactivity.R
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentLangSettingsBinding
 import com.example.authactivity.ui.lang.LangViewModel
@@ -32,23 +34,28 @@ class LangSettingsFragment : BaseFragment<LangViewModel, FragmentLangSettingsBin
             startActivity(intent)
         })
         binding.lang.setOnClickListener {
-            val listItmes = arrayOf("English", "Кыргызча", "Русский")
-            val mBuilder = AlertDialog.Builder(requireContext())
-            mBuilder.setTitle("Choose Language")
-            mBuilder.setSingleChoiceItems(listItmes, -1) { dialog, which ->
-                if (which == 0) {
-                    setLocate("en")
-                } else if (which == 1) {
-                    setLocate("ky")
-                } else if (which == 2) {
-                    setLocate("ru")
+            val alert = AlertDialog.Builder(requireContext(), R.style.AddDialogStyle)
+
+            val inflater = layoutInflater.inflate(R.layout.alert_edit, null)
+            alert.setView(inflater)
+                val listItmes = arrayOf("English", "Кыргызча", "Русский")
+                val mBuilder = AlertDialog.Builder(requireContext())
+                mBuilder.setTitle("Choose Language")
+                mBuilder.setSingleChoiceItems(listItmes, -1) { dialog, which ->
+                    if (which == 0) {
+                        setLocate("en")
+                    } else if (which == 1) {
+                        setLocate("ky")
+                    } else if (which == 2) {
+                        setLocate("ru")
+                    }
+                    dialog.dismiss()
                 }
-                dialog.dismiss()
+                val mDialog = mBuilder.create()
+                mDialog.show()
             }
-            val mDialog = mBuilder.create()
-            mDialog.show()
         }
-    }
+
         private fun setLocate(Lang: String) {
             val locale = Locale(Lang)
             Locale.setDefault(locale)

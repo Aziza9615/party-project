@@ -1,15 +1,7 @@
 package com.example.authactivity.ui.main
 
-import android.app.Activity
-import android.content.Intent
-import android.widget.Toolbar
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
+
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity

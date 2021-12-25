@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import android.os.LocaleList
-import androidx.core.os.ConfigurationCompat
 import java.util.*
 
 class ContextUtils(base: Context) : ContextWrapper(base) {

@@ -3,13 +3,14 @@ package com.example.authactivity.ui.mycontacts
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentContactsBinding
 import com.example.authactivity.model.ListData
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding>(ContactsViewModel::class), ContactAdapter.ClickListener {
+class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding>(ContactsViewModel::class), ClickListener{
 
     private lateinit var adapter: ContactAdapter
 
@@ -24,8 +25,13 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
 
     override fun setupViews() {
         viewModel = getViewModel(clazz = ContactsViewModel::class)
-        setupListeners()
         setupRecyclerView()
+        setupListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getList()
     }
 
     private fun setupRecyclerView() {
@@ -40,6 +46,23 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
             intent.putExtra(PRESENT_ITEM)
             startActivity(intent)
         }
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+            override fun onQueryTextChange(newText: String): Boolean {
+                if (newText == "") adapter.addItems(viewModel.filteredList)
+                else {
+                    val searchText = newText.toLowerCase()
+                    val filtered = mutableListOf<ListData>()
+                    viewModel.filteredList.forEach {
+                        if (it.name.toLowerCase().contains(searchText)) filtered.add(it)
+                    }
+                    adapter.addItems(filtered)
+                }
+                return false
+            }
+        })
     }
 
     companion object {
@@ -47,9 +70,16 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
     }
 
     override fun subscribeToLiveData() {
+        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            adapter.addItems(it)
+        })
     }
 
-    override fun onClick(item: ListData) {
+    override fun onItemClick(item: ListData) {
+
+    }
+
+    override fun onLongItemClick(item: ListData) {
     }
 }
 

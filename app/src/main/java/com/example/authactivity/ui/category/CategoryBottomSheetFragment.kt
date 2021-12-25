@@ -27,9 +27,7 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        binding = LayoutAddBottomBinding.inflate(
-                inflater, container, false
-        )
+        binding = LayoutAddBottomBinding.inflate(inflater, container, false)
         return binding.root
     }
 
