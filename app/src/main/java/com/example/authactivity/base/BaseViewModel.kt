@@ -6,7 +6,6 @@ import io.reactivex.disposables.CompositeDisposable
 
 open class BaseViewModel<EVENT : BaseEvent> : ViewModel() {
 
-    var message = MutableLiveData<String>()
     val loading = MutableLiveData<Boolean>()
     val event = MutableLiveData<EVENT>()
     val disposable: CompositeDisposable by lazy {

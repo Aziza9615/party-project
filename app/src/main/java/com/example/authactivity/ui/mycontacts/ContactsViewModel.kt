@@ -10,52 +10,44 @@ import com.example.authactivity.repository.ContactsRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ContactsViewModel(private val contactsRepositoryImpl: ContactsRepositoryImpl): BaseViewModel<BaseEvent>() {
+class ContactsViewModel(private val repository: ContactsRepositoryImpl) : BaseViewModel<BaseEvent>() {
 
     val data: MutableLiveData<MutableList<ListData>> = MutableLiveData()
 
-    //val message: MutableLiveData<String>? = MutableLiveData()
+    val message: MutableLiveData<String> = MutableLiveData()
     var list: MutableList<ListData>? = mutableListOf()
     var filteredList: MutableList<ListData> = mutableListOf()
 
-    init {
-        subscribeToData()
-        subscribeToMessage()
-        getList()
-    }
-
     fun updateList(data: ListData) {
-        contactsRepositoryImpl.updateList(data)
+        repository.updateList(data)
     }
 
     fun getList() {
-        contactsRepositoryImpl.getList()
+        repository.getList()
     }
 
     fun insertList(data: ListData?) {
         viewModelScope.launch(Dispatchers.IO) {
-            if (data != null) {
-                contactsRepositoryImpl.insertList(data)
-            }
+            data?.let { repository.insertList(data) }
         }
     }
 
     fun deleteList(data: ListData?) {
         if (data != null) {
-            contactsRepositoryImpl.deleteList(data)
+            repository.deleteList(data)
         }
     }
 
-    private fun subscribeToData() {
-        contactsRepositoryImpl.data.observeForever {
+    fun subscribeToData() {
+        repository.data.observeForever {
             data.value = it
             list = data.value
             filteredList = it
         }
     }
 
-    private fun subscribeToMessage() {
-        contactsRepositoryImpl.message?.observeForever {
+    fun subscribeToMessage() {
+        repository.message?.observeForever {
             message.value = it
         }
     }

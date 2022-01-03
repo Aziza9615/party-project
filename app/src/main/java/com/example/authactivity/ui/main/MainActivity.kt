@@ -1,7 +1,13 @@
 package com.example.authactivity.ui.main
 
 
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
@@ -15,22 +21,18 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
 
-class MainActivity : BaseActivity<OnBoardViewModel, ActivityMainBinding>(
-    OnBoardViewModel::class
-) {
-    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
+class MainActivity : AppCompatActivity() {
 
-    override fun setupViews() {
-        viewModel = getViewModel(clazz = OnBoardViewModel::class)
-        setupBottomView()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        //val navController = this.findNavController(R.id.fragment_nav)
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+       // NavigationUI.setupWithNavController(bottomNavigationView, navController)
     }
 
-    private fun setupBottomView() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_nav) as NavHostFragment
-        val navController = navHostFragment.navController
-        bottom_navigation.setupWithNavController(navController)
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.fragment_nav)
+        return navController.navigateUp()
     }
-
-    override fun subscribeToLiveData() {}
-
 }

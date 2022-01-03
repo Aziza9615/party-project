@@ -7,7 +7,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.loadKoinModules
 
-class App : Application() {
+class App: Application() {
     override fun onCreate() {
         super.onCreate()
         GlobalContext.startKoin {
@@ -21,13 +21,12 @@ class App : Application() {
 
     private val loadKoinModules by lazy {
         loadKoinModules(
-            listOf(
-                fragmentModule,
-                viewModelModule,
-                networkRepository,
-                repositoryModule,
-                databaseModule
-            )
+                listOf(
+                        networkRepository,
+                        fragmentModule,
+                        viewModelModule,
+                        databaseModule
+                )
         )
     }
 }

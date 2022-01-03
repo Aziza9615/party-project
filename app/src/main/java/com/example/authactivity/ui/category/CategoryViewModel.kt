@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 class CategoryViewModel(private val repository: CategoryRepositoryImpl): BaseViewModel<BaseEvent>(){
 
     val data: MutableLiveData<MutableList<CategoryData>> = MutableLiveData()
-    //val message: MutableLiveData<String>? = MutableLiveData()
+    val message: MutableLiveData<String>? = MutableLiveData()
     var category: MutableList<CategoryData>? = mutableListOf()
     var filteredCategory: MutableList<CategoryData> = mutableListOf()
 

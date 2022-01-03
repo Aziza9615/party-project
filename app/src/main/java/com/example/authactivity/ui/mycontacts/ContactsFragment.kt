@@ -76,7 +76,6 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
     }
 
     override fun onItemClick(item: ListData) {
-
     }
 
     override fun onLongItemClick(item: ListData) {

@@ -54,8 +54,8 @@ class CurrencyActivity : BaseActivity<LangViewModel, ActivityCurrencyBinding>(La
     private fun getCurrencyFromRadioButton(id: String): String {
         return when (id) {
             "2131296358" -> "$"
-            "2131296359" -> "c"
-            "2131296360" -> "₽"
+            "2131296359" -> "C"
+            "2131296360" -> "Р"
             "2131296361" -> "€"
             else -> "$"
         }

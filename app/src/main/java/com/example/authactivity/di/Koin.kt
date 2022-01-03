@@ -16,6 +16,8 @@ import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import com.example.authactivity.ui.setting.LangSettingsFragment
 import com.example.authactivity.ui.setting.SettingsFragment
 import com.example.authactivity.ui.statistics.StatisticsFragment
+import io.reactivex.Scheduler
+import io.reactivex.schedulers.Schedulers.single
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.dsl.fragment
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -35,11 +37,6 @@ val viewModelModule = module {
     viewModel { CategoryViewModel(get()) }
 }
 
-val repositoryModule = module {
-    factory<ContactsRepository> { ContactsRepositoryImpl(get()) }
-    factory<CategoryRepository> { CategoryRepositoryImpl(get()) }
-}
-
 val databaseModule = module {
     single {
         Room.databaseBuilder(
@@ -55,5 +52,8 @@ val databaseModule = module {
 }
 
 val networkRepository = module {
+    factory { ContactsRepositoryImpl(get()) }
+    factory <CategoryRepository> {CategoryRepositoryImpl (get()) }
     single { PrefsHelper(androidContext()) }
 }
+

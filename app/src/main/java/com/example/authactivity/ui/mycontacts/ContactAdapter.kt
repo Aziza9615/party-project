@@ -4,22 +4,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.authactivity.R
+import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemContactsBinding
+import com.example.authactivity.databinding.ItemFragmentContactsBinding
 import com.example.authactivity.model.ListData
+import com.example.authactivity.ui.mycontacts.bottomSheet.EmptyListViewHolder
 import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
 
-class ContactAdapter(private val listener: ClickListener): RecyclerView.Adapter<BaseListViewHolder>() {
+class ContactAdapter(private val listener: ClickListener) : BaseAdapter() {
 
     private var items = mutableListOf<ListData>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseListViewHolder {
-        return if (viewType == VIEW_TYPE_DATA) ListViewHolder(
-                LayoutInflater.from(parent.context).inflate(R.layout.item_fragment_contacts, parent, false)
-        ) else EmptyListViewHolder(
-                LayoutInflater.from(parent.context)
-                        .inflate(R.layout.item_contacts, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+        val binding = ItemFragmentContactsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val bindingEmpty = ItemContactsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return if (viewType == VIEW_TYPE_DATA) ListViewHolder(binding)
+        else EmptyViewHolder(
+                bindingEmpty
         )
     }
 
@@ -33,7 +35,7 @@ class ContactAdapter(private val listener: ClickListener): RecyclerView.Adapter<
         else VIEW_TYPE_DATA
     }
 
-    override fun onBindViewHolder(holder: BaseListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val type = getItemViewType(position)
         if (type == VIEW_TYPE_DATA) setupItemListViewHolder(holder as ListViewHolder, position)
     }
@@ -80,15 +82,13 @@ class ContactAdapter(private val listener: ClickListener): RecyclerView.Adapter<
     }
 }
 
-open class BaseListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){}
-
-class ListViewHolder(itemView: View): BaseListViewHolder(itemView){
+class ListViewHolder(var binding: ItemFragmentContactsBinding) : BaseViewHolder(binding.root) {
     fun bind(item: ListData) {
         itemView.svs_txt.text = item.name
     }
 }
 
-class EmptyListViewHolder(itemView: View): BaseListViewHolder(itemView)
+class EmptyViewHolder(var binding: ItemContactsBinding) : BaseViewHolder(binding.root)
 
 interface ClickListener {
     fun onItemClick(item: ListData)
