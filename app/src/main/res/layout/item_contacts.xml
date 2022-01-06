@@ -8,11 +8,10 @@
         android:id="@+id/icon_img"
         android:layout_width="125dp"
         android:layout_height="136dp"
-        android:layout_marginTop="157dp"
+        android:layout_marginTop="83dp"
         android:layout_marginBottom="349dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@mipmap/icon"/>
 

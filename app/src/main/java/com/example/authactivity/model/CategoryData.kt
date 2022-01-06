@@ -7,7 +7,6 @@ import java.io.Serializable
 @Entity(tableName = "category")
 data class CategoryData (
         @PrimaryKey(autoGenerate = true)
-        var id : Int,
-        var name: String? = null,
-        val arrowImage: String? = null
+        var id: Int,
+        var category: String
 ) : Serializable

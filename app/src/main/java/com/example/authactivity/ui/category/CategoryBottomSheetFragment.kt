@@ -7,20 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseAddBottomSheetFragment
 import com.example.authactivity.databinding.LayoutAddBottomBinding
+import com.example.authactivity.databinding.LayoutAddBottomSheetBinding
 import com.example.authactivity.local.isEmptyInputData
 import com.example.authactivity.model.CategoryData
+import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.ContactsActivity
+import com.example.authactivity.ui.mycontacts.ContactsViewModel
+import com.example.authactivity.ui.mycontacts.bottomSheet.AdapterBottomSheet
+import kotlinx.android.synthetic.main.activity_contacts.*
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddBottomSheetFragment(), AdapterCategory.CategoryClickListener {
 
-    private val viewModel by viewModel<CategoryViewModel>()
     lateinit var binding: LayoutAddBottomBinding
     private lateinit var adapterCategory: AdapterCategory
+    private lateinit var viewModel: CategoryViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -32,18 +39,29 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
     }
 
     override fun setupViews() {
+        viewModel = getViewModel(clazz = CategoryViewModel::class)
         setupListener()
         setupRecyclerView()
         showAlertEdit()
+        setupSearchView()
+        subscribe()
     }
 
     private fun setupRecyclerView() {
         adapterCategory = AdapterCategory(this)
-        val layoutManager: LinearLayoutManager = LinearLayoutManager(activity)
-        layoutManager.setReverseLayout(true)
-        layoutManager.setStackFromEnd(true)
-        binding.recyclerView.setLayoutManager(layoutManager)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapterCategory
+    }
+
+    override fun subscribeToLiveData() {}
+
+    private fun subscribe() {
+        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            adapterCategory.addItems(it)
+        })
+        viewModel.subscribeToData()
+        viewModel.subscribeToMessage()
+        viewModel.getCategory()
     }
 
     private fun showAlertEdit() {
@@ -70,7 +88,7 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
     }
 
     private fun checkField(
-            nameEditText: EditText, dialog: AlertDialog
+        nameEditText: EditText, dialog: AlertDialog
     ) {
         var error = 0
         if (nameEditText.isEmptyInputData(getString(R.string.add_name))) error += 1
@@ -86,18 +104,33 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
         viewModel.insertCategory(category)
     }
 
+    private fun setupSearchView() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                if (newText == "") adapterCategory.addItems(viewModel.filteredCategory)
+                else {
+                    val searchText = newText.toLowerCase()
+                    val filtered = mutableListOf<CategoryData>()
+                    viewModel.filteredCategory.forEach {
+                        if (it.category.toLowerCase().contains(searchText)) filtered.add(it)
+                    }
+                    adapterCategory.addItems(filtered)
+                }
+                return false
+            }
+        })
+    }
+
     private fun setupListener() {
         binding.back.setOnClickListener { this.onDestroyView() }
     }
 
-    override fun subscribeToLiveData() {
-        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            adapterCategory.addItems(it)
-        })
-    }
+    override fun onCategoryClick(item: CategoryData) {}
 
-    override fun onCategoryClick(item: CategoryData) {
-
-    }
+    override fun onLongItemClickBottom(item: CategoryData) {}
 }
 

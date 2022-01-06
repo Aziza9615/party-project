@@ -28,13 +28,6 @@ abstract class BaseActivity<VM : BaseViewModel<BaseEvent>, VB : androidx.viewbin
         subscribeToLiveData()
     }
 
-    @SuppressLint("RestrictedApi")
-//    override fun attachBaseContext(newBase: Context) {
-//        //val localeToSwitchTo = PreferenceManager(newBase).getAppLanguage()
-//        val localeUpdatedContext: ContextWrapper = ContextUtils.updateLocale(newBase, localeToSwitchTo)
-//        super.attachBaseContext(localeUpdatedContext)
-//    }
-
     abstract fun setupViews()
     abstract fun subscribeToLiveData()
 }

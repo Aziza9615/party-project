@@ -33,10 +33,10 @@ class SettingsFragment : BaseFragment<LangViewModel, FragmentSettingsBinding>(La
 
     private fun setupListener() {
         binding.svsTxt.setOnClickListener {
-            findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
+           // findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
         }
         binding.ivSvs.setOnClickListener {
-            findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
+            //findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
         }
         binding.txtShare.setOnClickListener {
             val shareBody = "Download nextQuiz on Play Store : http://play.google.com/store/apps/details?id=com.jadebu.nextquiz&hl=en"
@@ -57,10 +57,10 @@ class SettingsFragment : BaseFragment<LangViewModel, FragmentSettingsBinding>(La
             startActivity(shareIntent)
         }
         binding.txtDev.setOnClickListener {
-            findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
+           // findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
         }
         binding.ivDev.setOnClickListener {
-            findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
+           // findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
         }
     }
 }

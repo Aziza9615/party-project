@@ -2,22 +2,23 @@ package com.example.authactivity.ui.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.bumptech.glide.Glide
-import com.example.authactivity.R
+import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemBottomSheetBinding
+import com.example.authactivity.databinding.ItemContactsBottomSheetBinding
 import com.example.authactivity.model.CategoryData
+import com.example.authactivity.model.ListData
+import com.example.authactivity.ui.mycontacts.bottomSheet.ClickListenerBottom
+import kotlinx.android.synthetic.main.item_bottom_sheet.view.*
+import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
 
-class AdapterCategory(private val listener: CategoryClickListener): com.example.authactivity.base.BaseAdapter() {
+class AdapterCategory(private val listener: CategoryClickListener) : BaseAdapter() {
 
     private var items = mutableListOf<CategoryData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-        val binding =
-                ItemBottomSheetBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CategoryViewHolder(
-                binding
-        )
+        val binding = ItemBottomSheetBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CategoryViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -28,7 +29,13 @@ class AdapterCategory(private val listener: CategoryClickListener): com.example.
         val item = items[position]
         val holder = holder as CategoryViewHolder
         holder.bind(item)
-        holder.itemView.setOnClickListener { listener.onCategoryClick(item) }
+        holder.itemView.setOnClickListener {
+            listener.onCategoryClick(item)
+        }
+        holder.itemView.setOnLongClickListener {
+            listener.onLongItemClickBottom(item)
+            true
+        }
     }
 
     fun addItems(item: MutableList<CategoryData>) {
@@ -41,17 +48,27 @@ class AdapterCategory(private val listener: CategoryClickListener): com.example.
         notifyDataSetChanged()
     }
 
-    interface CategoryClickListener {
-        fun onCategoryClick(item: CategoryData)
+    fun deleteItem(position: Int) {
+        items.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, itemCount)
     }
 
-    class CategoryViewHolder(var binding: ItemBottomSheetBinding) : BaseViewHolder(binding.root) {
-        fun bind(item: CategoryData) {
-            Glide.with(binding.ivSvs.context)
-                    .load(item.arrowImage)
-                    .placeholder(R.color.black)
-                    .into(binding.ivSvs)
-            binding.svsTxt.text = item.name
+    fun restoreItem(item: CategoryData?, position: Int){
+        if (item != null) {
+            items.add(position, item)
+            notifyItemRangeChanged(position, itemCount)
         }
+    }
+
+    class CategoryViewHolder(var binding: ItemBottomSheetBinding): BaseViewHolder(binding.root){
+        fun bind(item: CategoryData) {
+            itemView.svs_category.text = item.category
+        }
+    }
+
+    interface CategoryClickListener {
+        fun onCategoryClick(item: CategoryData)
+        fun onLongItemClickBottom(item: CategoryData)
     }
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentContactsBinding
 import com.example.authactivity.model.ListData
+import kotlinx.android.synthetic.main.item_contacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding>(ContactsViewModel::class), ClickListener{
@@ -46,23 +47,23 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
             intent.putExtra(PRESENT_ITEM)
             startActivity(intent)
         }
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return false
-            }
-            override fun onQueryTextChange(newText: String): Boolean {
-                if (newText == "") adapter.addItems(viewModel.filteredList)
-                else {
-                    val searchText = newText.toLowerCase()
-                    val filtered = mutableListOf<ListData>()
-                    viewModel.filteredList.forEach {
-                        if (it.name.toLowerCase().contains(searchText)) filtered.add(it)
-                    }
-                    adapter.addItems(filtered)
-                }
-                return false
-            }
-        })
+//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String): Boolean {
+//                return false
+//            }
+//            override fun onQueryTextChange(newText: String): Boolean {
+//                if (newText == "") adapter.addItems(viewModel.filteredList)
+//                else {
+//                    val searchText = newText.toLowerCase()
+//                    val filtered = mutableListOf<ListData>()
+//                    viewModel.filteredList.forEach {
+//                        if (it.name.toLowerCase().contains(searchText)) filtered.add(it)
+//                    }
+//                    adapter.addItems(filtered)
+//                }
+//                return false
+//            }
+//        })
     }
 
     companion object {
@@ -76,13 +77,18 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
     }
 
     override fun onItemClick(item: ListData) {
+        newBtn.setOnClickListener {
+            val intent = Intent(requireContext(), ContactsActivity::class.java)
+            intent.putExtra(PRESENT_ITEM)
+            startActivity(intent)
+        }
     }
 
     override fun onLongItemClick(item: ListData) {
     }
 }
 
-private fun Intent.putExtra(presentItem: String) {
+fun Intent.putExtra(presentItem: String) {
 }
 
 

@@ -1,18 +1,26 @@
 package com.example.authactivity.ui.mycontacts
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.util.Log
-import android.widget.EditText
+import android.view.View
+import android.widget.*
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityContactsBinding
 import com.example.authactivity.local.PrefsHelper
+import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.category.CategoryBottomSheetFragment
 import com.example.authactivity.ui.mycontacts.bottomSheet.AddBottomSheetFragment
+import com.example.authactivity.ui.mycontacts.bottomSheet.AppContacts
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.activity_contacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import android.widget.ArrayAdapter as ArrayAdapter1
 
-class ContactsActivity : BaseActivity<ContactsViewModel, ActivityContactsBinding>(ContactsViewModel::class) {
+class ContactsActivity : BaseActivity<ContactsViewModel, ActivityContactsBinding>(ContactsViewModel::class), ClickListener {
+
+    private lateinit var adapter: ContactAdapter
 
     override fun getViewBinding() = ActivityContactsBinding.inflate(layoutInflater)
 
@@ -25,6 +33,7 @@ class ContactsActivity : BaseActivity<ContactsViewModel, ActivityContactsBinding
         binding.amountTextView.text = PrefsHelper.instance.getAmount().toString()
     }
 
+
     private fun getIntentData() {
         val present = intent.getSerializableExtra(ContactsFragment.PRESENT_ITEM)
         binding.arrowBtn.setOnClickListener {
@@ -34,13 +43,10 @@ class ContactsActivity : BaseActivity<ContactsViewModel, ActivityContactsBinding
 
     private fun setupListeners() {
         binding.btnName.setOnClickListener {
-            val bottomSheetDialogFragment: BottomSheetDialogFragment =
-                    AddBottomSheetFragment(this)
-            bottomSheetDialogFragment.isCancelable = true
-            bottomSheetDialogFragment.show(
-                    supportFragmentManager,
-                    bottomSheetDialogFragment.tag
-            )
+           // override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val bottomSheetDialogFragment: BottomSheetDialogFragment = AddBottomSheetFragment(this)
+                bottomSheetDialogFragment.isCancelable = true
+                bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
         }
         binding.btnCategory.setOnClickListener {
             val bottomSheetDialogFragment: BottomSheetDialogFragment =
@@ -60,7 +66,7 @@ class ContactsActivity : BaseActivity<ContactsViewModel, ActivityContactsBinding
             val dialogLayout = inflater.inflate(R.layout.item_currency, null)
             val editText = dialogLayout.findViewById<EditText>(R.id.dialog_text)
             with(builder) {
-                setTitle("Другие источники дохода (${PrefsHelper.instance.getAmount()})")
+                setTitle("Введите сумму (${PrefsHelper.instance.getAmount()})")
                 setPositiveButton("Сохранить") { dialog, which ->
                     PrefsHelper.run { instance.saveAmount(editText.text.toString().toInt()) }
                     binding.amountTextView.text = editText.text.toString()
@@ -75,5 +81,11 @@ class ContactsActivity : BaseActivity<ContactsViewModel, ActivityContactsBinding
     }
 
     override fun subscribeToLiveData() {
+    }
+
+    override fun onItemClick(item: ListData) {
+    }
+
+    override fun onLongItemClick(item: ListData) {
     }
 }

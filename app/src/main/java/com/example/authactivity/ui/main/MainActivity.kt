@@ -1,38 +1,55 @@
 package com.example.authactivity.ui.main
 
-
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityMainBinding
+import com.example.authactivity.ui.mycontacts.ContactAdapter
 import com.example.authactivity.ui.mycontacts.ContactsFragment
 import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import com.example.authactivity.ui.setting.SettingsFragment
 import com.example.authactivity.ui.statistics.StatisticsFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<OnBoardViewModel, ActivityMainBinding>(OnBoardViewModel::class){
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        //val navController = this.findNavController(R.id.fragment_nav)
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-       // NavigationUI.setupWithNavController(bottomNavigationView, navController)
+    private lateinit var adapter: MainViewPagerAdapter
+
+    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
+
+    override fun setupViews() {
+        viewModel = getViewModel (clazz = OnBoardViewModel::class)
+        setupViewPager()
+        setupBottomNavigationView()
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.fragment_nav)
-        return navController.navigateUp()
+    private fun setupViewPager() {
+        adapter = MainViewPagerAdapter(this)
+        adapter.addFragments(ContactsFragment())
+        adapter.addFragments(StatisticsFragment())
+        adapter.addFragments(SettingsFragment())
+        view_pager.adapter = adapter
+        view_pager.offscreenPageLimit = 3
+        view_pager.isEnabled = false
+        view_pager.isUserInputEnabled = false
     }
+
+    private fun setupBottomNavigationView() {
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.ContactsFragment -> changeCurrentFragment(0)
+                R.id.StatisticFragment -> changeCurrentFragment(1)
+                R.id.SettingsFragment -> changeCurrentFragment(2)
+            }
+            true
+        }
+    }
+
+    private fun changeCurrentFragment(position: Int) {
+        view_pager.setCurrentItem(position, false)
+    }
+
+    override fun subscribeToLiveData() {
+    }
+
 }

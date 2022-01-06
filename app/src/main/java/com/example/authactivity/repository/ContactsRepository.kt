@@ -15,7 +15,7 @@ interface ContactsRepository{
 class ContactsRepositoryImpl(private val database: ListDao): ContactsRepository {
 
     val data: MutableLiveData<MutableList<ListData>> = MutableLiveData()
-    val message: MutableLiveData<String>? = MutableLiveData()
+    val message: MutableLiveData<String> = MutableLiveData()
 
     override fun getList() {
         data.value = database.getList()

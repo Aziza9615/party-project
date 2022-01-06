@@ -53,7 +53,7 @@ val databaseModule = module {
 
 val networkRepository = module {
     factory { ContactsRepositoryImpl(get()) }
-    factory <CategoryRepository> {CategoryRepositoryImpl (get()) }
+    factory { CategoryRepositoryImpl (get()) }
     single { PrefsHelper(androidContext()) }
 }
 

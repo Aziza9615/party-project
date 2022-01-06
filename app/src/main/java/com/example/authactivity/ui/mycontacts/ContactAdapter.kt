@@ -1,27 +1,27 @@
 package com.example.authactivity.ui.mycontacts
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemContactsBinding
 import com.example.authactivity.databinding.ItemFragmentContactsBinding
 import com.example.authactivity.model.ListData
-import com.example.authactivity.ui.mycontacts.bottomSheet.EmptyListViewHolder
+import com.example.authactivity.ui.mycontacts.bottomSheet.AdapterBottomSheet
 import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
 
-class ContactAdapter(private val listener: ClickListener) : BaseAdapter() {
+class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
 
     private var items = mutableListOf<ListData>()
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+
         val binding = ItemFragmentContactsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val bindingEmpty = ItemContactsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return if (viewType == VIEW_TYPE_DATA) ListViewHolder(binding)
-        else EmptyViewHolder(
-                bindingEmpty
+        return if (viewType == AdapterBottomSheet.VIEW_TYPE_DATA) ListViewHolder(
+            binding
+        )
+        else EmptyListViewHolder(
+            bindingEmpty
         )
     }
 
@@ -82,13 +82,13 @@ class ContactAdapter(private val listener: ClickListener) : BaseAdapter() {
     }
 }
 
-class ListViewHolder(var binding: ItemFragmentContactsBinding) : BaseViewHolder(binding.root) {
+class ListViewHolder(var binding: ItemFragmentContactsBinding): BaseViewHolder(binding.root){
     fun bind(item: ListData) {
         itemView.svs_txt.text = item.name
     }
 }
 
-class EmptyViewHolder(var binding: ItemContactsBinding) : BaseViewHolder(binding.root)
+class EmptyListViewHolder(var binding: ItemContactsBinding): BaseViewHolder(binding.root)
 
 interface ClickListener {
     fun onItemClick(item: ListData)

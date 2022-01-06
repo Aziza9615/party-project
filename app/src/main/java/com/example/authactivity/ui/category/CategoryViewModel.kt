@@ -6,22 +6,23 @@ import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
 import com.example.authactivity.base.CategoryEvent
 import com.example.authactivity.model.CategoryData
+import com.example.authactivity.model.ListData
 import com.example.authactivity.repository.CategoryRepository
 import com.example.authactivity.repository.CategoryRepositoryImpl
+import com.example.authactivity.repository.ContactsRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CategoryViewModel(private val repository: CategoryRepositoryImpl): BaseViewModel<BaseEvent>(){
+class CategoryViewModel(private val repository: CategoryRepositoryImpl) : BaseViewModel<BaseEvent>() {
 
     val data: MutableLiveData<MutableList<CategoryData>> = MutableLiveData()
-    val message: MutableLiveData<String>? = MutableLiveData()
+
+    val message: MutableLiveData<String> = MutableLiveData()
     var category: MutableList<CategoryData>? = mutableListOf()
     var filteredCategory: MutableList<CategoryData> = mutableListOf()
 
-    init {
-        subscribeToData()
-        subscribeToMessage()
-        getCategory()
+    fun updateCategory(data: CategoryData) {
+        repository.updateCategory(data)
     }
 
     fun getCategory() {
@@ -30,20 +31,8 @@ class CategoryViewModel(private val repository: CategoryRepositoryImpl): BaseVie
 
     fun insertCategory(data: CategoryData?) {
         viewModelScope.launch(Dispatchers.IO) {
-            if (data != null) {
-                repository.insertCategory(data)
-            }
+            data?.let { repository.insertCategory(data) }
         }
-    }
-
-    fun restoreCategory(data: CategoryData?) {
-        if (data != null) {
-            repository.restoreCategory(data)
-        }
-    }
-
-    fun updateCategory(data: CategoryData) {
-        repository.updateCategory(data)
     }
 
     fun deleteCategory(data: CategoryData?) {
@@ -52,7 +41,7 @@ class CategoryViewModel(private val repository: CategoryRepositoryImpl): BaseVie
         }
     }
 
-    private fun subscribeToData() {
+    fun subscribeToData() {
         repository.data.observeForever {
             data.value = it
             category = data.value
@@ -60,9 +49,9 @@ class CategoryViewModel(private val repository: CategoryRepositoryImpl): BaseVie
         }
     }
 
-    private fun subscribeToMessage() {
+    fun subscribeToMessage() {
         repository.message?.observeForever {
-            message?.value = it
+            message.value = it
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.authactivity.repository
 import androidx.lifecycle.MutableLiveData
 import com.example.authactivity.database.ListDao
 import com.example.authactivity.model.CategoryData
+import com.example.authactivity.model.ListData
 
 interface CategoryRepository{
     fun getCategory()
@@ -15,7 +16,7 @@ interface CategoryRepository{
 class CategoryRepositoryImpl(private val database: ListDao): CategoryRepository {
 
     val data: MutableLiveData<MutableList<CategoryData>> = MutableLiveData()
-    val message: MutableLiveData<String>? = MutableLiveData()
+    val message: MutableLiveData<String> = MutableLiveData()
 
     override fun getCategory() {
         data.value = database.getCategory()
