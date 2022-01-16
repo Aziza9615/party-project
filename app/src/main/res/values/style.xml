@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
             <!-- Customize your theme here. -->
             <item name="colorAccent">@color/brand</item>
             <item name="backgroundColor">#FFFFFF</item>
@@ -8,11 +8,23 @@
 
     <style name="title_style">
         <item name="android:fontFamily">@font/roboo</item>
-        <item name="android:textColor">@color/Label_Primary</item>
+        <item name="android:textColor">@color/brand</item>
         <item name="android:textSize">20sp</item>
     </style>
 
     <style name="AddDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    </style>
+
+    <style name="Button4">
+        <item name="cornerSize">20%</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="background">@color/gray_spinner</item>
     </style>
 
 </resources>

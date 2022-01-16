@@ -1,6 +1,7 @@
 package com.example.authactivity.ui.category
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,16 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseAddBottomSheetFragment
 import com.example.authactivity.databinding.LayoutAddBottomBinding
-import com.example.authactivity.databinding.LayoutAddBottomSheetBinding
 import com.example.authactivity.local.isEmptyInputData
 import com.example.authactivity.model.CategoryData
-import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.ContactsActivity
-import com.example.authactivity.ui.mycontacts.ContactsViewModel
-import com.example.authactivity.ui.mycontacts.bottomSheet.AdapterBottomSheet
-import kotlinx.android.synthetic.main.activity_contacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddBottomSheetFragment(), AdapterCategory.CategoryClickListener {
 
@@ -48,12 +43,16 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
     }
 
     private fun setupRecyclerView() {
-        adapterCategory = AdapterCategory(this)
+        adapterCategory = AdapterCategory(this){onItemClickCategory(it)}
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapterCategory
     }
 
-    override fun subscribeToLiveData() {}
+    private fun onItemClickCategory(item: CategoryData) {
+        val intent = Intent(requireContext(), ContactsActivity::class.java)
+        intent.putExtra("CATEGORY_KEY" , item.category)
+        startActivity(intent)
+    }
 
     private fun subscribe() {
         viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
@@ -130,7 +129,7 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
     }
 
     override fun onCategoryClick(item: CategoryData) {}
-
     override fun onLongItemClickBottom(item: CategoryData) {}
+    override fun subscribeToLiveData() {}
 }
 

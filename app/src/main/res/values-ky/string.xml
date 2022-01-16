@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">AuthActivity</string>
     <string name="Home">home</string>
+    <string name="castom_name">TextInputLayout</string>
     <string name="koshumcha">Кош келиниз тиркеме Koshumcha</string>
     <string name="Русский">Русский</string>
     <string name="Кыргызча">Кыргызча</string>

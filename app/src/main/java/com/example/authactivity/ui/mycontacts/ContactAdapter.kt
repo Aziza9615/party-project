@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
 class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
 
     private var items = mutableListOf<ListData>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
 
         val binding = ItemFragmentContactsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -60,7 +61,6 @@ class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
     fun addItem(item: ListData) {
         items.add(item)
         notifyDataSetChanged()
-//        notifyItemRangeInserted(items.lastIndex, items.count()-1)
     }
 
     fun deleteItem(position: Int) {

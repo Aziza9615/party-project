@@ -12,5 +12,4 @@ const val DATABASE_NAME = "kowum4a_app"
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun listDao() : ListDao
-    //abstract fun categoryDao() : CategoryDao
 }

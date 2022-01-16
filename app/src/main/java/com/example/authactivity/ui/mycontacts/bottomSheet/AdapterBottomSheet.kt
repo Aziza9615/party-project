@@ -5,17 +5,17 @@ import android.view.ViewGroup
 import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemAdapterBottomSheetBinding
-import com.example.authactivity.databinding.ItemContactsBottomSheetBinding
 import com.example.authactivity.databinding.ItemFragmentContactsBinding
+import com.example.authactivity.model.AlertData
 import com.example.authactivity.model.ListData
 import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
 
-class AdapterBottomSheet(private val listener: ClickListenerBottom) : BaseAdapter() {
+class AdapterBottomSheet(private val listener: ClickListenerBottom, private val onItemClick: (item: ListData) -> Unit) : BaseAdapter() {
 
     private var items = mutableListOf<ListData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-        val binding = ItemContactsBottomSheetBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemFragmentContactsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val bindingEmpty = ItemAdapterBottomSheetBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return if (viewType == VIEW_TYPE_DATA) ListBottomViewHolder(
             binding
@@ -44,7 +44,7 @@ class AdapterBottomSheet(private val listener: ClickListenerBottom) : BaseAdapte
         val item = items[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            listener.onItemClickBottom(item)
+            onItemClick(item)
         }
         holder.itemView.setOnLongClickListener {
             listener.onLongItemClickBottom(item)
@@ -57,7 +57,7 @@ class AdapterBottomSheet(private val listener: ClickListenerBottom) : BaseAdapte
         notifyDataSetChanged()
     }
 
-    fun addItem(item: ListData) {
+    fun addItem(item: AlertData) {
         items.add(item)
         notifyDataSetChanged()
     }
@@ -81,7 +81,7 @@ class AdapterBottomSheet(private val listener: ClickListenerBottom) : BaseAdapte
     }
 }
 
-class ListBottomViewHolder(var binding: ItemContactsBottomSheetBinding): BaseViewHolder(binding.root){
+class ListBottomViewHolder(var binding: ItemFragmentContactsBinding): BaseViewHolder(binding.root){
     fun bind(item: ListData) {
         itemView.svs_txt.text = item.name
     }

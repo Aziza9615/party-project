@@ -8,5 +8,7 @@ import java.io.Serializable
 data class ListData(
         @PrimaryKey(autoGenerate = true)
         var id: Int,
-        var name: String
+        var name: String,
+        var category: String,
+        var amount: Int
 ) : Serializable

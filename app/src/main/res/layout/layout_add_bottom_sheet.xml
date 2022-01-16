@@ -3,15 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    android:background="@drawable/bottom_sheet">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/bottom_sheet">
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/back"
@@ -55,6 +53,7 @@
             android:layout_marginStart="16dp"
             app:layout_constraintTop_toBottomOf="@+id/txt_cat"
             android:layout_marginTop="25dp"
+            app:queryHint="Поиск"
             android:layout_marginEnd="16dp"
             android:background="@drawable/search" />
 
@@ -68,7 +67,7 @@
             android:orientation="vertical"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            tools:listitem="@layout/item_contacts_bottom_sheet"/>
+            tools:listitem="@layout/item_fragment_contacts"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

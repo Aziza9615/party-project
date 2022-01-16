@@ -68,6 +68,7 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
 
     companion object {
         const val PRESENT_ITEM = "PRESENT_ITEM"
+        const val CONTACT_DETAIL = "CONTACT_DETAIL"
     }
 
     override fun subscribeToLiveData() {
@@ -84,12 +85,12 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
         }
     }
 
-    override fun onLongItemClick(item: ListData) {
-    }
+    override fun onLongItemClick(item: ListData) {}
 }
 
 fun Intent.putExtra(presentItem: String) {
 }
+
 
 
 

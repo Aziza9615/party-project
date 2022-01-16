@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.authactivity.database.ListDao
 import com.example.authactivity.model.ListData
 
-interface ContactsRepository{
+interface ListRepository{
     fun getList()
     fun insertList(data: ListData)
     fun updateList(data: ListData)
@@ -12,7 +12,7 @@ interface ContactsRepository{
     fun deleteList(data: ListData)
 }
 
-class ContactsRepositoryImpl(private val database: ListDao): ContactsRepository {
+class ListRepositoryImpl(private val database: ListDao): ListRepository {
 
     val data: MutableLiveData<MutableList<ListData>> = MutableLiveData()
     val message: MutableLiveData<String> = MutableLiveData()

@@ -9,7 +9,6 @@ import com.example.authactivity.model.CategoryData
 import com.example.authactivity.model.ListData
 import com.example.authactivity.repository.CategoryRepository
 import com.example.authactivity.repository.CategoryRepositoryImpl
-import com.example.authactivity.repository.ContactsRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

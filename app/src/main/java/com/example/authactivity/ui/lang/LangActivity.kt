@@ -13,6 +13,7 @@ import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
 import com.example.authactivity.databinding.ActivityLangBinding
 import com.example.authactivity.local.PrefsHelper
+import com.example.authactivity.ui.main.MainActivity
 import com.example.authactivity.ui.onBoard.OnBoardActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
@@ -30,7 +31,7 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
         viewModel = getViewModel(clazz = LangViewModel::class)
         PrefsHelper.instance = PrefsHelper(this)
         if (PrefsHelper.instance.getGuest() == true) {
-            //переход в главное меню
+            startActivity(Intent(this@LangActivity, MainActivity::class.java))
         } else {
             setupListener()
         }

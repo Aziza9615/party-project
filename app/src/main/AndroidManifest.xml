@@ -12,9 +12,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/Home"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppTheme">
-        <activity android:name=".ui.main.MainActivity2"></activity>
+        android:theme="@style/AppTheme">
         <activity android:name=".ui.mycontacts.ContactsActivity" />
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.setting.CurrencySettingsActivity" />

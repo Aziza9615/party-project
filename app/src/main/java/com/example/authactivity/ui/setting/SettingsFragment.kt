@@ -2,6 +2,7 @@ package com.example.authactivity.ui.setting
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
@@ -33,10 +34,10 @@ class SettingsFragment : BaseFragment<LangViewModel, FragmentSettingsBinding>(La
 
     private fun setupListener() {
         binding.svsTxt.setOnClickListener {
-           // findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
+            fragmentManager?.beginTransaction()?.replace(R.id.constraint, LangSettingsFragment())?.commit()
         }
         binding.ivSvs.setOnClickListener {
-            //findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
+            fragmentManager?.beginTransaction()?.replace(R.id.constraint, LangSettingsFragment())?.commit()
         }
         binding.txtShare.setOnClickListener {
             val shareBody = "Download nextQuiz on Play Store : http://play.google.com/store/apps/details?id=com.jadebu.nextquiz&hl=en"
@@ -63,4 +64,8 @@ class SettingsFragment : BaseFragment<LangViewModel, FragmentSettingsBinding>(La
            // findNavController().navigate(R.id.action_SettingsFragment_to_langSettingsFragment)
         }
     }
+}
+
+private fun Bundle.putSerializable(s: String) {
+
 }

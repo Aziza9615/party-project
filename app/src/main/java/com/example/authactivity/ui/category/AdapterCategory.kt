@@ -5,14 +5,11 @@ import android.view.ViewGroup
 import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemBottomSheetBinding
-import com.example.authactivity.databinding.ItemContactsBottomSheetBinding
 import com.example.authactivity.model.CategoryData
 import com.example.authactivity.model.ListData
-import com.example.authactivity.ui.mycontacts.bottomSheet.ClickListenerBottom
 import kotlinx.android.synthetic.main.item_bottom_sheet.view.*
-import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
 
-class AdapterCategory(private val listener: CategoryClickListener) : BaseAdapter() {
+class AdapterCategory(private val listener: CategoryClickListener, private val onItemClickCategory: (item: CategoryData) -> Unit) : BaseAdapter() {
 
     private var items = mutableListOf<CategoryData>()
 
@@ -30,7 +27,7 @@ class AdapterCategory(private val listener: CategoryClickListener) : BaseAdapter
         val holder = holder as CategoryViewHolder
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            listener.onCategoryClick(item)
+            onItemClickCategory(item)
         }
         holder.itemView.setOnLongClickListener {
             listener.onLongItemClickBottom(item)
