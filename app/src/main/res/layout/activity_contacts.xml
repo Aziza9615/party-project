@@ -139,7 +139,7 @@
         android:textColor="@color/Subhead"/>
 
     <TextView
-        android:id="@+id/amount_textView"
+        android:id="@+id/txt_amount"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:hint="0"
@@ -162,16 +162,16 @@
         android:layout_height="56dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amount_textView"
+        app:layout_constraintTop_toBottomOf="@+id/txt_amount"
         android:background="@drawable/btn_save"
-        android:backgroundTint="@color/search"
-        app:shapeAppearanceOverlay="@style/Button4"
+        android:theme="@style/Button4"
         android:enabled="false"
         android:text="@string/save"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="18dp"
+        android:layout_marginBottom="108dp"
         android:layout_marginStart="18dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

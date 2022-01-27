@@ -42,4 +42,6 @@
     <string name="setting">Настройки</string>
     <string name="curren">Валюта/Зарплата</string>
     <string name="lang">Язык</string>
+    <string name="category_created">Категория успешно добавлена</string>
+    <string name="name_created">имя успешно добавлена</string>
 </resources>

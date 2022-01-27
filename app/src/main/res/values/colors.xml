@@ -15,4 +15,5 @@
     <color name="gray_spinner">#F8F8F8</color>
     <color name="button">#1A000000</color>
     <color name="search">#EEEDED</color>
+    <color name="alert">#F9F9F9</color>
 </resources>

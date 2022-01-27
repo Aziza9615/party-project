@@ -14,6 +14,7 @@ import com.example.authactivity.R
 import com.example.authactivity.base.BaseAddBottomSheetFragment
 import com.example.authactivity.databinding.LayoutAddBottomBinding
 import com.example.authactivity.local.isEmptyInputData
+import com.example.authactivity.local.showAlertDone
 import com.example.authactivity.model.CategoryData
 import com.example.authactivity.ui.mycontacts.ContactsActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -43,15 +44,9 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
     }
 
     private fun setupRecyclerView() {
-        adapterCategory = AdapterCategory(this){onItemClickCategory(it)}
+        adapterCategory = AdapterCategory(this)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapterCategory
-    }
-
-    private fun onItemClickCategory(item: CategoryData) {
-        val intent = Intent(requireContext(), ContactsActivity::class.java)
-        intent.putExtra("CATEGORY_KEY" , item.category)
-        startActivity(intent)
     }
 
     private fun subscribe() {
@@ -81,9 +76,14 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
             }
             positiveButton.setOnClickListener {
                 checkField(nameEditText, dialog)
+                showAlertDone(requireContext(), layoutInflater, R.layout.alert_done)
             }
             dialog.show()
         }
+    }
+
+    override fun getTheme(): Int {
+        return R.style.RoundedCornerBottomSheetDialog
     }
 
     private fun checkField(
@@ -115,7 +115,7 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
                     val searchText = newText.toLowerCase()
                     val filtered = mutableListOf<CategoryData>()
                     viewModel.filteredCategory.forEach {
-                        if (it.category.toLowerCase().contains(searchText)) filtered.add(it)
+                        if (it.category?.toLowerCase()!!.contains(searchText)) filtered.add(it)
                     }
                     adapterCategory.addItems(filtered)
                 }
@@ -127,8 +127,16 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
     private fun setupListener() {
         binding.back.setOnClickListener { this.onDestroyView() }
     }
+    companion object{
+        const val CATEGORY_KEY = "CATEGORY_KEY"
+    }
 
-    override fun onCategoryClick(item: CategoryData) {}
+    override fun onCategoryClick(item: CategoryData) {
+        val intent = Intent(requireContext(), ContactsActivity::class.java)
+        intent.putExtra(CATEGORY_KEY, item.category)
+        startActivity(intent)
+    }
+
     override fun onLongItemClickBottom(item: CategoryData) {}
     override fun subscribeToLiveData() {}
 }

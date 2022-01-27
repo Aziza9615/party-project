@@ -1,0 +1,40 @@
+package com.example.authactivity.repository
+
+import androidx.lifecycle.MutableLiveData
+import com.example.authactivity.database.ListDao
+import com.example.authactivity.model.ContactData
+import com.example.authactivity.model.ListData
+
+interface ContactRepository{
+    fun getContact()
+    fun insertContact(data: ContactData)
+    fun updateContact(data: ContactData)
+    fun restoreContact(data: ContactData)
+    fun deleteContact(data: ContactData)
+}
+
+class ContactRepositoryImpl(private val database: ListDao): ContactRepository {
+
+    val data: MutableLiveData<MutableList<ContactData>> = MutableLiveData()
+    val message: MutableLiveData<String> = MutableLiveData()
+
+    override fun getContact() {
+        data.value = database.getContact()
+    }
+
+    override fun insertContact(data: ContactData) {
+        database.insertContact(data)
+    }
+
+    override fun updateContact(data: ContactData) {
+        database.updateItem(data)
+    }
+
+    override fun restoreContact(data: ContactData) {
+        database.restoreContact(data)
+    }
+
+    override fun deleteContact(data: ContactData) {
+        database.deleteContact(data)
+    }
+}

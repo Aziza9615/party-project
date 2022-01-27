@@ -4,9 +4,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "alert")
-data class AlertData(
+@Entity(tableName = "contact")
+data class ContactData(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var name: String
+    var name: String,
+   // var category: String,
+    var amount: Int
 ) : Serializable

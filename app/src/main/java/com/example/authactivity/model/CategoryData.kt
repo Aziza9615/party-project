@@ -8,5 +8,5 @@ import java.io.Serializable
 data class CategoryData (
         @PrimaryKey(autoGenerate = true)
         var id: Int,
-        var category: String
+        var category: String? = null
 ) : Serializable

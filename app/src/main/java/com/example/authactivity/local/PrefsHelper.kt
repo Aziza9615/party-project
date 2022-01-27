@@ -2,6 +2,7 @@ package com.example.authactivity.local
 
 import android.content.Context
 import android.content.SharedPreferences
+import javax.xml.namespace.NamespaceContext
 
 class PrefsHelper(private val context: Context) {
 
@@ -11,6 +12,7 @@ class PrefsHelper(private val context: Context) {
     private val INCOME = "INCOME"
     private val GUEST = "GUEST"
     private val AMOUNT = "AMOUNT"
+    private val NAME = "NAME"
     private var prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     init {
@@ -23,6 +25,14 @@ class PrefsHelper(private val context: Context) {
 
     fun saveCurrency(currency: String) {
         prefs.edit().putString(CURRENCY, currency).apply()
+    }
+
+    fun getName(): String? {
+        return prefs.getString(NAME, String() )
+    }
+
+    fun saveName(names: String) {
+        prefs.edit().putString(NAME, names).apply()
     }
 
     fun saveSalary(salary: Int) {

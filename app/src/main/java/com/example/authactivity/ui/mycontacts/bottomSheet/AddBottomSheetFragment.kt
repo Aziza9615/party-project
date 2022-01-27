@@ -13,7 +13,7 @@ import com.example.authactivity.R
 import com.example.authactivity.base.BaseAddBottomSheetFragment
 import com.example.authactivity.databinding.LayoutAddBottomSheetBinding
 import com.example.authactivity.local.isEmptyInputData
-import com.example.authactivity.model.AlertData
+import com.example.authactivity.local.showAlertDone1
 import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -22,7 +22,7 @@ import android.content.Intent as Intent1
  class AddBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddBottomSheetFragment(), ClickListenerBottom {
 
      lateinit var binding: LayoutAddBottomSheetBinding
-     private lateinit var viewModel: ContactsViewModel
+     private lateinit var viewModel: ListViewModel
      private lateinit var adapter: AdapterBottomSheet
 
      override fun onCreateView(
@@ -37,7 +37,7 @@ import android.content.Intent as Intent1
      }
 
      override fun setupViews() {
-         viewModel = getViewModel(clazz = ContactsViewModel::class)
+         viewModel = getViewModel(clazz = ListViewModel::class)
          setupListener()
          setupSearchView()
          showAlertEdit()
@@ -46,7 +46,7 @@ import android.content.Intent as Intent1
      }
 
      private fun setupRecyclerView() {
-         adapter = AdapterBottomSheet(this){onItemClick(it)}
+         adapter = AdapterBottomSheet(this)
          binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
          binding.recyclerView.adapter = adapter
      }
@@ -56,12 +56,6 @@ import android.content.Intent as Intent1
          viewModel.subscribeToData()
          viewModel.subscribeToMessage()
          viewModel.getList()
-     }
-
-     private fun onItemClick(item: ListData) {
-         val intent = Intent1(requireContext(), ContactsActivity::class.java)
-         intent.putExtra("ITEM_KEY" , item.name)
-         startActivity(intent)
      }
 
      private fun showAlertEdit() {
@@ -78,9 +72,14 @@ import android.content.Intent as Intent1
              }
              positiveButton.setOnClickListener {
                  checkField(nameEditText, dialog)
+                 showAlertDone1(requireContext(), layoutInflater, R.layout.alert_done1)
              }
              dialog.show()
          }
+     }
+
+     override fun getTheme(): Int {
+         return R.style.RoundedCornerBottomSheetDialog
      }
 
      private fun checkField(
@@ -94,10 +93,10 @@ import android.content.Intent as Intent1
      }
 
      fun addItem(nameEditText: EditText, dialog: AlertDialog) {
-         val alert = AlertData(0, nameEditText.text.toString())
+         val list = ListData(0, nameEditText.text.toString())
          dialog.dismiss()
-         adapter.addItem(alert)
-         viewModel.insertList(alert)
+         adapter.addItem(list)
+         viewModel.insertList(list)
      }
 
      private fun setupSearchView() {
@@ -125,10 +124,21 @@ import android.content.Intent as Intent1
          binding.back.setOnClickListener { this.onDestroyView() }
      }
 
+     companion object {
+         const val ITEM_KEY = "ITEM_KEY"
+     }
+
      override fun subscribeToLiveData() {}
-     override fun onItemClickBottom(item: ListData) {}
+
+     override fun onItemClickBottom(item: ListData) {
+         val intent = Intent1(requireContext(), ContactsActivity::class.java)
+         intent.putExtra(ITEM_KEY, item.name)
+         startActivity(intent)
+     }
+
      override fun onLongItemClickBottom(item: ListData) {}
  }
+
 
 
 

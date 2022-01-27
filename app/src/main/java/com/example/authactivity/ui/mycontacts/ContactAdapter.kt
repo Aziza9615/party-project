@@ -6,13 +6,14 @@ import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemContactsBinding
 import com.example.authactivity.databinding.ItemFragmentContactsBinding
+import com.example.authactivity.model.ContactData
 import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.bottomSheet.AdapterBottomSheet
 import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
 
 class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
 
-    private var items = mutableListOf<ListData>()
+    private var items = mutableListOf<ContactData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
 
@@ -53,12 +54,12 @@ class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
         }
     }
 
-    fun addItems(item: MutableList<ListData>) {
+    fun addItems(item: MutableList<ContactData>) {
         items = item
         notifyDataSetChanged()
     }
 
-    fun addItem(item: ListData) {
+    fun addItem(item: ContactData) {
         items.add(item)
         notifyDataSetChanged()
     }
@@ -69,7 +70,7 @@ class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
         notifyItemRangeChanged(position, itemCount)
     }
 
-    fun restoreItem(item: ListData?, position: Int){
+    fun restoreItem(item: ContactData?, position: Int){
         if (item != null) {
             items.add(position, item)
             notifyItemRangeChanged(position, itemCount)
@@ -83,7 +84,7 @@ class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
 }
 
 class ListViewHolder(var binding: ItemFragmentContactsBinding): BaseViewHolder(binding.root){
-    fun bind(item: ListData) {
+    fun bind(item: ContactData) {
         itemView.svs_txt.text = item.name
     }
 }
@@ -91,6 +92,6 @@ class ListViewHolder(var binding: ItemFragmentContactsBinding): BaseViewHolder(b
 class EmptyListViewHolder(var binding: ItemContactsBinding): BaseViewHolder(binding.root)
 
 interface ClickListener {
-    fun onItemClick(item: ListData)
-    fun onLongItemClick(item: ListData)
+    fun onItemClick(item: ContactData)
+    fun onLongItemClick(item: ContactData)
 }

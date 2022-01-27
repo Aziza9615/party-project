@@ -3,15 +3,16 @@ package com.example.authactivity.ui.mycontacts
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentContactsBinding
+import com.example.authactivity.model.ContactData
 import com.example.authactivity.model.ListData
 import kotlinx.android.synthetic.main.item_contacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding>(ContactsViewModel::class), ClickListener{
+class ContactsFragment : BaseFragment<ContactViewModel, FragmentContactsBinding>(ContactViewModel::class), ClickListener{
 
     private lateinit var adapter: ContactAdapter
 
@@ -25,14 +26,16 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
     }
 
     override fun setupViews() {
-        viewModel = getViewModel(clazz = ContactsViewModel::class)
+        viewModel = getViewModel(clazz = ContactViewModel::class)
         setupRecyclerView()
         setupListeners()
+        setupSearchView()
+        subscribe()
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.getList()
+        viewModel.getContact()
     }
 
     private fun setupRecyclerView() {
@@ -47,28 +50,32 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
             intent.putExtra(PRESENT_ITEM)
             startActivity(intent)
         }
-//        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String): Boolean {
-//                return false
-//            }
-//            override fun onQueryTextChange(newText: String): Boolean {
-//                if (newText == "") adapter.addItems(viewModel.filteredList)
-//                else {
-//                    val searchText = newText.toLowerCase()
-//                    val filtered = mutableListOf<ListData>()
-//                    viewModel.filteredList.forEach {
-//                        if (it.name.toLowerCase().contains(searchText)) filtered.add(it)
-//                    }
-//                    adapter.addItems(filtered)
-//                }
-//                return false
-//            }
-//        })
     }
+
+        private fun setupSearchView() {
+            binding.searchView.setOnQueryTextListener(object :
+                androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    if (newText == "") adapter.addItems(viewModel.filteredContact)
+                    else {
+                        val searchText = newText.toLowerCase()
+                        val filtered = mutableListOf<ContactData>()
+                        viewModel.filteredContact.forEach {
+                            if (it.name.toLowerCase().contains(searchText)) filtered.add(it)
+                        }
+                        adapter.addItems(filtered)
+                    }
+                    return false
+                }
+            })
+        }
 
     companion object {
         const val PRESENT_ITEM = "PRESENT_ITEM"
-        const val CONTACT_DETAIL = "CONTACT_DETAIL"
     }
 
     override fun subscribeToLiveData() {
@@ -77,7 +84,7 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
         })
     }
 
-    override fun onItemClick(item: ListData) {
+    override fun onItemClick(item: ContactData) {
         newBtn.setOnClickListener {
             val intent = Intent(requireContext(), ContactsActivity::class.java)
             intent.putExtra(PRESENT_ITEM)
@@ -85,7 +92,14 @@ class ContactsFragment : BaseFragment<ContactsViewModel, FragmentContactsBinding
         }
     }
 
-    override fun onLongItemClick(item: ListData) {}
+    private fun subscribe() {
+        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer { adapter.addItems(it) })
+        viewModel.subscribeToData()
+        viewModel.subscribeToMessage()
+        viewModel.getContact()
+    }
+
+    override fun onLongItemClick(item: ContactData) {}
 }
 
 fun Intent.putExtra(presentItem: String) {

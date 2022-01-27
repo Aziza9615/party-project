@@ -9,7 +9,7 @@ import com.example.authactivity.model.CategoryData
 import com.example.authactivity.model.ListData
 import kotlinx.android.synthetic.main.item_bottom_sheet.view.*
 
-class AdapterCategory(private val listener: CategoryClickListener, private val onItemClickCategory: (item: CategoryData) -> Unit) : BaseAdapter() {
+class AdapterCategory(private val listener: CategoryClickListener) : BaseAdapter() {
 
     private var items = mutableListOf<CategoryData>()
 
@@ -27,7 +27,7 @@ class AdapterCategory(private val listener: CategoryClickListener, private val o
         val holder = holder as CategoryViewHolder
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            onItemClickCategory(item)
+            listener.onCategoryClick(item)
         }
         holder.itemView.setOnLongClickListener {
             listener.onLongItemClickBottom(item)
