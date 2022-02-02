@@ -3,14 +3,13 @@ package com.example.authactivity.repository
 import androidx.lifecycle.MutableLiveData
 import com.example.authactivity.database.ListDao
 import com.example.authactivity.model.ContactData
-import com.example.authactivity.model.ListData
 
 interface ContactRepository{
     fun getContact()
     fun insertContact(data: ContactData)
     fun updateContact(data: ContactData)
     fun restoreContact(data: ContactData)
-    fun deleteContact(data: ContactData)
+    fun deleteContact(contact: MutableList<ContactData>?)
 }
 
 class ContactRepositoryImpl(private val database: ListDao): ContactRepository {
@@ -27,14 +26,14 @@ class ContactRepositoryImpl(private val database: ListDao): ContactRepository {
     }
 
     override fun updateContact(data: ContactData) {
-        database.updateItem(data)
+        database.updateContact(data)
     }
 
     override fun restoreContact(data: ContactData) {
         database.restoreContact(data)
     }
 
-    override fun deleteContact(data: ContactData) {
-        database.deleteContact(data)
+    override fun deleteContact(contact: MutableList<ContactData>?) {
+        database.deleteContact(contact)
     }
 }

@@ -13,6 +13,7 @@ class PrefsHelper(private val context: Context) {
     private val GUEST = "GUEST"
     private val AMOUNT = "AMOUNT"
     private val NAME = "NAME"
+    private val CATEGORY = "CATEGORY"
     private var prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     init {
@@ -33,6 +34,14 @@ class PrefsHelper(private val context: Context) {
 
     fun saveName(names: String) {
         prefs.edit().putString(NAME, names).apply()
+    }
+
+    fun getCategory(): String? {
+        return prefs.getString(CATEGORY, String() )
+    }
+
+    fun saveCategory(category: String) {
+        prefs.edit().putString(CATEGORY, category).apply()
     }
 
     fun saveSalary(salary: Int) {

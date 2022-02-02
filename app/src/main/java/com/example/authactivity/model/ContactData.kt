@@ -8,7 +8,7 @@ import java.io.Serializable
 data class ContactData(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var name: String,
-   // var category: String,
+    var name: String?,
+    //var category: String?,
     var amount: Int
 ) : Serializable

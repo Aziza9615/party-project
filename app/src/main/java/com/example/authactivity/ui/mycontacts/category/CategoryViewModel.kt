@@ -1,13 +1,10 @@
-package com.example.authactivity.ui.category
+package com.example.authactivity.ui.mycontacts.category
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
-import com.example.authactivity.base.CategoryEvent
 import com.example.authactivity.model.CategoryData
-import com.example.authactivity.model.ListData
-import com.example.authactivity.repository.CategoryRepository
 import com.example.authactivity.repository.CategoryRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

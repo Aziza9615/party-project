@@ -17,9 +17,8 @@ import com.example.authactivity.local.showAlertDone1
 import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-import android.content.Intent as Intent1
 
- class AddBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddBottomSheetFragment(), ClickListenerBottom {
+ class AddBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBottomSheetFragment(), ClickListenerBottom {
 
      lateinit var binding: LayoutAddBottomSheetBinding
      private lateinit var viewModel: ListViewModel
@@ -78,10 +77,6 @@ import android.content.Intent as Intent1
          }
      }
 
-     override fun getTheme(): Int {
-         return R.style.RoundedCornerBottomSheetDialog
-     }
-
      private fun checkField(
          nameEditText: EditText, dialog: AlertDialog
      ) {
@@ -111,7 +106,7 @@ import android.content.Intent as Intent1
                      val searchText = newText.toLowerCase()
                      val filtered = mutableListOf<ListData>()
                      viewModel.filteredList.forEach {
-                         if (it.name.toLowerCase().contains(searchText)) filtered.add(it)
+                         if (it.name?.toLowerCase()!!.contains(searchText)) filtered.add(it)
                      }
                      adapter.addItems(filtered)
                  }
@@ -128,10 +123,12 @@ import android.content.Intent as Intent1
          const val ITEM_KEY = "ITEM_KEY"
      }
 
-     override fun subscribeToLiveData() {}
+     override fun getTheme(): Int {
+         return R.style.RoundedCornerBottomSheetDialog
+     }
 
      override fun onItemClickBottom(item: ListData) {
-         val intent = Intent1(requireContext(), ContactsActivity::class.java)
+         val intent = android.content.Intent(requireContext(), ContactActivity::class.java)
          intent.putExtra(ITEM_KEY, item.name)
          startActivity(intent)
      }

@@ -1,4 +1,4 @@
-package com.example.authactivity.ui.category
+package com.example.authactivity.ui.mycontacts.category
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -16,10 +16,10 @@ import com.example.authactivity.databinding.LayoutAddBottomBinding
 import com.example.authactivity.local.isEmptyInputData
 import com.example.authactivity.local.showAlertDone
 import com.example.authactivity.model.CategoryData
-import com.example.authactivity.ui.mycontacts.ContactsActivity
+import com.example.authactivity.ui.mycontacts.ContactActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddBottomSheetFragment(), AdapterCategory.CategoryClickListener {
+class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBottomSheetFragment(), AdapterCategory.CategoryClickListener {
 
     lateinit var binding: LayoutAddBottomBinding
     private lateinit var adapterCategory: AdapterCategory
@@ -82,10 +82,6 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
         }
     }
 
-    override fun getTheme(): Int {
-        return R.style.RoundedCornerBottomSheetDialog
-    }
-
     private fun checkField(
         nameEditText: EditText, dialog: AlertDialog
     ) {
@@ -131,13 +127,16 @@ class CategoryBottomSheetFragment(contactsActivity: ContactsActivity) : BaseAddB
         const val CATEGORY_KEY = "CATEGORY_KEY"
     }
 
+    override fun getTheme(): Int {
+        return R.style.RoundedCornerBottomSheetDialog
+    }
+
     override fun onCategoryClick(item: CategoryData) {
-        val intent = Intent(requireContext(), ContactsActivity::class.java)
+        val intent = Intent(requireContext(), ContactActivity::class.java)
         intent.putExtra(CATEGORY_KEY, item.category)
         startActivity(intent)
     }
 
     override fun onLongItemClickBottom(item: CategoryData) {}
-    override fun subscribeToLiveData() {}
 }
 

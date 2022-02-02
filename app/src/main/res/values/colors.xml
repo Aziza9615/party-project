@@ -16,4 +16,6 @@
     <color name="button">#1A000000</color>
     <color name="search">#EEEDED</color>
     <color name="alert">#F9F9F9</color>
+    <color name="delete">#858295</color>
+    <color name="red">#FB6955</color>
 </resources>

@@ -15,11 +15,12 @@
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.mycontacts.ContactsActivity" />
-        <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".ui.setting.CurrencySettingsActivity" />
+        <activity android:name=".ui.setting.CurrencySettingsActivity"></activity>
         <activity android:name=".ui.currency.CurrencyActivity" />
         <activity android:name=".ui.onBoard.OnBoardActivity" />
+        <activity android:name=".ui.tablayout.TabActivity" />
+        <activity android:name=".ui.mycontacts.ContactActivity"/>
+        <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.lang.LangActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

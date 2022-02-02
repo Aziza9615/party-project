@@ -44,11 +44,11 @@ interface ListDao {
     fun restoreContact(data: ContactData)
 
     @Update
-    fun updateItem(data: ContactData)
+    fun updateContact(data: ContactData)
 
     @Query("SELECT * FROM contact")
     fun getContact(): MutableList<ContactData>
 
     @Delete
-    fun deleteContact(data: ContactData)
+    fun deleteContact(contact: MutableList<ContactData>?)
 }

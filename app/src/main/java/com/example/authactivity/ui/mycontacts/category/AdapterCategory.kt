@@ -1,4 +1,4 @@
-package com.example.authactivity.ui.category
+package com.example.authactivity.ui.mycontacts.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemBottomSheetBinding
 import com.example.authactivity.model.CategoryData
-import com.example.authactivity.model.ListData
 import kotlinx.android.synthetic.main.item_bottom_sheet.view.*
 
 class AdapterCategory(private val listener: CategoryClickListener) : BaseAdapter() {

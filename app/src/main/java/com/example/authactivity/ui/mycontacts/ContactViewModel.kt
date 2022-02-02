@@ -5,9 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
 import com.example.authactivity.model.ContactData
-import com.example.authactivity.model.ListData
 import com.example.authactivity.repository.ContactRepositoryImpl
-import com.example.authactivity.repository.ListRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -17,6 +15,18 @@ class ContactViewModel(private val repository: ContactRepositoryImpl) : BaseView
     val message: MutableLiveData<String> = MutableLiveData()
     var contact: MutableList<ContactData>? = mutableListOf()
     var filteredContact: MutableList<ContactData> = mutableListOf()
+
+//    fun createContact(name: String, category: String, amount: Double) {
+//        loading.value = true
+//        disposable.add(
+//            repository.createContact(name = name, category = category, amount = amount)
+//                .doOnTerminate { loading.value = false }
+//                .subscribe(
+//                    { event.value = ContactEvent.ContactCreated(it) },
+//                    { message.value = it.message }
+//                )
+//        )
+//    }
 
     fun updateContact(data: ContactData) {
         repository.updateContact(data)
@@ -32,9 +42,13 @@ class ContactViewModel(private val repository: ContactRepositoryImpl) : BaseView
         }
     }
 
-    fun deleteContact(data: ContactData?) {
+    fun deleteContact() {
+        repository.deleteContact(contact)
+    }
+
+    fun restoreProduct(data: ContactData?) {
         if (data != null) {
-            repository.deleteContact(data)
+            repository.restoreContact(data)
         }
     }
 
