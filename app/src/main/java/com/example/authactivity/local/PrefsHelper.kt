@@ -13,7 +13,9 @@ class PrefsHelper(private val context: Context) {
     private val GUEST = "GUEST"
     private val AMOUNT = "AMOUNT"
     private val NAME = "NAME"
+    private val NAME_ID = "NAME_ID"
     private val CATEGORY = "CATEGORY"
+    private val LANG = "LANG"
     private var prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     init {
@@ -29,15 +31,23 @@ class PrefsHelper(private val context: Context) {
     }
 
     fun getName(): String? {
-        return prefs.getString(NAME, String() )
+        return prefs.getString(NAME, "")
     }
 
     fun saveName(names: String) {
         prefs.edit().putString(NAME, names).apply()
     }
 
+    fun saveNameId(id: Int){
+        prefs.edit().putInt(NAME_ID, id).apply()
+    }
+
+    fun getNameId(): Int? {
+        return prefs.getInt(NAME_ID, 0)
+    }
+
     fun getCategory(): String? {
-        return prefs.getString(CATEGORY, String() )
+        return prefs.getString(CATEGORY, "")
     }
 
     fun saveCategory(category: String) {
@@ -67,6 +77,14 @@ class PrefsHelper(private val context: Context) {
    fun saveGuest(guest: Boolean) {
        prefs.edit().putBoolean(GUEST, guest).apply()
    }
+
+    fun saveLang(lang: String) {
+        prefs.edit().putString(LANG, lang).apply()
+    }
+
+    fun getLang(): String? {
+        return prefs.getString(LANG, "")
+    }
 
     fun getAmount(): String? {
         return prefs.getString(AMOUNT, "$")

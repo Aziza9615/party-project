@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentContactsBinding
+import com.example.authactivity.model.ContactData
 import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.bottomSheet.AddBottomSheetFragment
 import com.example.authactivity.ui.tablayout.TabActivity
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.item_contacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class ContactsFragment : BaseFragment<ListViewModel, FragmentContactsBinding>(  ListViewModel::class), ClickListener{
+class ContactsFragment : BaseFragment<ContactViewModel, FragmentContactsBinding>(  ContactViewModel::class), ClickListener{
 
     lateinit var textView: TextView
 
@@ -31,7 +32,7 @@ class ContactsFragment : BaseFragment<ListViewModel, FragmentContactsBinding>(  
     }
 
     override fun setupViews() {
-        viewModel = getViewModel(clazz = ListViewModel::class)
+        viewModel = getViewModel(clazz = ContactViewModel::class)
         setupRecyclerView()
         setupListeners()
         setupSearchView()
@@ -48,7 +49,7 @@ class ContactsFragment : BaseFragment<ListViewModel, FragmentContactsBinding>(  
 
     override fun onResume() {
         super.onResume()
-        viewModel.getList()
+        viewModel.getContact()
     }
 
     private fun setupRecyclerView() {
@@ -73,11 +74,11 @@ class ContactsFragment : BaseFragment<ListViewModel, FragmentContactsBinding>(  
                 }
 
                 override fun onQueryTextChange(newText: String): Boolean {
-                    if (newText == "") adapter.addItems(viewModel.filteredList)
+                    if (newText == "") adapter.addItems(viewModel.filteredContact)
                     else {
                         val searchText = newText.toLowerCase()
-                        val filtered = mutableListOf<ListData>()
-                        viewModel.filteredList.forEach {
+                        val filtered = mutableListOf<ContactData>()
+                        viewModel.filteredContact.forEach {
                             if (it.name?.toLowerCase()!!.contains(searchText)) filtered.add(it)
                         }
                         adapter.addItems(filtered)
@@ -104,7 +105,7 @@ class ContactsFragment : BaseFragment<ListViewModel, FragmentContactsBinding>(  
         })
     }
 
-    override fun onItemClick(item: ListData) {
+    override fun onItemClick(item: ContactData) {
         recycler_view.setOnClickListener {
             val intent = Intent(requireContext(), TabActivity::class.java)
             startActivity(intent)
@@ -115,10 +116,10 @@ class ContactsFragment : BaseFragment<ListViewModel, FragmentContactsBinding>(  
         viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer { adapter.addItems(it) })
         viewModel.subscribeToData()
         viewModel.subscribeToMessage()
-        viewModel.getList()
+        viewModel.getContact()
     }
 
-    override fun onLongItemClick(item: ListData) {}
+    override fun onLongItemClick(item: ContactData) {}
 }
 
 private fun Intent.putExtra(presentItem: String) {}

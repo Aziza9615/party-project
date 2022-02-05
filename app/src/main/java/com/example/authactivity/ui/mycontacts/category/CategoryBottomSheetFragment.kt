@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseAddBottomSheetFragment
 import com.example.authactivity.databinding.LayoutAddBottomBinding
+import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.local.isEmptyInputData
 import com.example.authactivity.local.showAlertDone
 import com.example.authactivity.model.CategoryData
@@ -36,6 +37,7 @@ class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBo
 
     override fun setupViews() {
         viewModel = getViewModel(clazz = CategoryViewModel::class)
+        PrefsHelper.instance = PrefsHelper(requireContext())
         setupListener()
         setupRecyclerView()
         showAlertEdit()
@@ -133,7 +135,7 @@ class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBo
 
     override fun onCategoryClick(item: CategoryData) {
         val intent = Intent(requireContext(), ContactActivity::class.java)
-        intent.putExtra(CATEGORY_KEY, item.category)
+        PrefsHelper.instance.saveCategory(item.category)
         startActivity(intent)
     }
 

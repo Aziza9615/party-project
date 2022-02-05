@@ -10,7 +10,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
 class AcceptFragment : BaseFragment<ContactViewModel, FragmentAcceptBinding>(ContactViewModel::class) {
 
     override fun setupViews() {
-        viewModel = getViewModel (clazz = ContactViewModel::class)
+        viewModel = getViewModel(clazz = ContactViewModel::class)
     }
 
     override fun subscribeToLiveData() {

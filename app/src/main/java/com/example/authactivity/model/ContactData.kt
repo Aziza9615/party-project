@@ -9,6 +9,6 @@ data class ContactData(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     var name: String?,
-    //var category: String?,
-    var amount: Int
+    var category: String? = null,
+    var amount: Int? = null
 ) : Serializable

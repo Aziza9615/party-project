@@ -34,7 +34,7 @@ class SettingsFragment : BaseFragment<LangViewModel, FragmentSettingsBinding>(La
 
     private fun setupListener() {
         binding.svsTxt.setOnClickListener {
-            fragmentManager?.beginTransaction()?.replace(R.id.constraint, LangSettingsFragment())?.commit()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.constraint, LangSettingsFragment())?.commit()
         }
         binding.ivSvs.setOnClickListener {
             fragmentManager?.beginTransaction()?.replace(R.id.constraint, LangSettingsFragment())?.commit()

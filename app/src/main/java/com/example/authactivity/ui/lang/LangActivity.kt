@@ -27,11 +27,14 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
 
     override fun getViewBinding() = ActivityLangBinding.inflate(layoutInflater)
 
+    @SuppressLint("RestrictedApi")
     override fun setupViews() {
         viewModel = getViewModel(clazz = LangViewModel::class)
         PrefsHelper.instance = PrefsHelper(this)
         if (PrefsHelper.instance.getGuest() == true) {
+            PreferenceManager(this).updateLanguage(PrefsHelper.instance.getLang()!!)
             startActivity(Intent(this@LangActivity, MainActivity::class.java))
+            finish()
         } else {
             setupListener()
         }
@@ -44,22 +47,28 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
         english = findViewById(R.id.btn_english)
         russian.setOnClickListener {
             PreferenceManager(this).updateLanguage("ru")
+            PrefsHelper.instance.saveGuest(true)
+            PrefsHelper.instance.saveLang("ru")
             startActivity(Intent(this@LangActivity, OnBoardActivity::class.java))
             finish()
         }
         kyrgyz.setOnClickListener {
             PreferenceManager(this).updateLanguage("ky")
+            PrefsHelper.instance.saveGuest(true)
+            PrefsHelper.instance.saveLang("ky")
             startActivity(Intent(this@LangActivity, OnBoardActivity::class.java))
             finish()
         }
         english.setOnClickListener {
             PreferenceManager(this).updateLanguage("en")
+            PrefsHelper.instance.saveGuest(true)
+            PrefsHelper.instance.saveLang("en")
             startActivity(Intent(this@LangActivity, OnBoardActivity::class.java))
             finish()
         }
     }
 
-    private fun PreferenceManager.updateLanguage(s: String) {
+    fun PreferenceManager.updateLanguage(s: String) {
         val locale = Locale(s)
         Locale.setDefault(locale)
         val config = Configuration()

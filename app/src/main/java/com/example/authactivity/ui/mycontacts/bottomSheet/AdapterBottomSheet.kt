@@ -6,12 +6,13 @@ import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemAdapterBottomSheetBinding
 import com.example.authactivity.databinding.ItemFragmentContactsBinding
+import com.example.authactivity.model.ContactData
 import com.example.authactivity.model.ListData
 import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
 
 class AdapterBottomSheet(private val listener: ClickListenerBottom) : BaseAdapter() {
 
-    private var items = mutableListOf<ListData>()
+    private var items = mutableListOf<ContactData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val binding = ItemFragmentContactsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -51,12 +52,12 @@ class AdapterBottomSheet(private val listener: ClickListenerBottom) : BaseAdapte
         }
     }
 
-    fun addItems(item: MutableList<ListData>) {
+    fun addItems(item: MutableList<ContactData>) {
         items = item
         notifyDataSetChanged()
     }
 
-    fun addItem(item: ListData) {
+    fun addItem(item: ContactData) {
         items.add(item)
         notifyDataSetChanged()
     }
@@ -67,7 +68,7 @@ class AdapterBottomSheet(private val listener: ClickListenerBottom) : BaseAdapte
         notifyItemRangeChanged(position, itemCount)
     }
 
-    fun restoreItem(item: ListData?, position: Int){
+    fun restoreItem(item: ContactData?, position: Int){
         if (item != null) {
             items.add(position, item)
             notifyItemRangeChanged(position, itemCount)
@@ -81,7 +82,7 @@ class AdapterBottomSheet(private val listener: ClickListenerBottom) : BaseAdapte
 }
 
 class ListBottomViewHolder(var binding: ItemFragmentContactsBinding): BaseViewHolder(binding.root){
-    fun bind(item: ListData) {
+    fun bind(item: ContactData) {
         itemView.svs_txt.text = item.name
     }
 }
@@ -89,6 +90,6 @@ class ListBottomViewHolder(var binding: ItemFragmentContactsBinding): BaseViewHo
 class EmptyListViewHolder(var binding: ItemAdapterBottomSheetBinding): BaseViewHolder(binding.root)
 
 interface ClickListenerBottom {
-    fun onItemClickBottom(item: ListData)
-    fun onLongItemClickBottom(item: ListData)
+    fun onItemClickBottom(item: ContactData)
+    fun onLongItemClickBottom(item: ContactData)
 }

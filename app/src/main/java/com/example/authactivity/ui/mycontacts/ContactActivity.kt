@@ -47,13 +47,11 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
 
     private fun getIntentData() {
         val present = intent.getSerializableExtra(ContactsFragment.PRESENT_ITEM)
-        PrefsHelper.instance.saveCategory((txt_category.text.toString()))
-        val category = intent.getStringExtra(CATEGORY_KEY)
-        binding.txtCategory.text = category
-        PrefsHelper.instance.saveName((binding.txtName.text.toString()))
-        val name = intent.getStringExtra(ITEM_KEY)
-        binding.txtName.text = name
+        binding.txtCategory.text = PrefsHelper.instance.getCategory()
+        binding.txtName.text = PrefsHelper.instance.getName()
         binding.arrowBtn.setOnClickListener {
+            PrefsHelper.instance.saveCategory("")
+            PrefsHelper.instance.saveName("")
             startActivity(Intent(this@ContactActivity, MainActivity::class.java))
         }
     }
@@ -75,35 +73,25 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
         binding.txtAmount.addTextChangedListener(loginTextWatcher)
         binding.saveBtn.setOnClickListener {
             startActivity(Intent(this@ContactActivity, MainActivity::class.java))
-            //saveContacts()
+            saveContacts()
         }
     }
 
-//    private fun saveContacts() {
-//        textView = binding.txtName
-//        button = binding.saveBtn
-//        button.setOnClickListener {
-//            val intent = Intent(this, ContactsFragment::class.java)
-//            val message = Message()
-//            message.setMessage(textView.text.toString())
-//            intent.putExtra("message", message)
-//            startActivity(intent)
-//        }
-//    }
+    private fun saveContacts() {
+        val id = PrefsHelper.instance.getNameId()
+        val name = PrefsHelper.instance.getName()
+        val category = PrefsHelper.instance.getCategory()
+        val amount = binding.txtAmount.text.toString().toInt()
 
-//    class Message : Serializable {
-//        private var message: String? = null
-//
-//        override fun toString(): String {
-//            return "$message"
-//        }
-//        fun setMessage(message: String?) {
-//            this.message = message
-//        }
-//        companion object {
-//            const val serialVersionUID = 1L
-//        }
-//    }
+        val contact = ContactData(id!!, name, category, amount)
+
+        viewModel.updateContact(contact)
+
+        PrefsHelper.instance.saveCategory("")
+        PrefsHelper.instance.saveName("")
+        PrefsHelper.instance.saveNameId(0)
+    }
+
 
 
 //    private fun initViews() {
@@ -150,7 +138,7 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
     }
 
     override fun subscribeToLiveData() {}
-    override fun onItemClick(item: ListData) {}
-    override fun onLongItemClick(item: ListData) {}
+    override fun onItemClick(item: ContactData) {}
+    override fun onLongItemClick(item: ContactData) {}
 }
 
