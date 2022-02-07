@@ -17,7 +17,9 @@ import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.local.isEmptyInputData
 import com.example.authactivity.local.showAlertDone
 import com.example.authactivity.model.CategoryData
+import com.example.authactivity.model.ContactData
 import com.example.authactivity.ui.mycontacts.ContactActivity
+import com.example.authactivity.ui.mycontacts.ContactViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBottomSheetFragment(), AdapterCategory.CategoryClickListener {
@@ -27,9 +29,9 @@ class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBo
     private lateinit var viewModel: CategoryViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         binding = LayoutAddBottomBinding.inflate(inflater, container, false)
         return binding.root
@@ -52,9 +54,7 @@ class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBo
     }
 
     private fun subscribe() {
-        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            adapterCategory.addItems(it)
-        })
+        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer { adapterCategory.addItems(it) })
         viewModel.subscribeToData()
         viewModel.subscribeToMessage()
         viewModel.getCategory()
@@ -63,21 +63,17 @@ class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBo
     private fun showAlertEdit() {
         binding.add.setOnClickListener {
             val alert = AlertDialog.Builder(requireContext(), R.style.AddDialogStyle)
-
             val inflater = layoutInflater.inflate(R.layout.alert_category, null)
             alert.setView(inflater)
             val negativeButton: Button = inflater.findViewById(R.id.btn_no)
             val positiveButton: Button = inflater.findViewById(R.id.btn_yes)
-
-            val nameEditText: EditText = inflater.findViewById(R.id.et_name)
-
+            val categoryEditText: EditText = inflater.findViewById(R.id.et_name)
             val dialog = alert.create()
-
             negativeButton.setOnClickListener {
                 dialog.dismiss()
             }
             positiveButton.setOnClickListener {
-                checkField(nameEditText, dialog)
+                checkField(categoryEditText, dialog)
                 showAlertDone(requireContext(), layoutInflater, R.layout.alert_done)
             }
             dialog.show()
@@ -90,12 +86,11 @@ class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBo
         var error = 0
         if (nameEditText.isEmptyInputData(getString(R.string.add_name))) error += 1
         if (error > 0) return
-
         addItem(nameEditText, dialog)
     }
 
-    fun addItem(nameEditText: EditText, dialog: AlertDialog) {
-        val category = CategoryData(0, nameEditText.text.toString())
+    fun addItem(categoryEditText: EditText, dialog: AlertDialog) {
+        val category = CategoryData(id = 0, category = categoryEditText.text.toString())
         dialog.dismiss()
         adapterCategory.addItem(category)
         viewModel.insertCategory(category)
@@ -106,7 +101,6 @@ class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBo
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
-
             override fun onQueryTextChange(newText: String): Boolean {
                 if (newText == "") adapterCategory.addItems(viewModel.filteredCategory)
                 else {
@@ -125,9 +119,6 @@ class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBo
     private fun setupListener() {
         binding.back.setOnClickListener { this.onDestroyView() }
     }
-    companion object{
-        const val CATEGORY_KEY = "CATEGORY_KEY"
-    }
 
     override fun getTheme(): Int {
         return R.style.RoundedCornerBottomSheetDialog
@@ -141,4 +132,3 @@ class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBo
 
     override fun onLongItemClickBottom(item: CategoryData) {}
 }
-

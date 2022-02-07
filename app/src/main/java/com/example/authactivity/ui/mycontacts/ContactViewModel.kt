@@ -16,18 +16,6 @@ class ContactViewModel(private val repository: ContactRepositoryImpl) : BaseView
     var contact: MutableList<ContactData>? = mutableListOf()
     var filteredContact: MutableList<ContactData> = mutableListOf()
 
-//    fun createContact(name: String, category: String, amount: Double) {
-//        loading.value = true
-//        disposable.add(
-//            repository.createContact(name = name, category = category, amount = amount)
-//                .doOnTerminate { loading.value = false }
-//                .subscribe(
-//                    { event.value = ContactEvent.ContactCreated(it) },
-//                    { message.value = it.message }
-//                )
-//        )
-//    }
-
     fun updateContact(data: ContactData) {
         repository.updateContact(data)
     }
@@ -54,9 +42,9 @@ class ContactViewModel(private val repository: ContactRepositoryImpl) : BaseView
 
     fun subscribeToData() {
         repository.data.observeForever {
+            it?.let { result -> data.value = result}
+            data.value?.let { data -> contact = data }
             data.value = it
-            contact = data.value
-            filteredContact = it
         }
     }
 

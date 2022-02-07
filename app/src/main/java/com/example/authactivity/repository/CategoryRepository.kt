@@ -3,7 +3,7 @@ package com.example.authactivity.repository
 import androidx.lifecycle.MutableLiveData
 import com.example.authactivity.database.ListDao
 import com.example.authactivity.model.CategoryData
-import com.example.authactivity.model.ListData
+import com.example.authactivity.model.ContactData
 
 interface CategoryRepository{
     fun getCategory()

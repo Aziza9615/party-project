@@ -57,7 +57,7 @@ fun showAlertDone(context: Context, layoutInflater: LayoutInflater, text: Int) {
         if (dialog.isShowing) {
             dialog.dismiss()
         }
-    }, 3000)
+    }, 1000)
 }
 
 fun showAlertDone1(context: Context, layoutInflater: LayoutInflater, text: Int) {
@@ -69,5 +69,5 @@ fun showAlertDone1(context: Context, layoutInflater: LayoutInflater, text: Int) 
         if (dialog.isShowing) {
             dialog.dismiss()
         }
-    }, 3000)
+    }, 1000)
 }

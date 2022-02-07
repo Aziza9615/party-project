@@ -7,7 +7,6 @@ import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemContactsBinding
 import com.example.authactivity.databinding.ItemFragmentContactsBinding
 import com.example.authactivity.model.ContactData
-import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.bottomSheet.AdapterBottomSheet
 import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
 

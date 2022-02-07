@@ -7,6 +7,7 @@ import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityTabBinding
 import com.example.authactivity.ui.currency.CurrencyActivity
 import com.example.authactivity.ui.main.MainViewPagerAdapter
+import com.example.authactivity.ui.mycontacts.ContactsFragment
 import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import com.example.authactivity.ui.tablayout.adapter.TabViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
@@ -28,7 +29,7 @@ class TabActivity : BaseActivity<OnBoardViewModel, ActivityTabBinding>(OnBoardVi
     }
 
     private fun getIntentTab() {
-        startActivity(Intent(this, TabActivity::class.java))
+        val item = intent.getSerializableExtra(ContactsFragment.KEY_ITEM)
         finish()
     }
 

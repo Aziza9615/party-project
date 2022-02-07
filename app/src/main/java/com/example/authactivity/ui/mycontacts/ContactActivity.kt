@@ -11,12 +11,10 @@ import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityContactsBinding
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.model.ContactData
-import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.category.CategoryBottomSheetFragment
-import com.example.authactivity.ui.mycontacts.category.CategoryBottomSheetFragment.Companion.CATEGORY_KEY
 import com.example.authactivity.ui.main.MainActivity
+import com.example.authactivity.ui.mycontacts.ContactsFragment.Companion.PRESENT_KEY
 import com.example.authactivity.ui.mycontacts.bottomSheet.AddBottomSheetFragment
-import com.example.authactivity.ui.mycontacts.bottomSheet.AddBottomSheetFragment.Companion.ITEM_KEY
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.activity_contacts.*
 import kotlinx.android.synthetic.main.activity_contacts.view.*
@@ -28,11 +26,8 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
 
     override fun getViewBinding() = ActivityContactsBinding.inflate(layoutInflater)
 
+    private lateinit var contactViewModel: ContactViewModel
     private lateinit var contact: ContactData
-
-    lateinit var textView: TextView
-    lateinit var button: Button
-
 
     override fun setupViews() {
         viewModel = getViewModel(clazz = ContactViewModel::class)
@@ -41,7 +36,6 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
         setupListeners()
         showEditTextDialogTwo()
         setupButton()
-        //initViews()
         binding.txtAmount.text = PrefsHelper.instance.getAmount().toString()
     }
 
@@ -60,47 +54,41 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             val name = binding.txtName.text.toString().trim()
+            val category = binding.txtCategory.text.toString().trim()
             val amount = binding.txtAmount.text.toString().trim()
-            binding.saveBtn.isEnabled = name.isNotEmpty() && amount.isNotEmpty()
+            binding.nextBtn.isEnabled = name.isNotEmpty() && category.isNotEmpty() && amount.isNotEmpty()
         }
 
-        override fun afterTextChanged(s: Editable?) {
-        }
+        override fun afterTextChanged(s: Editable?) {}
     }
 
     private fun setupButton() {
         binding.txtName.addTextChangedListener(loginTextWatcher)
+        binding.txtCategory.addTextChangedListener(loginTextWatcher)
         binding.txtAmount.addTextChangedListener(loginTextWatcher)
-        binding.saveBtn.setOnClickListener {
-            startActivity(Intent(this@ContactActivity, MainActivity::class.java))
-            saveContacts()
+        binding.nextBtn.setOnClickListener {
+            if (contact.amount !!>= binding.txtAmount.text.toString().toInt()) {
+                saveEdits()
+            }
         }
     }
 
-    private fun saveContacts() {
-        val id = PrefsHelper.instance.getNameId()
-        val name = PrefsHelper.instance.getName()
-        val category = PrefsHelper.instance.getCategory()
-        val amount = binding.txtAmount.text.toString().toInt()
-
-        val contact = ContactData(id!!, name, category, amount)
-
-        viewModel.updateContact(contact)
-
-        PrefsHelper.instance.saveCategory("")
-        PrefsHelper.instance.saveName("")
-        PrefsHelper.instance.saveNameId(0)
+    private fun saveEdits() {
+        val amount = txt_amount.text.toString().toInt()
+        val name = txt_name.text.toString()
+        val category = txt_category.text.toString()
+        insertSoldProduct(amount, name, category)
     }
 
-
-
-//    private fun initViews() {
-//        contact = intent.getSerializableExtra(ContactsFragment.ITEM_KEY) as ContactData
-//        binding.txtName.setText(contact.name)
-//        //binding.txtCategory.setText(contact.category)
-//        binding.txtAmount.setText(contact.amount.toString())
-//    }
-
+    private fun insertSoldProduct(amount: Int, name: String, category: String) {
+        contact = ContactData(
+            0,
+            contact.name,
+            contact.category,
+            contact.amount
+        )
+        contactViewModel.insertContact(contact)
+    }
 
     private fun setupListeners() {
         binding.txtCategory.setOnClickListener {

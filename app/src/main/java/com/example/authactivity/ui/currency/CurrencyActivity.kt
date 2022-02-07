@@ -39,10 +39,7 @@ class CurrencyActivity : BaseActivity<LangViewModel, ActivityCurrencyBinding>(La
         binding.radio.setOnCheckedChangeListener { group, checkedId ->
             var rb = findViewById<RadioButton>(checkedId)
             PrefsHelper.instance.saveCurrency(getCurrencyFromRadioButton(rb.id.toString()))
-            Toast.makeText(
-                    applicationContext, "You have chosen a currency : ${PrefsHelper.instance.getCurrency()}",
-                    Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(applicationContext, "You have chosen a currency : ${PrefsHelper.instance.getCurrency()}", Toast.LENGTH_SHORT).show()
         }
         fun radio_button_click(view: View) {
             val radio: RadioButton = findViewById(radio.checkedRadioButtonId)

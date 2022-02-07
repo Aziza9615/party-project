@@ -6,6 +6,7 @@ import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemBottomSheetBinding
 import com.example.authactivity.model.CategoryData
+import com.example.authactivity.model.ContactData
 import kotlinx.android.synthetic.main.item_bottom_sheet.view.*
 
 class AdapterCategory(private val listener: CategoryClickListener) : BaseAdapter() {

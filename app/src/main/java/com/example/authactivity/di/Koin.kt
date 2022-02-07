@@ -5,11 +5,11 @@ import com.example.authactivity.database.AppDatabase
 import com.example.authactivity.database.DATABASE_NAME
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.repository.*
-import com.example.authactivity.ui.mycontacts.category.CategoryViewModel
 import com.example.authactivity.ui.lang.LangViewModel
 import com.example.authactivity.ui.mycontacts.ContactViewModel
 import com.example.authactivity.ui.mycontacts.ContactsFragment
-import com.example.authactivity.ui.mycontacts.ListViewModel
+import com.example.authactivity.ui.mycontacts.bottomSheet.ListViewModel
+import com.example.authactivity.ui.mycontacts.category.CategoryViewModel
 import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import com.example.authactivity.ui.setting.LangSettingsFragment
 import com.example.authactivity.ui.setting.SettingsFragment

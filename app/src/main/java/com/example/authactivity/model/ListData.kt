@@ -6,7 +6,7 @@ import java.io.Serializable
 
 @Entity(tableName = "list")
 data class ListData(
-        @PrimaryKey(autoGenerate = true)
-        var id: Int,
-        var name: String
+    @PrimaryKey(autoGenerate = true)
+    var id: Int,
+    var name: String?
 ) : Serializable

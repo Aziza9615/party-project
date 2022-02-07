@@ -15,7 +15,6 @@ import com.example.authactivity.databinding.LayoutAddBottomSheetBinding
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.local.isEmptyInputData
 import com.example.authactivity.local.showAlertDone1
-import com.example.authactivity.model.ContactData
 import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -23,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
  class AddBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBottomSheetFragment(), ClickListenerBottom {
 
      lateinit var binding: LayoutAddBottomSheetBinding
-     private lateinit var viewModel: ContactViewModel
+     private lateinit var viewModel: ListViewModel
      private lateinit var adapter: AdapterBottomSheet
 
      override fun onCreateView(
@@ -38,7 +37,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
      }
 
      override fun setupViews() {
-         viewModel = getViewModel(clazz = ContactViewModel::class)
+         viewModel = getViewModel(clazz = ListViewModel::class)
          PrefsHelper.instance = PrefsHelper(requireContext())
          setupListener()
          setupSearchView()
@@ -57,7 +56,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
          viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer { adapter.addItems(it) })
          viewModel.subscribeToData()
          viewModel.subscribeToMessage()
-         viewModel.getContact()
+         viewModel.getList()
      }
 
      private fun showAlertEdit() {
@@ -91,10 +90,10 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
      }
 
      fun addItem(nameEditText: EditText, dialog: AlertDialog) {
-         val contact = ContactData(id = 0, name = nameEditText.text.toString())
+         val list = ListData(id = 0, name = nameEditText.text.toString())
          dialog.dismiss()
-         adapter.addItem(contact)
-         viewModel.insertContact(contact)
+         adapter.addItem(list)
+         viewModel.insertList(list)
      }
 
      private fun setupSearchView() {
@@ -104,11 +103,11 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
              }
 
              override fun onQueryTextChange(newText: String): Boolean {
-                 if (newText == "") adapter.addItems(viewModel.filteredContact)
+                 if (newText == "") adapter.addItems(viewModel.filteredList)
                  else {
                      val searchText = newText.toLowerCase()
-                     val filtered = mutableListOf<ContactData>()
-                     viewModel.filteredContact.forEach {
+                     val filtered = mutableListOf<ListData>()
+                     viewModel.filteredList.forEach {
                          if (it.name?.toLowerCase()!!.contains(searchText)) filtered.add(it)
                      }
                      adapter.addItems(filtered)
@@ -130,15 +129,16 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
          return R.style.RoundedCornerBottomSheetDialog
      }
 
-     override fun onItemClickBottom(item: ContactData) {
+     override fun onItemClickBottom(item: ListData) {
          val intent = android.content.Intent(requireContext(), ContactActivity::class.java)
          PrefsHelper.instance.saveName(item.name!!)
          PrefsHelper.instance.saveNameId(item.id)
          startActivity(intent)
      }
 
-     override fun onLongItemClickBottom(item: ContactData) {}
+     override fun onLongItemClickBottom(item: ListData) {}
  }
+
 
 
 
