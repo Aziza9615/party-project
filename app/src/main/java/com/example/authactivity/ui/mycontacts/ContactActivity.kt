@@ -1,26 +1,29 @@
 package com.example.authactivity.ui.mycontacts
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityContactsBinding
 import com.example.authactivity.local.PrefsHelper
+import com.example.authactivity.local.showToast
 import com.example.authactivity.model.ContactData
 import com.example.authactivity.ui.mycontacts.category.CategoryBottomSheetFragment
-import com.example.authactivity.ui.main.MainActivity
-import com.example.authactivity.ui.mycontacts.ContactsFragment.Companion.PRESENT_KEY
 import com.example.authactivity.ui.mycontacts.bottomSheet.AddBottomSheetFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.activity_contacts.*
-import kotlinx.android.synthetic.main.activity_contacts.view.*
-import kotlinx.android.synthetic.main.item_bottom_sheet.*
-import kotlinx.android.synthetic.main.item_fragment_contacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+
+interface KowumchaTextWatcher : TextWatcher { //TODO Смотрите создал отдельный интерфейс и унаследовал от TextWatch, теперь в `val fieldsTextWatcher` не обязательно реализовать все методы
+    override fun afterTextChanged(s: Editable?) {}
+    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+}
 
 class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(ContactViewModel::class), ClickListener {
 
@@ -35,72 +38,60 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
         getIntentData()
         setupListeners()
         showEditTextDialogTwo()
-        setupButton()
-        binding.txtAmount.text = PrefsHelper.instance.getAmount().toString()
+//        binding.txtAmount.text = PrefsHelper.instance.getAmount().toString()//TODO удалил символ доллара он лишний, в разных валютах нужно проставлять нужный символ, если раскомментировать то код будет ломаться, если что править в строке 68
     }
 
     private fun getIntentData() {
-        val present = intent.getSerializableExtra(ContactsFragment.PRESENT_ITEM)
+//        val present = intent.getSerializableExtra(ContactsFragment.PRESENT_ITEM)
         binding.txtCategory.text = PrefsHelper.instance.getCategory()
         binding.txtName.text = PrefsHelper.instance.getName()
         binding.arrowBtn.setOnClickListener {
-            PrefsHelper.instance.saveCategory("")
-            PrefsHelper.instance.saveName("")
-            startActivity(Intent(this@ContactActivity, MainActivity::class.java))
+            PrefsHelper.instance.saveCategory("") //TODO зачем эта строка?
+            PrefsHelper.instance.saveName("")//TODO зачем эта строка?
+            finish()
         }
     }
 
-    private val loginTextWatcher = object : TextWatcher {
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+    private val fieldsTextWatcher = object : KowumchaTextWatcher {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             val name = binding.txtName.text.toString().trim()
             val category = binding.txtCategory.text.toString().trim()
             val amount = binding.txtAmount.text.toString().trim()
-            binding.nextBtn.isEnabled = name.isNotEmpty() && category.isNotEmpty() && amount.isNotEmpty()
-        }
-
-        override fun afterTextChanged(s: Editable?) {}
-    }
-
-    private fun setupButton() {
-        binding.txtName.addTextChangedListener(loginTextWatcher)
-        binding.txtCategory.addTextChangedListener(loginTextWatcher)
-        binding.txtAmount.addTextChangedListener(loginTextWatcher)
-        binding.nextBtn.setOnClickListener {
-            if (contact.amount !!>= binding.txtAmount.text.toString().toInt()) {
-                saveEdits()
+            val isConfirmToContinue = name.isNotEmpty() && category.isNotEmpty() && amount.isNotEmpty()
+            binding.nextBtn.isEnabled = isConfirmToContinue
+            if (!isConfirmToContinue) {
+                showToast(applicationContext, "Заполните все поля!")
+                insertSoldProduct(amount.toInt(), name, category)
             }
         }
-    }
-
-    private fun saveEdits() {
-        val amount = txt_amount.text.toString().toInt()
-        val name = txt_name.text.toString()
-        val category = txt_category.text.toString()
-        insertSoldProduct(amount, name, category)
     }
 
     private fun insertSoldProduct(amount: Int, name: String, category: String) {
         contact = ContactData(
             0,
-            contact.name,
-            contact.category,
-            contact.amount
+            name,
+            category,
+            amount
         )
-        contactViewModel.insertContact(contact)
     }
 
-    private fun setupListeners() {
+    private fun setupListeners() { //TODO здесь у нас все листнеры так что объединил
         binding.txtCategory.setOnClickListener {
-            val bottomSheetDialogFragment: BottomSheetDialogFragment = CategoryBottomSheetFragment(
-                this)
+            val bottomSheetDialogFragment: BottomSheetDialogFragment = CategoryBottomSheetFragment() //TODO эту переменную лучше объявить внутри класса
             bottomSheetDialogFragment.isCancelable = true
             bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
         }
         binding.txtName.setOnClickListener {
-            val bottomSheetDialogFragment: BottomSheetDialogFragment = AddBottomSheetFragment(this)
+            val bottomSheetDialogFragment: BottomSheetDialogFragment = AddBottomSheetFragment(this) //TODO эту переменную лучше объявить внутри класса
             bottomSheetDialogFragment.isCancelable = true
             bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
+        }
+
+        binding.txtName.addTextChangedListener(fieldsTextWatcher)
+        binding.txtCategory.addTextChangedListener(fieldsTextWatcher)
+        binding.txtAmount.addTextChangedListener(fieldsTextWatcher)
+        binding.nextBtn.setOnClickListener {
+            //contactViewModel.insertContact(contact)//TODO из-за этого КРЕШИТ!!! ответ в ContactRepositoryImpl
         }
     }
 
@@ -111,7 +102,7 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
             val dialogLayout = inflater.inflate(R.layout.item_currency, null)
             val editText = dialogLayout.findViewById<EditText>(R.id.dialog_text)
             with(builder) {
-                setTitle("Введите сумму (${PrefsHelper.instance.getAmount()})")
+                setTitle("Введите сумму (${PrefsHelper.instance.getAmount()})") //TODO все строки нужно добавлять в ресурсы
                 setPositiveButton("Сохранить") { dialog, which ->
                     PrefsHelper.run { instance.saveAmount(editText.text.toString().toInt()) }
                     binding.txtAmount.text = editText.text.toString()

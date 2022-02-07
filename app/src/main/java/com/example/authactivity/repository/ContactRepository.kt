@@ -12,7 +12,7 @@ interface ContactRepository{
     fun deleteContact(contact: MutableList<ContactData>?)
 }
 
-class ContactRepositoryImpl(private val database: ListDao): ContactRepository {
+class ContactRepositoryImpl(private val database: ListDao): ContactRepository {//TODO КРЕШИТ ИЗ-ЗА ТОГО ЧТО НЕ ДОБАВИЛИ ListDao в DI!!!! МЫ ЭТО ПРОХОДИЛИ!!!
 
     val data: MutableLiveData<MutableList<ContactData>> = MutableLiveData()
     val message: MutableLiveData<String> = MutableLiveData()

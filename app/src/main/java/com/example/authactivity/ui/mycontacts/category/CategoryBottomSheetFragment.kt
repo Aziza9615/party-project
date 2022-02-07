@@ -22,7 +22,7 @@ import com.example.authactivity.ui.mycontacts.ContactActivity
 import com.example.authactivity.ui.mycontacts.ContactViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class CategoryBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBottomSheetFragment(), AdapterCategory.CategoryClickListener {
+class CategoryBottomSheetFragment : BaseAddBottomSheetFragment(), AdapterCategory.CategoryClickListener {
 
     lateinit var binding: LayoutAddBottomBinding
     private lateinit var adapterCategory: AdapterCategory

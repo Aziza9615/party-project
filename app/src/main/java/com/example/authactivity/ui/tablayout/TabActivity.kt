@@ -29,8 +29,8 @@ class TabActivity : BaseActivity<OnBoardViewModel, ActivityTabBinding>(OnBoardVi
     }
 
     private fun getIntentTab() {
-        val item = intent.getSerializableExtra(ContactsFragment.KEY_ITEM)
-        finish()
+//        val item = intent.getSerializableExtra(ContactsFragment.KEY_ITEM)//TODO что здесь происходит?
+        //finish()//TODO зачем финиш?
     }
 
     private fun setupViewPager() {
