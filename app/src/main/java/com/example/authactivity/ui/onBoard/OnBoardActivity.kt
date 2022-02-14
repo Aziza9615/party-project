@@ -54,9 +54,6 @@ class OnBoardActivity : AppCompatActivity() {
     }
 
     private fun setupListener() {
-//        skip = findViewById(R.id.Skip)
-//        startActivity(Intent(this@OnBoardActivity, CurrencyActivity::class.java))
-//        finish()
         arrow_btn.setOnClickListener{
             val intent = Intent(this, LangActivity::class.java)
             startActivity(intent)

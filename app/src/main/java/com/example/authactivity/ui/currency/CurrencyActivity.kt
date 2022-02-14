@@ -13,19 +13,18 @@ import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.base.CurrencyEvent
 import com.example.authactivity.databinding.ActivityCurrencyBinding
 import com.example.authactivity.local.PrefsHelper
-import com.example.authactivity.ui.lang.LangViewModel
 import com.example.authactivity.ui.main.MainActivity
 import com.example.authactivity.ui.onBoard.OnBoardActivity
 import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import kotlinx.android.synthetic.main.activity_currency.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class CurrencyActivity : BaseActivity<LangViewModel, ActivityCurrencyBinding>(LangViewModel::class) {
+class CurrencyActivity : BaseActivity<OnBoardViewModel, ActivityCurrencyBinding>(OnBoardViewModel::class) {
 
     override fun getViewBinding() = ActivityCurrencyBinding.inflate(layoutInflater)
 
     override fun setupViews() {
-        viewModel = getViewModel(clazz = LangViewModel::class)
+        viewModel = getViewModel(clazz = OnBoardViewModel::class)
         PrefsHelper.instance = PrefsHelper(this)
         setupRadio()
         onClick()

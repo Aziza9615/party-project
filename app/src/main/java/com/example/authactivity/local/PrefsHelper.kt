@@ -2,7 +2,6 @@ package com.example.authactivity.local
 
 import android.content.Context
 import android.content.SharedPreferences
-import javax.xml.namespace.NamespaceContext
 
 class PrefsHelper(private val context: Context) {
 
@@ -87,7 +86,7 @@ class PrefsHelper(private val context: Context) {
     }
 
     fun getAmount(): String? {
-        return prefs.getString(AMOUNT, "$")
+        return prefs.getString(AMOUNT, "")
     }
 
     fun saveAmount(amount: Int) {

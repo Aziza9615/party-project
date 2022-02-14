@@ -15,11 +15,11 @@ import com.example.authactivity.databinding.ActivityLangBinding
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.ui.main.MainActivity
 import com.example.authactivity.ui.onBoard.OnBoardActivity
+import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
 
-class LangViewModel : BaseViewModel<BaseEvent>()
-class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewModel::class) {
+class LangActivity : BaseActivity<OnBoardViewModel, ActivityLangBinding>(OnBoardViewModel::class) {
 
     lateinit var russian: Button
     lateinit var kyrgyz: Button
@@ -27,14 +27,13 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
 
     override fun getViewBinding() = ActivityLangBinding.inflate(layoutInflater)
 
-    @SuppressLint("RestrictedApi")
+   // @SuppressLint("RestrictedApi")
     override fun setupViews() {
-        viewModel = getViewModel(clazz = LangViewModel::class)
+        viewModel = getViewModel(clazz = OnBoardViewModel::class)
         PrefsHelper.instance = PrefsHelper(this)
         if (PrefsHelper.instance.getGuest() == true) {
-            PreferenceManager(this).updateLanguage(PrefsHelper.instance.getLang()!!)
+            //PreferenceManager(this).updateLanguage(PrefsHelper.instance.getLang()!!)
             startActivity(Intent(this@LangActivity, MainActivity::class.java))
-            finish()
         } else {
             setupListener()
         }
@@ -52,6 +51,7 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
             startActivity(Intent(this@LangActivity, OnBoardActivity::class.java))
             finish()
         }
+
         kyrgyz.setOnClickListener {
             PreferenceManager(this).updateLanguage("ky")
             PrefsHelper.instance.saveGuest(true)
@@ -68,25 +68,24 @@ class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewMo
         }
     }
 
-    fun PreferenceManager.updateLanguage(s: String) {
-        val locale = Locale(s)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        config.locale = locale
-        baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-        title = resources.getString(R.string.app_name)
-        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
-        editor.putString("My_Lang", s)
-        editor.apply()
-    }
+    private fun PreferenceManager.updateLanguage(s: String) {
+            val locale = Locale(s)
+            Locale.setDefault(locale)
+            val config = Configuration()
+            config.locale = locale
+            baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
+            title = resources.getString(R.string.app_name)
+            val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
+            editor.putString("My_Lang", s)
+            editor.apply()
+        }
 
-    override fun subscribeToLiveData() {
-    }
+        override fun subscribeToLiveData() {}
 
-    companion object {
-        fun start(activity: Activity) {
-            val intent = Intent(activity, LangActivity::class.java)
-            activity.startActivity(intent)
+        companion object {
+            fun start(activity: Activity) {
+                val intent = Intent(activity, LangActivity::class.java)
+                activity.startActivity(intent)
+            }
         }
     }
-}

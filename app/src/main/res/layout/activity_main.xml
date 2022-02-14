@@ -23,8 +23,8 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        app:itemIconTint="@color/Subhead"
-        android:background="@color/white"
+        app:itemIconTint="@color/brand"
+        android:background="@color/alert"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav"/>

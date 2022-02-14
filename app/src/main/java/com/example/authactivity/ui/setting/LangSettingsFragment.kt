@@ -10,15 +10,16 @@ import android.widget.Button
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseFragment
+import com.example.authactivity.databinding.FragmentLangBinding
 import com.example.authactivity.databinding.FragmentLangSettingsBinding
-import com.example.authactivity.ui.lang.LangViewModel
+import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
 
-class LangSettingsFragment : BaseFragment<LangViewModel, FragmentLangSettingsBinding>(LangViewModel::class) {
+class LangSettingsFragment : BaseFragment<OnBoardViewModel, FragmentLangBinding>(OnBoardViewModel::class) {
 
     override fun setupViews() {
-        viewModel = getViewModel(clazz = LangViewModel::class)
+        viewModel = getViewModel(clazz = OnBoardViewModel::class)
         setupListener()
         loadLocate()
     }
@@ -79,11 +80,11 @@ class LangSettingsFragment : BaseFragment<LangViewModel, FragmentLangSettingsBin
     }
 
     override fun attachBinding(
-        list: MutableList<FragmentLangSettingsBinding>,
+        list: MutableList<FragmentLangBinding>,
         layoutInflater: LayoutInflater,
         container: ViewGroup?,
         attachToRoot: Boolean
     ) {
-        list.add(FragmentLangSettingsBinding.inflate(layoutInflater, container, attachToRoot))
+        list.add(FragmentLangBinding.inflate(layoutInflater, container, attachToRoot))
     }
 }

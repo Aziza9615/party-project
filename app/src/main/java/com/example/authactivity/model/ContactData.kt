@@ -10,5 +10,5 @@ data class ContactData(
     var id: Int,
     var name: String?,
     var category: String? = null,
-    var amount: Int = 0
+    var amount: Int? = null
 ) : Serializable

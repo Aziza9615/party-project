@@ -3,16 +3,16 @@ package com.example.authactivity.ui.mycontacts
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentContactsBinding
 import com.example.authactivity.model.ContactData
+import com.example.authactivity.model.ListData
+import com.example.authactivity.ui.tablayout.TabActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-
-class ContactsFragment :
-    BaseFragment<ContactViewModel, FragmentContactsBinding>(ContactViewModel::class),
-    ClickListener {
+class ContactsFragment : BaseFragment<ContactViewModel, FragmentContactsBinding>(ContactViewModel::class), ClickListener {
 
     private lateinit var adapter: ContactAdapter
 
@@ -47,14 +47,12 @@ class ContactsFragment :
     private fun setupListeners() {
         binding.btnAdd.setOnClickListener {
             val intent = Intent(requireContext(), ContactActivity::class.java)
-            //intent.putExtra(PRESENT_ITEM)//TODO что это и зачем?
             startActivity(intent)
         }
     }
 
     private fun setupSearchView() {
-        binding.searchView.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
@@ -73,24 +71,31 @@ class ContactsFragment :
             }
         })
     }
+
     override fun subscribeToLiveData() {
         viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             adapter.addItems(it)
         })
     }
 
-    override fun onItemClick(item: ContactData) {}
+    override fun onItemClick(item: ContactData) {
+        val intent = Intent(requireContext(), TabActivity::class.java)
+        intent.putExtra(name_detail, item)
+        startActivity(intent)
+    }
 
     private fun subscribe() {
-        viewModel.data.observe(viewLifecycleOwner,
-            androidx.lifecycle.Observer { adapter.addItems(it) })
+        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer { adapter.addItems(it) })
         viewModel.subscribeToData()
         viewModel.subscribeToMessage()
         viewModel.getContact()
     }
 
-    override fun onLongItemClick(item: ContactData) {
+    companion object {
+        val name_detail = "NAME_DETAIL"
     }
+
+    override fun onLongItemClick(item: ContactData) {}
 }
 
 

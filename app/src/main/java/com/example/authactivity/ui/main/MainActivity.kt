@@ -3,11 +3,9 @@ package com.example.authactivity.ui.main
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityMainBinding
-import com.example.authactivity.ui.mycontacts.ContactAdapter
 import com.example.authactivity.ui.mycontacts.ContactsFragment
 import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import com.example.authactivity.ui.setting.SettingsFragment
-import com.example.authactivity.ui.statistics.StatisticsFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -26,10 +24,9 @@ class MainActivity : BaseActivity<OnBoardViewModel, ActivityMainBinding>(OnBoard
     private fun setupViewPager() {
         adapter = MainViewPagerAdapter(this)
         adapter.addFragments(ContactsFragment())
-        adapter.addFragments(StatisticsFragment())
         adapter.addFragments(SettingsFragment())
         view_pager.adapter = adapter
-        view_pager.offscreenPageLimit = 3
+        view_pager.offscreenPageLimit = 2
         view_pager.isEnabled = false
         view_pager.isUserInputEnabled = false
     }
@@ -38,8 +35,7 @@ class MainActivity : BaseActivity<OnBoardViewModel, ActivityMainBinding>(OnBoard
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.ContactsFragment -> changeCurrentFragment(0)
-                R.id.StatisticFragment -> changeCurrentFragment(1)
-                R.id.SettingsFragment -> changeCurrentFragment(2)
+                R.id.SettingsFragment -> changeCurrentFragment(1)
             }
             true
         }
