@@ -1,6 +1,5 @@
 package com.example.authactivity.ui.setting
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.util.Log
@@ -8,16 +7,11 @@ import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityCurrencyBinding
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.ui.main.MainActivity
-import com.example.authactivity.ui.onBoard.OnBoardActivity
 import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import kotlinx.android.synthetic.main.activity_currency.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel

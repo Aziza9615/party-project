@@ -55,8 +55,7 @@ class OnBoardActivity : AppCompatActivity() {
 
     private fun setupListener() {
         arrow_btn.setOnClickListener{
-            val intent = Intent(this, LangActivity::class.java)
-            startActivity(intent)
+           onBackPressed()
     }
 }
 

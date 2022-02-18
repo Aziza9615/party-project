@@ -1,11 +1,14 @@
 package com.example.authactivity.ui.mycontacts
 
+import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.authactivity.base.BaseEvent
 import com.example.authactivity.base.BaseViewModel
 import com.example.authactivity.model.ContactData
+import com.example.authactivity.model.ListData
 import com.example.authactivity.repository.ContactRepositoryImpl
+import com.example.authactivity.repository.ListRepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -30,21 +33,17 @@ class ContactViewModel(private val repository: ContactRepositoryImpl) : BaseView
         }
     }
 
-    fun deleteContact() {
-        repository.deleteContact(contact)
-    }
-
-    fun restoreProduct(data: ContactData?) {
+    fun deleteContact(data: ContactData?) {
         if (data != null) {
-            repository.restoreContact(data)
+            repository.deleteContact(data)
         }
     }
 
     fun subscribeToData() {
         repository.data.observeForever {
-            it?.let { result -> data.value = result}
-            data.value?.let { data -> contact = data }
             data.value = it
+            contact = data.value
+            filteredContact = it
         }
     }
 
@@ -52,5 +51,9 @@ class ContactViewModel(private val repository: ContactRepositoryImpl) : BaseView
         repository.message?.observeForever {
             message.value = it
         }
+    }
+
+    fun deleteContact() {
+
     }
 }

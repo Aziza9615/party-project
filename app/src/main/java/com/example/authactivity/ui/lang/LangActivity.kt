@@ -19,7 +19,8 @@ import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import java.util.*
 
-class LangActivity : BaseActivity<OnBoardViewModel, ActivityLangBinding>(OnBoardViewModel::class) {
+class LangViewModel : BaseViewModel<BaseEvent>()
+class LangActivity : BaseActivity<LangViewModel, ActivityLangBinding>(LangViewModel::class) {
 
     lateinit var russian: Button
     lateinit var kyrgyz: Button
@@ -27,12 +28,12 @@ class LangActivity : BaseActivity<OnBoardViewModel, ActivityLangBinding>(OnBoard
 
     override fun getViewBinding() = ActivityLangBinding.inflate(layoutInflater)
 
-   // @SuppressLint("RestrictedApi")
+    @SuppressLint("RestrictedApi")
     override fun setupViews() {
-        viewModel = getViewModel(clazz = OnBoardViewModel::class)
+        viewModel = getViewModel(clazz = LangViewModel::class)
         PrefsHelper.instance = PrefsHelper(this)
         if (PrefsHelper.instance.getGuest() == true) {
-            //PreferenceManager(this).updateLanguage(PrefsHelper.instance.getLang()!!)
+            PreferenceManager(this).updateLanguage(PrefsHelper.instance.getLang()!!)
             startActivity(Intent(this@LangActivity, MainActivity::class.java))
         } else {
             setupListener()
@@ -81,11 +82,4 @@ class LangActivity : BaseActivity<OnBoardViewModel, ActivityLangBinding>(OnBoard
         }
 
         override fun subscribeToLiveData() {}
-
-        companion object {
-            fun start(activity: Activity) {
-                val intent = Intent(activity, LangActivity::class.java)
-                activity.startActivity(intent)
-            }
-        }
     }

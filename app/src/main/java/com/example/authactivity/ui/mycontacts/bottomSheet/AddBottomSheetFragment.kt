@@ -121,10 +121,6 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
          binding.back.setOnClickListener { this.onDestroyView() }
      }
 
-     companion object {
-         const val ITEM_KEY = "ITEM_KEY"
-     }
-
      override fun getTheme(): Int {
          return R.style.RoundedCornerBottomSheetDialog
      }

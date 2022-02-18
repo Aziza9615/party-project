@@ -14,7 +14,6 @@ import com.example.authactivity.model.ContactData
 import com.example.authactivity.ui.main.MainActivity
 import com.example.authactivity.ui.mycontacts.category.CategoryBottomSheetFragment
 import com.example.authactivity.ui.mycontacts.bottomSheet.AddBottomSheetFragment
-import com.example.authactivity.ui.onBoard.OnBoardActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -25,7 +24,6 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
     private lateinit var contactViewModel: ContactViewModel
     private lateinit var contact: ContactData
 
-    //tuleubekov
     override fun setupViews() {
         viewModel = getViewModel(clazz = ContactViewModel::class)
         PrefsHelper.instance = PrefsHelper(this)
@@ -41,7 +39,7 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
         binding.arrowBtn.setOnClickListener {
             PrefsHelper.instance.saveCategory("")
             PrefsHelper.instance.saveName("")
-            startActivity(Intent(this@ContactActivity, MainActivity::class.java))
+            onBackPressed()
         }
     }
 
@@ -127,5 +125,6 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
     override fun subscribeToLiveData() {}
     override fun onItemClick(item: ContactData) {}
     override fun onLongItemClick(item: ContactData) {}
+    override fun onButtonClick(item: ContactData) {}
 }
 

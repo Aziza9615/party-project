@@ -1,14 +1,25 @@
 package com.example.authactivity.ui.mycontacts
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.core.content.ContextCompat.startActivity
+import com.example.authactivity.R
 import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemContactsBinding
 import com.example.authactivity.databinding.ItemFragmentContactsBinding
 import com.example.authactivity.model.ContactData
+import com.example.authactivity.model.ListData
+import com.example.authactivity.ui.main.MainActivity
 import com.example.authactivity.ui.mycontacts.bottomSheet.AdapterBottomSheet
+import com.example.authactivity.ui.mycontacts.bottomSheet.AdapterBottomSheet.Companion.VIEW_TYPE_DATA
 import kotlinx.android.synthetic.main.item_fragment_contacts.view.*
+import java.util.*
+import kotlin.coroutines.coroutineContext
+import android.content.Intent as Intent1
 
 class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
 
@@ -39,6 +50,7 @@ class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val type = getItemViewType(position)
         if (type == VIEW_TYPE_DATA) setupItemListViewHolder(holder as ListViewHolder, position)
+        //if (type == VIEW_TYPE_EMPTY)setupItemButtonViewHolder(holder as EmptyListViewHolder, position)
     }
 
     private fun setupItemListViewHolder(holder: ListViewHolder, position: Int) {
@@ -50,6 +62,14 @@ class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
         holder.itemView.setOnLongClickListener {
             listener.onLongItemClick(item)
             true
+        }
+    }
+
+    private fun setupItemButtonViewHolder(holder: EmptyListViewHolder, position: Int) {
+        val item = items[position]
+        holder.bind(item)
+        holder.binding.newPresent.setOnClickListener {
+            listener.onButtonClick(item)
         }
     }
 
@@ -73,7 +93,7 @@ class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
         if (item != null) {
             items.add(position, item)
             notifyItemRangeChanged(position, itemCount)
-        }
+          }
     }
 
     companion object {
@@ -88,9 +108,20 @@ class ListViewHolder(var binding: ItemFragmentContactsBinding): BaseViewHolder(b
     }
 }
 
-class EmptyListViewHolder(var binding: ItemContactsBinding): BaseViewHolder(binding.root)
+class EmptyListViewHolder(var binding: ItemContactsBinding): BaseViewHolder(binding.root) {
+    val Button = itemView.findViewById(R.id.newPresent) as Button
+    fun bind(item: ContactData) {
+        binding.newPresent.setOnClickListener (object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val intent = Intent1(v?.context, ContactActivity::class.java)
+                v?.context?.startActivity(intent)
+            }
+        })
+    }
+}
 
 interface ClickListener {
     fun onItemClick(item: ContactData)
     fun onLongItemClick(item: ContactData)
+    fun onButtonClick(item: ContactData)
 }

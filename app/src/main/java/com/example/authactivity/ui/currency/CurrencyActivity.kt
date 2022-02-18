@@ -88,10 +88,47 @@ class CurrencyActivity : BaseActivity<OnBoardViewModel, ActivityCurrencyBinding>
                 show()
             }
         }
+        binding.amountTv.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val inflater = layoutInflater
+            val dialogLayout = inflater.inflate(R.layout.item_currency, null)
+            val editText = dialogLayout.findViewById<EditText>(R.id.dialog_text)
+
+            with(builder) {
+                setTitle("Введите вашу заплату(${PrefsHelper.instance.getCurrency()})")
+                setPositiveButton("Сохранить") { dialog, which ->
+                    PrefsHelper.instance.saveSalary(editText.text.toString().toInt())
+                    binding.amountTextView.text = PrefsHelper.instance.getSalary().toString()
+                }
+                setNegativeButton("Отмена") { dialog, which ->
+                    Log.d("Main", "Negative Button Click")
+                }
+                setView(dialogLayout)
+                show()
+            }
+        }
     }
 
     private fun showEditTextDialogTwo() {
         binding.incomeTextView.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val inflater = layoutInflater
+            val dialogLayout = inflater.inflate(R.layout.item_currency, null)
+            val editText = dialogLayout.findViewById<EditText>(R.id.dialog_text)
+            with(builder) {
+                setTitle("Другие источники дохода (${PrefsHelper.instance.getCurrency()})")
+                setPositiveButton("Сохранить") { dialog, which ->
+                    PrefsHelper.instance.saveIncome(editText.text.toString().toInt())
+                    binding.incomeTextView.text = editText.text.toString()
+                }
+                setNegativeButton("Отмена") { dialog, which ->
+                    Log.d("Main", "Negative Button Click")
+                }
+                setView(dialogLayout)
+                show()
+            }
+        }
+        binding.income.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val inflater = layoutInflater
             val dialogLayout = inflater.inflate(R.layout.item_currency, null)

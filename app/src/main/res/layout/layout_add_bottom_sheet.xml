@@ -6,7 +6,6 @@
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bottom_sheet"
-    android:id="@+id/container"
     app:behavior_hideable="false"
     app:behavior_peekHeight="40dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">

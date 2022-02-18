@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         app:itemIconTint="@color/brand"
-        android:background="@color/alert"
+        android:background="@color/white"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav"/>

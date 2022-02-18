@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    android:id="@+id/constraint">
+    android:background="@color/white">
 
  <androidx.constraintlayout.widget.ConstraintLayout
      android:layout_width="match_parent"

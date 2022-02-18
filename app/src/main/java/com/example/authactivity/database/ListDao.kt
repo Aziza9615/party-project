@@ -50,5 +50,5 @@ interface ListDao {
     fun getContact(): MutableList<ContactData>
 
     @Delete
-    fun deleteContact(contact: MutableList<ContactData>?)
+    fun deleteContact(data: ContactData)
 }

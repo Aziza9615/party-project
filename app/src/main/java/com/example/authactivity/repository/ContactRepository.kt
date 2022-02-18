@@ -3,13 +3,14 @@ package com.example.authactivity.repository
 import androidx.lifecycle.MutableLiveData
 import com.example.authactivity.database.ListDao
 import com.example.authactivity.model.ContactData
+import com.example.authactivity.model.ListData
 
 interface ContactRepository{
     fun getContact()
     fun insertContact(data: ContactData)
     fun updateContact(data: ContactData)
     fun restoreContact(data: ContactData)
-    fun deleteContact(contact: MutableList<ContactData>?)
+    fun deleteContact(data: ContactData)
 }
 
 class ContactRepositoryImpl(private val database: ListDao): ContactRepository {//TODO КРЕШИТ ИЗ-ЗА ТОГО ЧТО НЕ ДОБАВИЛИ ListDao в DI!!!! МЫ ЭТО ПРОХОДИЛИ!!!
@@ -33,7 +34,7 @@ class ContactRepositoryImpl(private val database: ListDao): ContactRepository {/
         database.restoreContact(data)
     }
 
-    override fun deleteContact(contact: MutableList<ContactData>?) {
-        database.deleteContact(contact)
+    override fun deleteContact(data: ContactData) {
+        database.deleteContact(data)
     }
 }

@@ -2,14 +2,19 @@ package com.example.authactivity.ui.mycontacts
 
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentContactsBinding
 import com.example.authactivity.model.ContactData
-import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.tablayout.TabActivity
+import kotlinx.android.synthetic.main.alert_edit.*
+import kotlinx.android.synthetic.main.item_adapter_bottom_sheet.*
+import kotlinx.android.synthetic.main.item_adapter_bottom_sheet.newBtn
+import kotlinx.android.synthetic.main.item_contacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class ContactsFragment : BaseFragment<ContactViewModel, FragmentContactsBinding>(ContactViewModel::class), ClickListener {
@@ -85,7 +90,8 @@ class ContactsFragment : BaseFragment<ContactViewModel, FragmentContactsBinding>
     }
 
     private fun subscribe() {
-        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer { adapter.addItems(it) })
+        viewModel.data.observe(viewLifecycleOwner,
+            androidx.lifecycle.Observer { adapter.addItems(it) })
         viewModel.subscribeToData()
         viewModel.subscribeToMessage()
         viewModel.getContact()
@@ -95,7 +101,16 @@ class ContactsFragment : BaseFragment<ContactViewModel, FragmentContactsBinding>
         val name_detail = "NAME_DETAIL"
     }
 
-    override fun onLongItemClick(item: ContactData) {}
+    override fun onLongItemClick(item: ContactData) {
+        newBtn.setOnClickListener {
+            val intent = Intent(requireContext(), ContactActivity::class.java)
+            intent.putExtra(name_detail, item)
+            startActivity(intent)
+        }
+    }
+
+    override fun onButtonClick(item: ContactData) {
+    }
 }
 
 
