@@ -23,7 +23,12 @@
         android:layout_height="28dp"
         app:layout_constraintBottom_toBottomOf="@id/arrow_btn"
         app:layout_constraintStart_toEndOf="@id/arrow_btn"
-        android:text="@string/new_present"
+        android:enabled="true"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:maxLength="20"
+        app:layout_goneMarginEnd="16dp"
+        tools:text="@string/new_present"
         android:textSize="22sp"
         android:fontFamily="@font/bold"
         android:textColor="@color/Label_Primary"
@@ -64,8 +69,6 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

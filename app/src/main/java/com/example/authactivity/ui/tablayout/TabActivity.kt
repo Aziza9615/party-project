@@ -3,11 +3,13 @@ package com.example.authactivity.ui.tablayout
 import android.app.AlertDialog
 import android.content.Intent
 import android.widget.Button
+import android.widget.EditText
 import androidx.viewpager2.widget.ViewPager2
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityTabBinding
 import com.example.authactivity.local.PrefsHelper
+import com.example.authactivity.model.ContactData
 import com.example.authactivity.ui.main.MainActivity
 import com.example.authactivity.ui.mycontacts.ContactActivity
 import com.example.authactivity.ui.mycontacts.ContactViewModel
@@ -27,13 +29,14 @@ class TabActivity : BaseActivity<ContactViewModel, ActivityTabBinding>(ContactVi
 
     override fun setupViews() {
         viewModel = getViewModel(clazz = ContactViewModel::class)
-        setupViewPager()
-        getIntentTab()
+        setupViewPager2()
         setupListener()
+        initViews()
     }
 
-    private fun getIntentTab() {
-        val product = intent.getSerializableExtra(name_detail)
+    private fun initViews() {
+        val contact = intent.getSerializableExtra(name_detail) as ContactData
+        binding.name.text = contact.name
     }
 
     private fun setupListener() {
@@ -41,8 +44,7 @@ class TabActivity : BaseActivity<ContactViewModel, ActivityTabBinding>(ContactVi
             startActivity(Intent(this@TabActivity, MainActivity::class.java))
         }
         binding.btnAdd.setOnClickListener {
-            PrefsHelper.instance.saveName("")
-            startActivity(Intent(this@TabActivity, ContactActivity::class.java))
+            startActivity(Intent(this@TabActivity, EditActivity::class.java))
         }
         binding.btnDelete.setOnClickListener {
             showDelete()
@@ -50,7 +52,7 @@ class TabActivity : BaseActivity<ContactViewModel, ActivityTabBinding>(ContactVi
     }
 
     private fun showDelete() {
-        val alert = AlertDialog.Builder(this, R.style.Theme_AppCompat_Dialog_Alert)
+        val alert = AlertDialog.Builder(this, R.style.AlertDialogStyle)
         val inflater = layoutInflater.inflate(R.layout.alert_delete, null)
         alert.setView(inflater)
         val negativeButton: Button = inflater.findViewById(R.id.btn_no)
@@ -64,19 +66,18 @@ class TabActivity : BaseActivity<ContactViewModel, ActivityTabBinding>(ContactVi
         positiveButton.setOnClickListener {
             viewModel.deleteContact()
             viewModel.getContact()
-            binding.name.text = toString()
             dialog.dismiss()
         }
         dialog.show()
     }
 
-    private fun setupViewPager() {
+    private fun setupViewPager2() {
         val tabLayout=findViewById<TabLayout>(R.id.tab_layout)
         val viewPager2=findViewById<ViewPager2>(R.id.view_pager)
 
         val adapter = TabViewPagerAdapter(supportFragmentManager,lifecycle)
 
-        viewPager2.adapter=adapter
+        viewPager2. adapter = adapter
 
         TabLayoutMediator(tabLayout,viewPager2){tab,position->
             when(position){
@@ -90,8 +91,8 @@ class TabActivity : BaseActivity<ContactViewModel, ActivityTabBinding>(ContactVi
         }.attach()
     }
 
-    private fun changeCurrentFragment(position: Int) {
-        view_pager.setCurrentItem(position, false)
+    companion object {
+        val edit_detail = "EDIT_DETAIL"
     }
 
     override fun subscribeToLiveData() {}

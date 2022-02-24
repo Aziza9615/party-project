@@ -15,13 +15,13 @@ import com.example.authactivity.ui.main.MainActivity
 import com.example.authactivity.ui.mycontacts.category.CategoryBottomSheetFragment
 import com.example.authactivity.ui.mycontacts.bottomSheet.AddBottomSheetFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.activity_contacts.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(ContactViewModel::class), ClickListener {
 
     override fun  getViewBinding() = ActivityContactsBinding.inflate(layoutInflater)
 
-    private lateinit var contactViewModel: ContactViewModel
     private lateinit var contact: ContactData
 
     override fun setupViews() {
@@ -51,7 +51,6 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
             val amount = binding.txtAmount.text.toString().trim()
             binding.nextBtn.isEnabled = name.isNotEmpty() && category.isNotEmpty() && amount.isNotEmpty()
         }
-
         override fun afterTextChanged(s: Editable?) {}
     }
 
@@ -80,21 +79,18 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
         binding.txtCategory.addTextChangedListener(loginTextWatcher)
         binding.txtAmount.addTextChangedListener(loginTextWatcher)
         binding.nextBtn.setOnClickListener {
-                saveContacts()
+            saveContacts()
             startActivity(Intent(this@ContactActivity, MainActivity::class.java))
-            }
         }
+    }
 
     private fun saveContacts() {
         val id = PrefsHelper.instance.getNameId()
         val name = PrefsHelper.instance.getName()
         val category = PrefsHelper.instance.getCategory()
         val amount = PrefsHelper.instance.getAmount().toString().toInt()
-
         val contact = ContactData(id!!, name, category, amount)
-
         insertSoldProduct(amount, name!!, category!!)
-
         PrefsHelper.instance.saveCategory("")
         PrefsHelper.instance.saveName("")
         PrefsHelper.instance.saveAmount(amount)
@@ -127,4 +123,3 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
     override fun onLongItemClick(item: ContactData) {}
     override fun onButtonClick(item: ContactData) {}
 }
-

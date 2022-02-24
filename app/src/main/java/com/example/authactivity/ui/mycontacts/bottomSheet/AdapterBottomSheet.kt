@@ -67,13 +67,6 @@ class AdapterBottomSheet(private val listener: ClickListenerBottom) : BaseAdapte
         notifyItemRangeChanged(position, itemCount)
     }
 
-    fun restoreItem(item: ListData?, position: Int){
-        if (item != null) {
-            items.add(position, item)
-            notifyItemRangeChanged(position, itemCount)
-        }
-    }
-
     companion object {
         const val VIEW_TYPE_DATA = 1
         const val VIEW_TYPE_EMPTY = 2

@@ -15,6 +15,7 @@ import com.example.authactivity.ui.onBoard.OnBoardViewModel
 import com.example.authactivity.ui.setting.LangSettingsActivity
 import com.example.authactivity.ui.setting.SettingsFragment
 import com.example.authactivity.ui.tablayout.fragment.AcceptFragment
+import com.example.authactivity.ui.tablayout.fragment.AcceptViewModel
 import com.example.authactivity.ui.tablayout.fragment.GiveFragment
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.dsl.fragment
@@ -31,29 +32,30 @@ val fragmentModule = module {
 val viewModelModule = module {
     viewModel { ListViewModel(get()) }
     viewModel { OnBoardViewModel() }
+    viewModel { AcceptViewModel(get()) }
     viewModel { CategoryViewModel(get()) }
     viewModel { LangViewModel() }
     viewModel { ContactViewModel(get()) }
 }
 
 val databaseModule = module {
-    single { Room.databaseBuilder(androidContext(), AppDatabase::class.java, DATABASE_NAME)
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            AppDatabase::class.java,
+            DATABASE_NAME
+        )
             .allowMainThreadQueries()
 //            .addMigrations(MIGRATION_1_2)
             .build()
     }
-
-        fun provideDao(dataBase: AppDatabase): ListDao {
-        return dataBase.listDao()
-    }
-    single { provideDao(get()) }
-    //single { get<AppDatabase>().listDao() }
-
+    single { get<AppDatabase>().listDao() }
 }
 
 val networkRepository = module {
     factory { ListRepositoryImpl(get()) }
     factory { CategoryRepositoryImpl (get()) }
+    factory { AcceptRepositoryImpl(get()) }
     factory { ContactRepositoryImpl(get()) }
     single { PrefsHelper(androidContext()) }
 }

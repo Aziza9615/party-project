@@ -51,13 +51,6 @@ class AdapterCategory(private val listener: CategoryClickListener) : BaseAdapter
         notifyItemRangeChanged(position, itemCount)
     }
 
-    fun restoreItem(item: CategoryData?, position: Int){
-        if (item != null) {
-            items.add(position, item)
-            notifyItemRangeChanged(position, itemCount)
-        }
-    }
-
     class CategoryViewHolder(var binding: ItemBottomSheetBinding): BaseViewHolder(binding.root){
         fun bind(item: CategoryData) {
             itemView.svs_category.text = item.category

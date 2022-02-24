@@ -89,13 +89,6 @@ class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
         notifyItemRangeChanged(position, itemCount)
     }
 
-    fun restoreItem(item: ContactData?, position: Int){
-        if (item != null) {
-            items.add(position, item)
-            notifyItemRangeChanged(position, itemCount)
-          }
-    }
-
     companion object {
         const val VIEW_TYPE_DATA = 1
         const val VIEW_TYPE_EMPTY = 2

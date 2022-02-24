@@ -12,10 +12,23 @@
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="AddDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="AddDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert"/>
+
+    <style name="DialogStyle" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:background">@drawable/alert_delete</item>
     </style>
 
-    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert"/>
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:background">@drawable/alert_delete</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:radius">30dp</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
 
     <style name="Button4"  parent="@android:style/Widget.Button">
         <item name="colorButtonNormal">@color/black</item>
@@ -28,6 +41,13 @@
 
     <style name="RoundedCornerBottomSheetStyle" parent="@style/Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet</item>
+    </style>
+
+    <style name="BlueButton" parent="ThemeOverlay.AppCompat">
+        <item name="colorButtonNormal">@drawable/btn_enable</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:radius">12dp</item>
+        <item name="android:background">@drawable/btn_dis</item>
     </style>
 
 </resources>

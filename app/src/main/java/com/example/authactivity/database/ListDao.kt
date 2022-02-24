@@ -1,6 +1,7 @@
 package com.example.authactivity.database
 
 import androidx.room.*
+import com.example.authactivity.model.AcceptData
 import com.example.authactivity.model.CategoryData
 import com.example.authactivity.model.ContactData
 import com.example.authactivity.model.ListData
@@ -51,4 +52,19 @@ interface ListDao {
 
     @Delete
     fun deleteContact(data: ContactData)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAccept(data: AcceptData)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun restoreAccept(data: AcceptData)
+
+    @Update
+    fun updateAccept(data: AcceptData)
+
+    @Query("SELECT * FROM accept")
+    fun getAccept(): MutableList<AcceptData>
+
+    @Delete
+    fun deleteAccept(data: AcceptData)
 }
