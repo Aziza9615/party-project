@@ -8,19 +8,19 @@ import android.util.Log
 import android.widget.*
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
-import com.example.authactivity.databinding.ActivityContactsBinding
+import com.example.authactivity.databinding.ActivityContactBinding
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.model.ContactData
 import com.example.authactivity.ui.main.MainActivity
 import com.example.authactivity.ui.mycontacts.category.CategoryBottomSheetFragment
 import com.example.authactivity.ui.mycontacts.bottomSheet.AddBottomSheetFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.activity_contacts.*
+import kotlinx.android.synthetic.main.activity_currency.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(ContactViewModel::class), ClickListener {
+class ContactActivity : BaseActivity<ContactViewModel, ActivityContactBinding>(ContactViewModel::class), ClickListener {
 
-    override fun  getViewBinding() = ActivityContactsBinding.inflate(layoutInflater)
+    override fun  getViewBinding() = ActivityContactBinding.inflate(layoutInflater)
 
     private lateinit var contact: ContactData
 
@@ -30,7 +30,6 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
         getIntentData()
         setupListeners()
         showEditTextDialogTwo()
-        binding.txtAmount.text = PrefsHelper.instance.getAmount().toString()
     }
 
     private fun getIntentData() {
@@ -56,7 +55,7 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
 
     private fun insertSoldProduct(amount: Int, name: String, category: String) {
         contact = ContactData(
-            0,
+            PrefsHelper.instance.getNameId()!!,
             name,
             category,
             amount
@@ -71,7 +70,7 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
             bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
         }
         binding.txtName.setOnClickListener {
-            val bottomSheetDialogFragment: BottomSheetDialogFragment = AddBottomSheetFragment(this)
+            val bottomSheetDialogFragment: BottomSheetDialogFragment = AddBottomSheetFragment()
             bottomSheetDialogFragment.isCancelable = true
             bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
         }
@@ -93,7 +92,7 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
         insertSoldProduct(amount, name!!, category!!)
         PrefsHelper.instance.saveCategory("")
         PrefsHelper.instance.saveName("")
-        PrefsHelper.instance.saveAmount(amount)
+        PrefsHelper.instance.saveAmount("")
         PrefsHelper.instance.saveNameId(0)
     }
 
@@ -104,9 +103,9 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
             val dialogLayout = inflater.inflate(R.layout.item_currency, null)
             val editText = dialogLayout.findViewById<EditText>(R.id.dialog_text)
             with(builder) {
-                setTitle("Введите сумму (${PrefsHelper.instance.getAmount()})")
+                setTitle("Введите сумму (\$)")
                 setPositiveButton("Сохранить") { dialog, which ->
-                    PrefsHelper.run { instance.saveAmount(editText.text.toString().toInt()) }
+                    PrefsHelper.run { instance.saveAmount(editText.text.toString()) }
                     binding.txtAmount.text = editText.text.toString()
                 }
                 setNegativeButton("Отмена") { dialog, which ->

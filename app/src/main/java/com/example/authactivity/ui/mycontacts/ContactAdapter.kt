@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.content.ContextCompat.startActivity
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
-import com.example.authactivity.databinding.ItemContactsBinding
+import com.example.authactivity.databinding.ItemContactBinding
 import com.example.authactivity.databinding.ItemFragmentContactsBinding
 import com.example.authactivity.model.ContactData
 import com.example.authactivity.model.ListData
@@ -28,7 +27,7 @@ class ContactAdapter(private val listener: ClickListener):BaseAdapter() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
 
         val binding = ItemFragmentContactsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        val bindingEmpty = ItemContactsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val bindingEmpty = ItemContactBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return if (viewType == AdapterBottomSheet.VIEW_TYPE_DATA) ListViewHolder(
             binding
         )
@@ -101,7 +100,7 @@ class ListViewHolder(var binding: ItemFragmentContactsBinding): BaseViewHolder(b
     }
 }
 
-class EmptyListViewHolder(var binding: ItemContactsBinding): BaseViewHolder(binding.root) {
+class EmptyListViewHolder(var binding: ItemContactBinding): BaseViewHolder(binding.root) {
     val Button = itemView.findViewById(R.id.newPresent) as Button
     fun bind(item: ContactData) {
         binding.newPresent.setOnClickListener (object : View.OnClickListener {

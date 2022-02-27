@@ -4,18 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
-import com.example.authactivity.databinding.ItemFragmentContactsBinding
 import com.example.authactivity.databinding.ItemTabBinding
-import com.example.authactivity.model.AcceptData
 import com.example.authactivity.model.ContactData
-import com.example.authactivity.ui.tablayout.fragment.AcceptFragment
-import kotlinx.android.synthetic.main.item_bottom_sheet.view.*
+import com.example.authactivity.model.EditData
 import kotlinx.android.synthetic.main.item_bottom_sheet.view.svs_category
 import kotlinx.android.synthetic.main.item_tab.view.*
 
-class AcceptAdapter(private val listener: ClickListenerAccept): BaseAdapter() {
+class EditAdapter(private val listener: ClickListenerAccept): BaseAdapter() {
 
-    private var items = mutableListOf<AcceptData>()
+    private var items = mutableListOf<EditData>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         val binding = ItemTabBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -41,12 +38,12 @@ class AcceptAdapter(private val listener: ClickListenerAccept): BaseAdapter() {
         }
     }
 
-    fun addItems(item: MutableList<AcceptData>) {
+    fun addItems(item: MutableList<EditData>) {
         items = item
         notifyDataSetChanged()
     }
 
-    fun addItem(item: AcceptData) {
+    fun addItem(item: EditData) {
         items.add(item)
         notifyDataSetChanged()
     }
@@ -58,14 +55,14 @@ class AcceptAdapter(private val listener: ClickListenerAccept): BaseAdapter() {
     }
 
     class AcceptViewHolder(var binding: ItemTabBinding): BaseViewHolder(binding.root){
-        fun bind(item: AcceptData) {
+        fun bind(item: EditData) {
             itemView.svs_category.text = item.category
             itemView.amount_tab.text = item.amount.toString()
         }
     }
 
     interface ClickListenerAccept {
-        fun onListClick(item: AcceptData)
-        fun onLongItemClickList(item: AcceptData)
+        fun onListClick(item: EditData)
+        fun onLongItemClickList(item: EditData)
     }
 }

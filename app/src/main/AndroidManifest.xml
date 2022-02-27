@@ -15,20 +15,19 @@
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.setting.CurrencySettingsActivity"/>
-        <activity android:name=".ui.currency.CurrencyActivity" />
-        <activity android:name=".ui.onBoard.OnBoardActivity" />
-        <activity android:name=".ui.setting.LangSettingsActivity" ></activity>
-        <activity android:name=".ui.tablayout.TabActivity"/>
-        <activity android:name=".ui.tablayout.EditActivity"/>
-        <activity android:name=".ui.mycontacts.ContactActivity"/>
-        <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.lang.LangActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".ui.currency.CurrencyActivity" />
+        <activity android:name=".ui.tablayout.TabActivity" />
+        <activity android:name=".ui.setting.CurrencySettingsActivity" />
+        <activity android:name=".ui.onBoard.OnBoardActivity" />
+        <activity android:name=".ui.mycontacts.ContactActivity"/>
+        <activity android:name=".ui.setting.LangSettingsActivity" />
+        <activity android:name=".ui.tablayout.bottomsheetEdit.EditActivity"></activity>
     </application>
 </manifest>

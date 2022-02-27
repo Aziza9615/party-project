@@ -89,8 +89,8 @@ class PrefsHelper(private val context: Context) {
         return prefs.getString(AMOUNT, "")
     }
 
-    fun saveAmount(amount: Int) {
-        prefs.edit().putString(AMOUNT, amount.toString()).apply()
+    fun saveAmount(amount: String) {
+        prefs.edit().putString(AMOUNT, amount).apply()
     }
 
     companion object {

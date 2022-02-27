@@ -58,7 +58,6 @@ class ContactsFragment : BaseFragment<ContactViewModel, FragmentContactsBinding>
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
-
             override fun onQueryTextChange(newText: String): Boolean {
                 if (newText == "") adapter.addItems(viewModel.filteredContact)
                 else {
@@ -74,6 +73,13 @@ class ContactsFragment : BaseFragment<ContactViewModel, FragmentContactsBinding>
         })
     }
 
+    private fun subscribe() {
+        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer { adapter.addItems(it) })
+        viewModel.subscribeToData()
+        viewModel.subscribeToMessage()
+        viewModel.getContact()
+    }
+
     override fun subscribeToLiveData() {
         viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             adapter.addItems(it)
@@ -84,13 +90,6 @@ class ContactsFragment : BaseFragment<ContactViewModel, FragmentContactsBinding>
         val intent = Intent(requireContext(), TabActivity::class.java)
         intent.putExtra(name_detail, item)
         startActivity(intent)
-    }
-
-    private fun subscribe() {
-        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer { adapter.addItems(it) })
-        viewModel.subscribeToData()
-        viewModel.subscribeToMessage()
-        viewModel.getContact()
     }
 
     companion object {

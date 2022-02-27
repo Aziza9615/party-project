@@ -3,7 +3,6 @@ package com.example.authactivity.di
 import androidx.room.Room
 import com.example.authactivity.database.AppDatabase
 import com.example.authactivity.database.DATABASE_NAME
-import com.example.authactivity.database.ListDao
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.repository.*
 import com.example.authactivity.ui.lang.LangViewModel
@@ -12,10 +11,9 @@ import com.example.authactivity.ui.mycontacts.ContactsFragment
 import com.example.authactivity.ui.mycontacts.bottomSheet.ListViewModel
 import com.example.authactivity.ui.mycontacts.category.CategoryViewModel
 import com.example.authactivity.ui.onBoard.OnBoardViewModel
-import com.example.authactivity.ui.setting.LangSettingsActivity
 import com.example.authactivity.ui.setting.SettingsFragment
+import com.example.authactivity.ui.tablayout.bottomsheetEdit.EditViewModel
 import com.example.authactivity.ui.tablayout.fragment.AcceptFragment
-import com.example.authactivity.ui.tablayout.fragment.AcceptViewModel
 import com.example.authactivity.ui.tablayout.fragment.GiveFragment
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.fragment.dsl.fragment
@@ -25,17 +23,17 @@ import org.koin.dsl.module
 val fragmentModule = module {
     fragment { SettingsFragment() }
     fragment { ContactsFragment() }
-    fragment { AcceptFragment() }
     fragment { GiveFragment() }
+    fragment { AcceptFragment() }
 }
 
 val viewModelModule = module {
     viewModel { ListViewModel(get()) }
     viewModel { OnBoardViewModel() }
-    viewModel { AcceptViewModel(get()) }
     viewModel { CategoryViewModel(get()) }
     viewModel { LangViewModel() }
     viewModel { ContactViewModel(get()) }
+    viewModel { EditViewModel(get()) }
 }
 
 val databaseModule = module {
@@ -55,8 +53,8 @@ val databaseModule = module {
 val networkRepository = module {
     factory { ListRepositoryImpl(get()) }
     factory { CategoryRepositoryImpl (get()) }
-    factory { AcceptRepositoryImpl(get()) }
     factory { ContactRepositoryImpl(get()) }
+    factory { EditRepositoryImpl(get()) }
     single { PrefsHelper(androidContext()) }
 }
 

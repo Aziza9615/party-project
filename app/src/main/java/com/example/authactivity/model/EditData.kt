@@ -4,11 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "accept")
-data class AcceptData(
+@Entity(tableName = "edit")
+data class EditData(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
-    var name: String,
-    var category: String,
-    var amount: Int
+    var category: String? = null,
+    var amount: Int? = null
 ) : Serializable

@@ -1,4 +1,4 @@
-package com.example.authactivity.ui.mycontacts.category
+package com.example.authactivity.ui.tablayout.bottomsheetEdit
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -18,11 +18,11 @@ import com.example.authactivity.local.isEmptyInputData
 import com.example.authactivity.local.showAlertDone
 import com.example.authactivity.model.CategoryData
 import com.example.authactivity.ui.mycontacts.ContactActivity
-import com.example.authactivity.ui.onBoard.OnBoardActivity
-import com.example.authactivity.ui.tablayout.bottomsheetEdit.EditActivity
+import com.example.authactivity.ui.mycontacts.category.AdapterCategory
+import com.example.authactivity.ui.mycontacts.category.CategoryViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class CategoryBottomSheetFragment : BaseAddBottomSheetFragment(), AdapterCategory.CategoryClickListener {
+class EditCategoryFragment : BaseAddBottomSheetFragment(), AdapterCategory.CategoryClickListener {
 
     lateinit var binding: LayoutAddBottomBinding
     private lateinit var adapterCategory: AdapterCategory
@@ -117,9 +117,7 @@ class CategoryBottomSheetFragment : BaseAddBottomSheetFragment(), AdapterCategor
     }
 
     private fun setupListener() {
-        binding.back.setOnClickListener {
-            startActivity(Intent(requireContext(), ContactActivity::class.java))
-        }
+        binding.back.setOnClickListener { this.onDestroyView() }
     }
 
     override fun getTheme(): Int {
@@ -127,7 +125,7 @@ class CategoryBottomSheetFragment : BaseAddBottomSheetFragment(), AdapterCategor
     }
 
     override fun onCategoryClick(item: CategoryData) {
-        val intent = Intent(requireContext(), ContactActivity::class.java)
+        val intent = Intent(requireContext(), EditActivity::class.java)
         PrefsHelper.instance.saveCategory(item.category)
         startActivity(intent)
     }

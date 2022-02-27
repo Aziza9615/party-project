@@ -1,23 +1,20 @@
 package com.example.authactivity.ui.tablayout.fragment
 
-import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.authactivity.R
 import com.example.authactivity.base.BaseFragment
-import com.example.authactivity.databinding.FragmentAcceptBinding
 import com.example.authactivity.databinding.FragmentGiveBinding
-import com.example.authactivity.model.AcceptData
+import com.example.authactivity.model.ContactData
+import com.example.authactivity.model.EditData
 import com.example.authactivity.ui.mycontacts.ContactViewModel
-import com.example.authactivity.ui.tablayout.adapter.AcceptAdapter
-import kotlinx.android.synthetic.main.activity_contacts.*
+import com.example.authactivity.ui.tablayout.adapter.EditAdapter
+import com.example.authactivity.ui.tablayout.bottomsheetEdit.EditViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class GiveFragment : BaseFragment<AcceptViewModel, FragmentGiveBinding>(AcceptViewModel::class), AcceptAdapter.ClickListenerAccept {
+class GiveFragment : BaseFragment<EditViewModel, FragmentGiveBinding>(EditViewModel::class), EditAdapter.ClickListenerAccept {
 
-    private lateinit var adapter: AcceptAdapter
+    private lateinit var adapter: EditAdapter
 
     override fun attachBinding(
         list: MutableList<FragmentGiveBinding>,
@@ -29,14 +26,13 @@ class GiveFragment : BaseFragment<AcceptViewModel, FragmentGiveBinding>(AcceptVi
     }
 
     override fun setupViews() {
-        viewModel = getViewModel(clazz = AcceptViewModel::class)
+        viewModel = getViewModel(clazz = EditViewModel::class)
         setupRecyclerView()
         subscribe()
     }
 
-
     private fun setupRecyclerView() {
-        adapter = AcceptAdapter(this)
+        adapter = EditAdapter(this)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
     }
@@ -52,6 +48,6 @@ class GiveFragment : BaseFragment<AcceptViewModel, FragmentGiveBinding>(AcceptVi
         })
     }
 
-    override fun onListClick(item: AcceptData) {}
-    override fun onLongItemClickList(item: AcceptData) {}
+    override fun onListClick(item: EditData) {}
+    override fun onLongItemClickList(item: EditData) {}
 }

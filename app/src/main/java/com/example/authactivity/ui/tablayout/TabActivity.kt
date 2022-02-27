@@ -3,40 +3,51 @@ package com.example.authactivity.ui.tablayout
 import android.app.AlertDialog
 import android.content.Intent
 import android.widget.Button
-import android.widget.EditText
-import androidx.viewpager2.widget.ViewPager2
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
 import com.example.authactivity.databinding.ActivityTabBinding
-import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.model.ContactData
+import com.example.authactivity.model.EditData
 import com.example.authactivity.ui.main.MainActivity
-import com.example.authactivity.ui.mycontacts.ContactActivity
 import com.example.authactivity.ui.mycontacts.ContactViewModel
 import com.example.authactivity.ui.mycontacts.ContactsFragment.Companion.name_detail
+import com.example.authactivity.ui.tablayout.adapter.EditAdapter
 import com.example.authactivity.ui.tablayout.adapter.TabViewPagerAdapter
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_contacts.*
+import com.example.authactivity.ui.tablayout.bottomsheetEdit.EditActivity
+import com.example.authactivity.ui.tablayout.bottomsheetEdit.EditViewModel
+import kotlinx.android.synthetic.main.activity_contact.*
+import kotlinx.android.synthetic.main.activity_edit.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_tab.*
+import kotlinx.android.synthetic.main.item_give.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class TabActivity : BaseActivity<ContactViewModel, ActivityTabBinding>(ContactViewModel::class) {
+class TabActivity : BaseActivity<EditViewModel, ActivityTabBinding>(EditViewModel::class), EditAdapter.ClickListenerAccept {
 
-    private lateinit var adapter: TabViewPagerAdapter
+    private lateinit var adapter: EditAdapter
 
     override fun getViewBinding() = ActivityTabBinding.inflate(layoutInflater)
 
     override fun setupViews() {
-        viewModel = getViewModel(clazz = ContactViewModel::class)
-        setupViewPager2()
+        viewModel = getViewModel(clazz = EditViewModel::class)
+        //setupViewPager2()
         setupListener()
-        initViews()
+        setupRecyclerView()
+        //setupTabLayout()
     }
 
-    private fun initViews() {
-        val contact = intent.getSerializableExtra(name_detail) as ContactData
-        binding.name.text = contact.name
+    override fun onResume() {
+        super.onResume()
+        viewModel.getEdit()
+    }
+
+    private fun setupRecyclerView() {
+        val contact = intent.getSerializableExtra(name_detail) as? ContactData
+        binding.name.text = contact?.name
+        adapter = EditAdapter(this)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = adapter
     }
 
     private fun setupListener() {
@@ -64,36 +75,47 @@ class TabActivity : BaseActivity<ContactViewModel, ActivityTabBinding>(ContactVi
             dialog.dismiss()
         }
         positiveButton.setOnClickListener {
-            viewModel.deleteContact()
-            viewModel.getContact()
+            viewModel.deleteEdit()
+            viewModel.getEdit()
             dialog.dismiss()
         }
         dialog.show()
     }
 
-    private fun setupViewPager2() {
-        val tabLayout=findViewById<TabLayout>(R.id.tab_layout)
-        val viewPager2=findViewById<ViewPager2>(R.id.view_pager)
-
-        val adapter = TabViewPagerAdapter(supportFragmentManager,lifecycle)
-
-        viewPager2. adapter = adapter
-
-        TabLayoutMediator(tabLayout,viewPager2){tab,position->
-            when(position){
-                0->{
-                    tab.text="Вы"
-                }
-                1->{
-                    tab.text="Вам"
-                }
-            }
-        }.attach()
-    }
+//    private fun setupViewPager2() {
+//        adapter = TabViewPagerAdapter(supportFragmentManager)
+//        adapter.addFragment(AcceptFragment(), "Вы")
+//        adapter.addFragment(GiveFragment(), "Вам")
+//        binding.viewPagerTab.adapter = adapter
+//    }
+//
+//    private fun setupTabLayout() {
+//        binding.tabLayout.setupWithViewPager(view_pager_tab)
+//        binding.tabLayout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
+//            override fun onTabSelected(tab: TabLayout.Tab?) {
+//                tab?.let { binding.viewPagerTab.currentItem = it.position }
+//            }
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+//            override fun onTabReselected(tab: TabLayout.Tab?) {}
+//        })
+//    }
 
     companion object {
         val edit_detail = "EDIT_DETAIL"
     }
 
-    override fun subscribeToLiveData() {}
+    private fun subscribe() {
+        viewModel.data.observe(this,
+            androidx.lifecycle.Observer { adapter.addItems(it) })
+    }
+
+    override fun subscribeToLiveData() {
+        viewModel.data.observe(this, androidx.lifecycle.Observer {
+            adapter.addItems(it)
+        })
+    }
+
+    override fun onListClick(item: EditData) {}
+
+    override fun onLongItemClickList(item: EditData) {}
 }

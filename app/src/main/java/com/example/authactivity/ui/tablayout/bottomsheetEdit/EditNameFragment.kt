@@ -1,7 +1,6 @@
-package com.example.authactivity.ui.mycontacts.category
+package com.example.authactivity.ui.tablayout.bottomsheetEdit
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,69 +11,72 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseAddBottomSheetFragment
-import com.example.authactivity.databinding.LayoutAddBottomBinding
+import com.example.authactivity.databinding.LayoutAddBottomSheetBinding
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.local.isEmptyInputData
-import com.example.authactivity.local.showAlertDone
-import com.example.authactivity.model.CategoryData
+import com.example.authactivity.local.showAlertDone1
+import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.ContactActivity
-import com.example.authactivity.ui.onBoard.OnBoardActivity
-import com.example.authactivity.ui.tablayout.bottomsheetEdit.EditActivity
+import com.example.authactivity.ui.mycontacts.bottomSheet.AdapterBottomSheet
+import com.example.authactivity.ui.mycontacts.bottomSheet.ClickListenerBottom
+import com.example.authactivity.ui.mycontacts.bottomSheet.ListViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class CategoryBottomSheetFragment : BaseAddBottomSheetFragment(), AdapterCategory.CategoryClickListener {
+class EditNameFragment : BaseAddBottomSheetFragment(), ClickListenerBottom {
 
-    lateinit var binding: LayoutAddBottomBinding
-    private lateinit var adapterCategory: AdapterCategory
-    private lateinit var viewModel: CategoryViewModel
+    lateinit var binding: LayoutAddBottomSheetBinding
+    private lateinit var viewModel: ListViewModel
+    private lateinit var adapter: AdapterBottomSheet
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = LayoutAddBottomBinding.inflate(inflater, container, false)
+    ): View {
+        binding = LayoutAddBottomSheetBinding.inflate(
+            inflater, container, false
+        )
         return binding.root
     }
 
     override fun setupViews() {
-        viewModel = getViewModel(clazz = CategoryViewModel::class)
+        viewModel = getViewModel(clazz = ListViewModel::class)
         PrefsHelper.instance = PrefsHelper(requireContext())
         setupListener()
-        setupRecyclerView()
-        showAlertEdit()
         setupSearchView()
+        showAlertEdit()
+        setupRecyclerView()
         subscribe()
     }
 
     private fun setupRecyclerView() {
-        adapterCategory = AdapterCategory(this)
+        adapter = AdapterBottomSheet(this)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapterCategory
+        binding.recyclerView.adapter = adapter
     }
 
     private fun subscribe() {
-        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer { adapterCategory.addItems(it) })
+        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer { adapter.addItems(it) })
         viewModel.subscribeToData()
         viewModel.subscribeToMessage()
-        viewModel.getCategory()
+        viewModel.getList()
     }
 
     private fun showAlertEdit() {
         binding.add.setOnClickListener {
             val alert = AlertDialog.Builder(requireContext(), R.style.AddDialogStyle)
-            val inflater = layoutInflater.inflate(R.layout.alert_category, null)
+            val inflater = layoutInflater.inflate(R.layout.alert_edit, null)
             alert.setView(inflater)
             val negativeButton: Button = inflater.findViewById(R.id.btn_no)
             val positiveButton: Button = inflater.findViewById(R.id.btn_yes)
-            val categoryEditText: EditText = inflater.findViewById(R.id.et_name)
+            val nameEditText: EditText = inflater.findViewById(R.id.et_name)
             val dialog = alert.create()
             negativeButton.setOnClickListener {
                 dialog.dismiss()
             }
             positiveButton.setOnClickListener {
-                checkField(categoryEditText, dialog)
-                showAlertDone(requireContext(), layoutInflater, R.layout.alert_done)
+                checkField(nameEditText, dialog)
+                showAlertDone1(requireContext(), layoutInflater, R.layout.alert_done1)
             }
             dialog.show()
         }
@@ -86,14 +88,15 @@ class CategoryBottomSheetFragment : BaseAddBottomSheetFragment(), AdapterCategor
         var error = 0
         if (nameEditText.isEmptyInputData(getString(R.string.add_name))) error += 1
         if (error > 0) return
+
         addItem(nameEditText, dialog)
     }
 
-    fun addItem(categoryEditText: EditText, dialog: AlertDialog) {
-        val category = CategoryData(id = 0, category = categoryEditText.text.toString())
+    fun addItem(nameEditText: EditText, dialog: AlertDialog) {
+        val list = ListData(id = 0, name = nameEditText.text.toString())
         dialog.dismiss()
-        adapterCategory.addItem(category)
-        viewModel.insertCategory(category)
+        adapter.addItem(list)
+        viewModel.insertList(list)
     }
 
     private fun setupSearchView() {
@@ -101,15 +104,16 @@ class CategoryBottomSheetFragment : BaseAddBottomSheetFragment(), AdapterCategor
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
+
             override fun onQueryTextChange(newText: String): Boolean {
-                if (newText == "") adapterCategory.addItems(viewModel.filteredCategory)
+                if (newText == "") adapter.addItems(viewModel.filteredList)
                 else {
                     val searchText = newText.toLowerCase()
-                    val filtered = mutableListOf<CategoryData>()
-                    viewModel.filteredCategory.forEach {
-                        if (it.category?.toLowerCase()!!.contains(searchText)) filtered.add(it)
+                    val filtered = mutableListOf<ListData>()
+                    viewModel.filteredList.forEach {
+                        if (it.name?.toLowerCase()!!.contains(searchText)) filtered.add(it)
                     }
-                    adapterCategory.addItems(filtered)
+                    adapter.addItems(filtered)
                 }
                 return false
             }
@@ -117,20 +121,19 @@ class CategoryBottomSheetFragment : BaseAddBottomSheetFragment(), AdapterCategor
     }
 
     private fun setupListener() {
-        binding.back.setOnClickListener {
-            startActivity(Intent(requireContext(), ContactActivity::class.java))
-        }
+        binding.back.setOnClickListener { this.onDestroyView() }
     }
 
     override fun getTheme(): Int {
         return R.style.RoundedCornerBottomSheetDialog
     }
 
-    override fun onCategoryClick(item: CategoryData) {
-        val intent = Intent(requireContext(), ContactActivity::class.java)
-        PrefsHelper.instance.saveCategory(item.category)
+    override fun onItemClickBottom(item: ListData) {
+        val intent = android.content.Intent(requireContext(), EditActivity::class.java)
+        PrefsHelper.instance.saveName(item.name!!)
+        PrefsHelper.instance.saveNameId(item.id)
         startActivity(intent)
     }
 
-    override fun onLongItemClickBottom(item: CategoryData) {}
+    override fun onLongItemClickBottom(item: ListData) {}
 }
