@@ -10,10 +10,8 @@ import com.example.authactivity.databinding.ActivityTabBinding
 import com.example.authactivity.model.ContactData
 import com.example.authactivity.model.EditData
 import com.example.authactivity.ui.main.MainActivity
-import com.example.authactivity.ui.mycontacts.ContactViewModel
 import com.example.authactivity.ui.mycontacts.ContactsFragment.Companion.name_detail
 import com.example.authactivity.ui.tablayout.adapter.EditAdapter
-import com.example.authactivity.ui.tablayout.adapter.TabViewPagerAdapter
 import com.example.authactivity.ui.tablayout.bottomsheetEdit.EditActivity
 import com.example.authactivity.ui.tablayout.bottomsheetEdit.EditViewModel
 import kotlinx.android.synthetic.main.activity_contact.*
@@ -46,7 +44,8 @@ class TabActivity : BaseActivity<EditViewModel, ActivityTabBinding>(EditViewMode
         val contact = intent.getSerializableExtra(name_detail) as? ContactData
         binding.name.text = contact?.name
         adapter = EditAdapter(this)
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager: LinearLayoutManager = LinearLayoutManager(this)
+        binding.recyclerView.setLayoutManager(layoutManager)
         binding.recyclerView.adapter = adapter
     }
 

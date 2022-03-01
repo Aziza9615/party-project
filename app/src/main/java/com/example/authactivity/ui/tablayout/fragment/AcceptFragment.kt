@@ -27,7 +27,7 @@ class AcceptFragment : BaseFragment<EditViewModel, FragmentAcceptBinding>(EditVi
 
     override fun setupViews() {
         viewModel = getViewModel(clazz = EditViewModel::class)
-        setupRecyclerView()
+        //setupRecyclerView()
         subscribe()
         initViews()
     }
@@ -36,11 +36,11 @@ class AcceptFragment : BaseFragment<EditViewModel, FragmentAcceptBinding>(EditVi
        // val contact = bundle.getSerializableExtra(ContactsFragment.name_detail) as ContactData
     }
 
-    private fun setupRecyclerView() {
-        adapter = EditAdapter(this)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter
-    }
+//    private fun setupRecyclerView() {
+//        adapter = EditAdapter(this)
+//        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        binding.recyclerView.adapter = adapter
+//    }
 
     private fun subscribe() {
         viewModel.data.observe(viewLifecycleOwner,

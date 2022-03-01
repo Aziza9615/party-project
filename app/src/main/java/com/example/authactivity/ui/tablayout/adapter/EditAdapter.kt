@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemTabBinding
-import com.example.authactivity.model.ContactData
 import com.example.authactivity.model.EditData
 import kotlinx.android.synthetic.main.item_bottom_sheet.view.svs_category
 import kotlinx.android.synthetic.main.item_tab.view.*

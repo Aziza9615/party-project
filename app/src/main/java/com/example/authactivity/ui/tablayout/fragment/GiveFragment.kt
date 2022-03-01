@@ -27,15 +27,15 @@ class GiveFragment : BaseFragment<EditViewModel, FragmentGiveBinding>(EditViewMo
 
     override fun setupViews() {
         viewModel = getViewModel(clazz = EditViewModel::class)
-        setupRecyclerView()
+        //setupRecyclerView()
         subscribe()
     }
 
-    private fun setupRecyclerView() {
-        adapter = EditAdapter(this)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter
-    }
+//    private fun setupRecyclerView() {
+//        adapter = EditAdapter(this)
+//        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        binding.recyclerView.adapter = adapter
+//    }
 
     private fun subscribe() {
         viewModel.data.observe(viewLifecycleOwner,

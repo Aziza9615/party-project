@@ -66,6 +66,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="12dp"
+        app:stackFromEnd="true"
+        app:reverseLayout="true"
         android:orientation="vertical"
         android:layout_marginStart="14dp"
         tools:listitem="@layout/item_give" />
