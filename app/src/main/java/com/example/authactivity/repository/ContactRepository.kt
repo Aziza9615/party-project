@@ -10,8 +10,7 @@ interface ContactRepository{
     fun insertContact(data: ContactData)
     fun updateContact(data: ContactData)
     fun restoreContact(data: ContactData)
-    fun deleteContact(data: ContactData)
-}
+    fun deleteContact(list: MutableList<ContactData>)}
 
 class ContactRepositoryImpl(private val database: ListDao): ContactRepository {//TODO КРЕШИТ ИЗ-ЗА ТОГО ЧТО НЕ ДОБАВИЛИ ListDao в DI!!!! МЫ ЭТО ПРОХОДИЛИ!!!
 
@@ -34,7 +33,7 @@ class ContactRepositoryImpl(private val database: ListDao): ContactRepository {/
         database.restoreContact(data)
     }
 
-    override fun deleteContact(data: ContactData) {
-        database.deleteContact(data)
+    override fun deleteContact(list: MutableList<ContactData>) {
+        database.deleteContact(list)
     }
 }

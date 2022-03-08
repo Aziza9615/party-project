@@ -12,8 +12,8 @@ import com.example.authactivity.databinding.ActivityContactBinding
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.model.ContactData
 import com.example.authactivity.ui.main.MainActivity
-import com.example.authactivity.ui.mycontacts.category.CategoryBottomSheetFragment
 import com.example.authactivity.ui.mycontacts.bottomSheet.AddBottomSheetFragment
+import com.example.authactivity.ui.mycontacts.category.CategoryBottomSheetFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.activity_currency.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -30,15 +30,26 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactBinding>(C
         getIntentData()
         setupListeners()
         showEditTextDialogTwo()
+        setupRadio()
+    }
+
+    private fun setupRadio() {
+        binding.radio.setOnCheckedChangeListener { group, checkedId ->
+            var rb = findViewById<RadioButton>(checkedId)
+            if(checkedId == R.id.button_accept) {
+                PrefsHelper.instance.saveAccept((rb.id.toString()))
+            }
+            if (checkedId == R.id.button_give) {
+                PrefsHelper.instance.saveGive((rb.id.toString()))
+            }
+        }
     }
 
     private fun getIntentData() {
         binding.txtCategory.text = PrefsHelper.instance.getCategory()
         binding.txtName.text = PrefsHelper.instance.getName()
         binding.arrowBtn.setOnClickListener {
-            PrefsHelper.instance.saveCategory("")
-            PrefsHelper.instance.saveName("")
-            onBackPressed()
+            startActivity(Intent(this@ContactActivity, MainActivity::class.java))
         }
     }
 
@@ -103,7 +114,7 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactBinding>(C
             val dialogLayout = inflater.inflate(R.layout.item_currency, null)
             val editText = dialogLayout.findViewById<EditText>(R.id.dialog_text)
             with(builder) {
-                setTitle("Введите сумму (\$)")
+                setTitle("Введите сумму ()")
                 setPositiveButton("Сохранить") { dialog, which ->
                     PrefsHelper.run { instance.saveAmount(editText.text.toString()) }
                     binding.txtAmount.text = editText.text.toString()
@@ -120,5 +131,4 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactBinding>(C
     override fun subscribeToLiveData() {}
     override fun onItemClick(item: ContactData) {}
     override fun onLongItemClick(item: ContactData) {}
-    override fun onButtonClick(item: ContactData) {}
 }

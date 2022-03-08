@@ -96,16 +96,7 @@ class ContactsFragment : BaseFragment<ContactViewModel, FragmentContactsBinding>
         val name_detail = "NAME_DETAIL"
     }
 
-    override fun onLongItemClick(item: ContactData) {
-        newBtn.setOnClickListener {
-            val intent = Intent(requireContext(), ContactActivity::class.java)
-            intent.putExtra(name_detail, item)
-            startActivity(intent)
-        }
-    }
-
-    override fun onButtonClick(item: ContactData) {
-    }
+    override fun onLongItemClick(item: ContactData) {}
 }
 
 

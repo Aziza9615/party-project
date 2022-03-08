@@ -44,4 +44,8 @@
     <string name="lang">Язык</string>
     <string name="category_created">Категория успешно добавлена</string>
     <string name="name_created">имя успешно добавлена</string>
+
+    <string name="radio_name" translatable="false">RadioButtonInKotlin</string>
+    <string name="checked" translatable="false">checked</string>
+    <string name="unchecked" translatable="false">unchecked</string>
 </resources>

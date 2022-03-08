@@ -51,18 +51,12 @@ interface ListDao {
     fun getContact(): MutableList<ContactData>
 
     @Delete
-    fun deleteContact(data: ContactData)
+    fun deleteContact(list: MutableList<ContactData>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertEdit(data: EditData)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun restoreEdit(data: EditData)
-
-    @Update
-    fun updateEdit(data: EditData)
-
-    @Query("SELECT * FROM edit")
+    @Query("SELECT * FROM contact")
     fun getEdit(): MutableList<EditData>
 
     @Delete

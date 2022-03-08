@@ -38,12 +38,14 @@ class CurrencyActivity : BaseActivity<OnBoardViewModel, ActivityCurrencyBinding>
         binding.radio.setOnCheckedChangeListener { group, checkedId ->
             var rb = findViewById<RadioButton>(checkedId)
             PrefsHelper.instance.saveCurrency(getCurrencyFromRadioButton(rb.id.toString()))
-            Toast.makeText(applicationContext, "You have chosen a currency : ${PrefsHelper.instance.getCurrency()}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext,
+                "You have chosen a currency : ${PrefsHelper.instance.getCurrency()}",
+                Toast.LENGTH_SHORT).show()
         }
         fun radio_button_click(view: View) {
             val radio: RadioButton = findViewById(radio.checkedRadioButtonId)
             Toast.makeText(applicationContext, "On click : ${radio.text}",
-                    Toast.LENGTH_SHORT).show()
+                Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -53,7 +55,7 @@ class CurrencyActivity : BaseActivity<OnBoardViewModel, ActivityCurrencyBinding>
             "2131296359" -> "C"
             "2131296360" -> "Р"
             "2131296361" -> "€"
-            else -> "$"
+            else -> ""
         }
     }
 

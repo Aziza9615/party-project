@@ -1,18 +1,19 @@
 package com.example.authactivity.ui.tablayout.fragment
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentAcceptBinding
 import com.example.authactivity.model.ContactData
-import com.example.authactivity.model.EditData
 import com.example.authactivity.ui.mycontacts.ContactViewModel
+import com.example.authactivity.ui.tablayout.EditViewModel
 import com.example.authactivity.ui.tablayout.adapter.EditAdapter
-import com.example.authactivity.ui.tablayout.bottomsheetEdit.EditViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class AcceptFragment : BaseFragment<EditViewModel, FragmentAcceptBinding>(EditViewModel::class), EditAdapter.ClickListenerAccept {
+class AcceptFragment() : BaseFragment<EditViewModel, FragmentAcceptBinding>(EditViewModel::class){
 
     private lateinit var adapter: EditAdapter
 
@@ -27,20 +28,21 @@ class AcceptFragment : BaseFragment<EditViewModel, FragmentAcceptBinding>(EditVi
 
     override fun setupViews() {
         viewModel = getViewModel(clazz = EditViewModel::class)
-        //setupRecyclerView()
+        setupRecyclerView()
         subscribe()
-        initViews()
     }
 
-    private fun initViews() {
-       // val contact = bundle.getSerializableExtra(ContactsFragment.name_detail) as ContactData
+    override fun onResume() {
+        super.onResume()
+        viewModel.getEdit()
     }
 
-//    private fun setupRecyclerView() {
-//        adapter = EditAdapter(this)
-//        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        binding.recyclerView.adapter = adapter
-//    }
+    private fun setupRecyclerView() {
+        adapter = EditAdapter()
+        val layoutManager: LinearLayoutManager = LinearLayoutManager(activity)
+        binding.recyclerView.setLayoutManager(layoutManager)
+        binding.recyclerView.adapter = adapter
+    }
 
     private fun subscribe() {
         viewModel.data.observe(viewLifecycleOwner,
@@ -52,8 +54,5 @@ class AcceptFragment : BaseFragment<EditViewModel, FragmentAcceptBinding>(EditVi
             adapter.addItems(it)
         })
     }
-
-    override fun onListClick(item: EditData) {}
-    override fun onLongItemClickList(item: EditData) {}
 }
 

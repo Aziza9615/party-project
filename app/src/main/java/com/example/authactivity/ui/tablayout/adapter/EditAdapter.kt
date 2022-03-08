@@ -5,11 +5,13 @@ import android.view.ViewGroup
 import com.example.authactivity.base.BaseAdapter
 import com.example.authactivity.base.BaseViewHolder
 import com.example.authactivity.databinding.ItemTabBinding
+import com.example.authactivity.model.ContactData
 import com.example.authactivity.model.EditData
-import kotlinx.android.synthetic.main.item_bottom_sheet.view.svs_category
+import com.example.authactivity.ui.mycontacts.ClickListener
+import com.example.authactivity.ui.tablayout.fragment.AcceptFragment
 import kotlinx.android.synthetic.main.item_tab.view.*
 
-class EditAdapter(private val listener: ClickListenerAccept): BaseAdapter() {
+class EditAdapter : BaseAdapter() {
 
     private var items = mutableListOf<EditData>()
 
@@ -28,13 +30,8 @@ class EditAdapter(private val listener: ClickListenerAccept): BaseAdapter() {
         val item = items[position]
         val holder = holder as AcceptViewHolder
         holder.bind(item)
-        holder.itemView.setOnClickListener {
-            listener.onListClick(item)
-        }
-        holder.itemView.setOnLongClickListener {
-            listener.onLongItemClickList(item)
-            true
-        }
+        holder.binding.svsCategory.text
+        holder.binding.amountTab.text
     }
 
     fun addItems(item: MutableList<EditData>) {
@@ -55,13 +52,8 @@ class EditAdapter(private val listener: ClickListenerAccept): BaseAdapter() {
 
     class AcceptViewHolder(var binding: ItemTabBinding): BaseViewHolder(binding.root){
         fun bind(item: EditData) {
-            itemView.svs_category.text = item.category
+            itemView.svs_category.text = item.category.toString()
             itemView.amount_tab.text = item.amount.toString()
         }
-    }
-
-    interface ClickListenerAccept {
-        fun onListClick(item: EditData)
-        fun onLongItemClickList(item: EditData)
     }
 }

@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentGiveBinding
 import com.example.authactivity.model.ContactData
-import com.example.authactivity.model.EditData
+import com.example.authactivity.ui.mycontacts.ClickListener
 import com.example.authactivity.ui.mycontacts.ContactViewModel
+import com.example.authactivity.ui.tablayout.EditViewModel
 import com.example.authactivity.ui.tablayout.adapter.EditAdapter
-import com.example.authactivity.ui.tablayout.bottomsheetEdit.EditViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class GiveFragment : BaseFragment<EditViewModel, FragmentGiveBinding>(EditViewModel::class), EditAdapter.ClickListenerAccept {
+class GiveFragment : BaseFragment<EditViewModel, FragmentGiveBinding>(EditViewModel::class){
 
     private lateinit var adapter: EditAdapter
 
@@ -27,15 +27,26 @@ class GiveFragment : BaseFragment<EditViewModel, FragmentGiveBinding>(EditViewMo
 
     override fun setupViews() {
         viewModel = getViewModel(clazz = EditViewModel::class)
-        //setupRecyclerView()
+        setupRecyclerView()
         subscribe()
     }
 
-//    private fun setupRecyclerView() {
-//        adapter = EditAdapter(this)
-//        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        binding.recyclerView.adapter = adapter
-//    }
+    override fun onResume() {
+        super.onResume()
+        viewModel.getEdit()
+        makeAnalytics()
+    }
+
+    private fun makeAnalytics() {
+        val productsArray = viewModel.edit
+    }
+
+    private fun setupRecyclerView() {
+        adapter = EditAdapter()
+        val layoutManager: LinearLayoutManager = LinearLayoutManager(activity)
+        binding.recyclerView.setLayoutManager(layoutManager)
+        binding.recyclerView.adapter = adapter
+    }
 
     private fun subscribe() {
         viewModel.data.observe(viewLifecycleOwner,
@@ -47,7 +58,4 @@ class GiveFragment : BaseFragment<EditViewModel, FragmentGiveBinding>(EditViewMo
             adapter.addItems(it)
         })
     }
-
-    override fun onListClick(item: EditData) {}
-    override fun onLongItemClickList(item: EditData) {}
 }

@@ -65,14 +65,14 @@ class AdapterBottomSheet(private val listener: ClickListenerBottom) : BaseAdapte
 
     private fun setupButton(holder: EmptyListViewHolder) {
         holder.bind()
-        holder.binding.newBtn.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                val fragment = context as FragmentActivity
-                val fm: FragmentManager = fragment.supportFragmentManager
-                val alertDialog = AddBottomSheetFragment()
-                alertDialog.show(fm, "alert_edit")
-            }
-        })
+        //holder.binding.newBtn.setOnClickListener(object : View.OnClickListener {
+//            override fun onClick(v: View?) {
+//                val fragment = context as FragmentActivity
+//                val fm: FragmentManager = fragment.supportFragmentManager
+//                val alertDialog = AddBottomSheetFragment()
+//                alertDialog.show(fm, "alert_edit")
+//            }
+//        })
     }
 
     fun addItems(item: MutableList<ListData>) {

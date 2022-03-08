@@ -111,5 +111,4 @@ class EmptyListViewHolder(var binding: ItemContactBinding): BaseViewHolder(bindi
 interface ClickListener {
     fun onItemClick(item: ContactData)
     fun onLongItemClick(item: ContactData)
-    fun onButtonClick(item: ContactData)
 }
