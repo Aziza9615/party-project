@@ -8,25 +8,20 @@ import android.util.Log
 import android.widget.*
 import com.example.authactivity.R
 import com.example.authactivity.base.BaseActivity
-import com.example.authactivity.databinding.ActivityContactsBinding
+import com.example.authactivity.databinding.ActivityContactBinding
 import com.example.authactivity.local.PrefsHelper
 import com.example.authactivity.model.ContactData
-import com.example.authactivity.ui.mycontacts.category.CategoryBottomSheetFragment
 import com.example.authactivity.ui.main.MainActivity
-import com.example.authactivity.ui.mycontacts.ContactsFragment.Companion.PRESENT_KEY
 import com.example.authactivity.ui.mycontacts.bottomSheet.AddBottomSheetFragment
+import com.example.authactivity.ui.mycontacts.category.CategoryBottomSheetFragment
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.activity_contacts.*
-import kotlinx.android.synthetic.main.activity_contacts.view.*
-import kotlinx.android.synthetic.main.item_bottom_sheet.*
-import kotlinx.android.synthetic.main.item_fragment_contacts.*
+import kotlinx.android.synthetic.main.activity_currency.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(ContactViewModel::class), ClickListener {
+class ContactActivity : BaseActivity<ContactViewModel, ActivityContactBinding>(ContactViewModel::class), ClickListener {
 
-    override fun getViewBinding() = ActivityContactsBinding.inflate(layoutInflater)
+    override fun  getViewBinding() = ActivityContactBinding.inflate(layoutInflater)
 
-    private lateinit var contactViewModel: ContactViewModel
     private lateinit var contact: ContactData
 
     override fun setupViews() {
@@ -35,17 +30,25 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
         getIntentData()
         setupListeners()
         showEditTextDialogTwo()
-        setupButton()
-        binding.txtAmount.text = PrefsHelper.instance.getAmount().toString()
+        setupRadio()
+    }
+
+    private fun setupRadio() {
+        binding.radio.setOnCheckedChangeListener { group, checkedId ->
+            var rb = findViewById<RadioButton>(checkedId)
+            if(checkedId == R.id.button_accept) {
+                PrefsHelper.instance.saveAccept((rb.id.toString()))
+            }
+            if (checkedId == R.id.button_give) {
+                PrefsHelper.instance.saveGive((rb.id.toString()))
+            }
+        }
     }
 
     private fun getIntentData() {
-        val present = intent.getSerializableExtra(ContactsFragment.PRESENT_ITEM)
         binding.txtCategory.text = PrefsHelper.instance.getCategory()
         binding.txtName.text = PrefsHelper.instance.getName()
         binding.arrowBtn.setOnClickListener {
-            PrefsHelper.instance.saveCategory("")
-            PrefsHelper.instance.saveName("")
             startActivity(Intent(this@ContactActivity, MainActivity::class.java))
         }
     }
@@ -58,50 +61,50 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
             val amount = binding.txtAmount.text.toString().trim()
             binding.nextBtn.isEnabled = name.isNotEmpty() && category.isNotEmpty() && amount.isNotEmpty()
         }
-
         override fun afterTextChanged(s: Editable?) {}
-    }
-
-    private fun setupButton() {
-        binding.txtName.addTextChangedListener(loginTextWatcher)
-        binding.txtCategory.addTextChangedListener(loginTextWatcher)
-        binding.txtAmount.addTextChangedListener(loginTextWatcher)
-        binding.nextBtn.setOnClickListener {
-            if (contact.amount !!>= binding.txtAmount.text.toString().toInt()) {
-                saveEdits()
-            }
-        }
-    }
-
-    private fun saveEdits() {
-        val amount = txt_amount.text.toString().toInt()
-        val name = txt_name.text.toString()
-        val category = txt_category.text.toString()
-        insertSoldProduct(amount, name, category)
     }
 
     private fun insertSoldProduct(amount: Int, name: String, category: String) {
         contact = ContactData(
-            0,
-            contact.name,
-            contact.category,
-            contact.amount
+            PrefsHelper.instance.getNameId()!!,
+            name,
+            category,
+            amount
         )
-        contactViewModel.insertContact(contact)
+        viewModel.insertContact(contact)
     }
 
     private fun setupListeners() {
         binding.txtCategory.setOnClickListener {
-            val bottomSheetDialogFragment: BottomSheetDialogFragment = CategoryBottomSheetFragment(
-                this)
+            val bottomSheetDialogFragment: BottomSheetDialogFragment = CategoryBottomSheetFragment()
             bottomSheetDialogFragment.isCancelable = true
             bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
         }
         binding.txtName.setOnClickListener {
-            val bottomSheetDialogFragment: BottomSheetDialogFragment = AddBottomSheetFragment(this)
+            val bottomSheetDialogFragment: BottomSheetDialogFragment = AddBottomSheetFragment()
             bottomSheetDialogFragment.isCancelable = true
             bottomSheetDialogFragment.show(supportFragmentManager, bottomSheetDialogFragment.tag)
         }
+        binding.txtName.addTextChangedListener(loginTextWatcher)
+        binding.txtCategory.addTextChangedListener(loginTextWatcher)
+        binding.txtAmount.addTextChangedListener(loginTextWatcher)
+        binding.nextBtn.setOnClickListener {
+            saveContacts()
+            startActivity(Intent(this@ContactActivity, MainActivity::class.java))
+        }
+    }
+
+    private fun saveContacts() {
+        val id = PrefsHelper.instance.getNameId()
+        val name = PrefsHelper.instance.getName()
+        val category = PrefsHelper.instance.getCategory()
+        val amount = PrefsHelper.instance.getAmount().toString().toInt()
+        val contact = ContactData(id!!, name, category, amount)
+        insertSoldProduct(amount, name!!, category!!)
+        PrefsHelper.instance.saveCategory("")
+        PrefsHelper.instance.saveName("")
+        PrefsHelper.instance.saveAmount("")
+        PrefsHelper.instance.saveNameId(0)
     }
 
     private fun showEditTextDialogTwo() {
@@ -111,9 +114,9 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
             val dialogLayout = inflater.inflate(R.layout.item_currency, null)
             val editText = dialogLayout.findViewById<EditText>(R.id.dialog_text)
             with(builder) {
-                setTitle("Введите сумму (${PrefsHelper.instance.getAmount()})")
+                setTitle("Введите сумму ()")
                 setPositiveButton("Сохранить") { dialog, which ->
-                    PrefsHelper.run { instance.saveAmount(editText.text.toString().toInt()) }
+                    PrefsHelper.run { instance.saveAmount(editText.text.toString()) }
                     binding.txtAmount.text = editText.text.toString()
                 }
                 setNegativeButton("Отмена") { dialog, which ->
@@ -129,4 +132,3 @@ class ContactActivity : BaseActivity<ContactViewModel, ActivityContactsBinding>(
     override fun onItemClick(item: ContactData) {}
     override fun onLongItemClick(item: ContactData) {}
 }
-

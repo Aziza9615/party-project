@@ -1,6 +1,7 @@
  package com.example.authactivity.ui.mycontacts.bottomSheet
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +18,10 @@ import com.example.authactivity.local.isEmptyInputData
 import com.example.authactivity.local.showAlertDone1
 import com.example.authactivity.model.ListData
 import com.example.authactivity.ui.mycontacts.*
+import com.example.authactivity.ui.onBoard.OnBoardActivity
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
- class AddBottomSheetFragment(contactsActivity: ContactActivity) : BaseAddBottomSheetFragment(), ClickListenerBottom {
+ class AddBottomSheetFragment : BaseAddBottomSheetFragment(), ClickListenerBottom {
 
      lateinit var binding: LayoutAddBottomSheetBinding
      private lateinit var viewModel: ListViewModel
@@ -29,7 +31,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
          inflater: LayoutInflater,
          container: ViewGroup?,
          savedInstanceState: Bundle?
-     ): View? {
+     ): View {
          binding = LayoutAddBottomSheetBinding.inflate(
              inflater, container, false
          )
@@ -80,8 +82,7 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
      }
 
      private fun checkField(
-         nameEditText: EditText, dialog: AlertDialog
-     ) {
+         nameEditText: EditText, dialog: AlertDialog) {
          var error = 0
          if (nameEditText.isEmptyInputData(getString(R.string.add_name))) error += 1
          if (error > 0) return
@@ -118,11 +119,9 @@ import org.koin.androidx.viewmodel.ext.android.getViewModel
      }
 
      private fun setupListener() {
-         binding.back.setOnClickListener { this.onDestroyView() }
-     }
-
-     companion object {
-         const val ITEM_KEY = "ITEM_KEY"
+         binding.back.setOnClickListener {
+             startActivity(Intent(requireContext(), ContactActivity::class.java))
+         }
      }
 
      override fun getTheme(): Int {

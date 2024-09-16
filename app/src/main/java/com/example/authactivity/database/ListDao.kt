@@ -3,6 +3,7 @@ package com.example.authactivity.database
 import androidx.room.*
 import com.example.authactivity.model.CategoryData
 import com.example.authactivity.model.ContactData
+import com.example.authactivity.model.EditData
 import com.example.authactivity.model.ListData
 
 @Dao
@@ -50,5 +51,14 @@ interface ListDao {
     fun getContact(): MutableList<ContactData>
 
     @Delete
-    fun deleteContact(contact: MutableList<ContactData>?)
+    fun deleteContact(list: MutableList<ContactData>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertEdit(data: EditData)
+
+    @Query("SELECT * FROM contact")
+    fun getEdit(): MutableList<EditData>
+
+    @Delete
+    fun deleteEdit(list: MutableList<EditData>)
 }

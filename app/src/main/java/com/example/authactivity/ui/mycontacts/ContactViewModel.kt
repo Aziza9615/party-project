@@ -13,7 +13,7 @@ class ContactViewModel(private val repository: ContactRepositoryImpl) : BaseView
 
     val data: MutableLiveData<MutableList<ContactData>> = MutableLiveData()
     val message: MutableLiveData<String> = MutableLiveData()
-    var contact: MutableList<ContactData>? = mutableListOf()
+    var contact: MutableList<ContactData> = mutableListOf()
     var filteredContact: MutableList<ContactData> = mutableListOf()
 
     fun updateContact(data: ContactData) {
@@ -34,17 +34,11 @@ class ContactViewModel(private val repository: ContactRepositoryImpl) : BaseView
         repository.deleteContact(contact)
     }
 
-    fun restoreProduct(data: ContactData?) {
-        if (data != null) {
-            repository.restoreContact(data)
-        }
-    }
-
     fun subscribeToData() {
         repository.data.observeForever {
-            it?.let { result -> data.value = result}
-            data.value?.let { data -> contact = data }
             data.value = it
+            contact = data.value!!
+            filteredContact = it
         }
     }
 

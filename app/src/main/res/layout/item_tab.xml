@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/svs_category"
+        android:layout_width="280dp"
+        android:layout_height="24dp"
+        android:text="Свадьба"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/Label_Primary"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="52dp"/>
+
+    <TextView
+        android:id="@+id/amount_tab"
+        android:layout_width="36dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="16dp"
+        tools:text="- 100"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/svs_category"/>
+
+    <View
+        android:id="@+id/gray_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="18dp"
+        android:background="@color/grey_10"
+        app:layout_constraintTop_toBottomOf="@id/svs_category" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

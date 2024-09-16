@@ -11,9 +11,8 @@ import com.example.authactivity.ui.mycontacts.ContactsFragment
 import com.example.authactivity.ui.mycontacts.bottomSheet.ListViewModel
 import com.example.authactivity.ui.mycontacts.category.CategoryViewModel
 import com.example.authactivity.ui.onBoard.OnBoardViewModel
-import com.example.authactivity.ui.setting.LangSettingsFragment
 import com.example.authactivity.ui.setting.SettingsFragment
-import com.example.authactivity.ui.statistics.StatisticsFragment
+import com.example.authactivity.ui.tablayout.EditViewModel
 import com.example.authactivity.ui.tablayout.fragment.AcceptFragment
 import com.example.authactivity.ui.tablayout.fragment.GiveFragment
 import org.koin.android.ext.koin.androidContext
@@ -23,18 +22,17 @@ import org.koin.dsl.module
 
 val fragmentModule = module {
     fragment { SettingsFragment() }
-    fragment { LangSettingsFragment() }
-    fragment { StatisticsFragment() }
     fragment { ContactsFragment() }
-    fragment { AcceptFragment() }
     fragment { GiveFragment() }
+    fragment { AcceptFragment() }
 }
 
 val viewModelModule = module {
     viewModel { ListViewModel(get()) }
     viewModel { OnBoardViewModel() }
-    viewModel { LangViewModel() }
+    viewModel { EditViewModel(get()) }
     viewModel { CategoryViewModel(get()) }
+    viewModel { LangViewModel() }
     viewModel { ContactViewModel(get()) }
 }
 
@@ -55,6 +53,7 @@ val databaseModule = module {
 val networkRepository = module {
     factory { ListRepositoryImpl(get()) }
     factory { CategoryRepositoryImpl (get()) }
+    factory { EditRepositoryImpl(get()) }
     factory { ContactRepositoryImpl(get()) }
     single { PrefsHelper(androidContext()) }
 }

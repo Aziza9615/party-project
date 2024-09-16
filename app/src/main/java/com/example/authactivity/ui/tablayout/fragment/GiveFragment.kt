@@ -1,24 +1,20 @@
 package com.example.authactivity.ui.tablayout.fragment
 
-import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
-import com.example.authactivity.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.authactivity.base.BaseFragment
 import com.example.authactivity.databinding.FragmentGiveBinding
+import com.example.authactivity.model.ContactData
+import com.example.authactivity.ui.mycontacts.ClickListener
 import com.example.authactivity.ui.mycontacts.ContactViewModel
-import kotlinx.android.synthetic.main.activity_contacts.*
+import com.example.authactivity.ui.tablayout.EditViewModel
+import com.example.authactivity.ui.tablayout.adapter.EditAdapter
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class GiveFragment : BaseFragment<ContactViewModel, FragmentGiveBinding>(ContactViewModel::class) {
+class GiveFragment : BaseFragment<EditViewModel, FragmentGiveBinding>(EditViewModel::class){
 
-    override fun setupViews() {
-        viewModel = getViewModel (clazz = ContactViewModel::class)
-    }
-
-    override fun subscribeToLiveData() {
-    }
+    private lateinit var adapter: EditAdapter
 
     override fun attachBinding(
         list: MutableList<FragmentGiveBinding>,
@@ -29,26 +25,37 @@ class GiveFragment : BaseFragment<ContactViewModel, FragmentGiveBinding>(Contact
         list.add(FragmentGiveBinding.inflate(layoutInflater, container, attachToRoot))
     }
 
-    private fun showAlertReset() {
-        val alert = AlertDialog.Builder(requireContext(), R.style.Theme_AppCompat_Dialog_Alert)
+    override fun setupViews() {
+        viewModel = getViewModel(clazz = EditViewModel::class)
+        setupRecyclerView()
+        subscribe()
+    }
 
-        val inflater = layoutInflater.inflate(R.layout.alert_delete, null)
-        alert.setView(inflater)
-        val negativeButton: Button = inflater.findViewById(R.id.btn_no)
-        val positiveButton: Button = inflater.findViewById(R.id.btn_yes)
+    override fun onResume() {
+        super.onResume()
+        viewModel.getEdit()
+        makeAnalytics()
+    }
 
-        val dialog = alert.create()
+    private fun makeAnalytics() {
+        val productsArray = viewModel.edit
+    }
 
-        negativeButton.setOnClickListener {
-            dialog.dismiss()
-        }
-        positiveButton.setOnClickListener {
-            viewModel.deleteContact()
-            txt_amount.text = "0"
-            txt_category.text = toString()
-            txt_name.text = toString()
-            dialog.dismiss()
-        }
-        dialog.show()
+    private fun setupRecyclerView() {
+        adapter = EditAdapter()
+        val layoutManager: LinearLayoutManager = LinearLayoutManager(activity)
+        binding.recyclerView.setLayoutManager(layoutManager)
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun subscribe() {
+        viewModel.data.observe(viewLifecycleOwner,
+            androidx.lifecycle.Observer { adapter.addItems(it) })
+    }
+
+    override fun subscribeToLiveData() {
+        viewModel.data.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            adapter.addItems(it)
+        })
     }
 }

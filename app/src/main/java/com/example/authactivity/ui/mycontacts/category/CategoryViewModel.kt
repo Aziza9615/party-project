@@ -17,10 +17,6 @@ class CategoryViewModel(private val repository: CategoryRepositoryImpl) : BaseVi
     var category: MutableList<CategoryData>? = mutableListOf()
     var filteredCategory: MutableList<CategoryData> = mutableListOf()
 
-    fun updateCategory(data: CategoryData) {
-        repository.updateCategory(data)
-    }
-
     fun getCategory() {
         repository.getCategory()
     }
@@ -28,12 +24,6 @@ class CategoryViewModel(private val repository: CategoryRepositoryImpl) : BaseVi
     fun insertCategory(data: CategoryData?) {
         viewModelScope.launch(Dispatchers.IO) {
             data?.let { repository.insertCategory(data) }
-        }
-    }
-
-    fun deleteCategory(data: CategoryData?) {
-        if (data != null) {
-            repository.deleteCategory(data)
         }
     }
 

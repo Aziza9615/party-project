@@ -18,10 +18,6 @@ class ListViewModel(private val repository: ListRepositoryImpl) : BaseViewModel<
     var list: MutableList<ListData>? = mutableListOf()
     var filteredList: MutableList<ListData> = mutableListOf()
 
-    fun updateList(data: ListData) {
-        repository.updateList(data)
-    }
-
     fun getList() {
         repository.getList()
     }
@@ -29,12 +25,6 @@ class ListViewModel(private val repository: ListRepositoryImpl) : BaseViewModel<
     fun insertList(data: ListData) {
         viewModelScope.launch(Dispatchers.IO) {
             data?.let { repository.insertList(data) }
-        }
-    }
-
-    fun deleteList(data: ListData?) {
-        if (data != null) {
-            repository.deleteList(data)
         }
     }
 
